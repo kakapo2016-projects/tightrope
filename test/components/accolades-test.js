@@ -10,4 +10,8 @@ describe('Accolades', () => {
     const wrapper = shallow(<Accolades />)
     expect(wrapper.find('div')).to.have.length(1)
   })
+  // xit('should have a div', () => {
+  //   const wrapper = shallow(<Accolades />)
+  //   expect(wrapper.find('div')).to.have.length(1)
+  // })
 })
