@@ -3,11 +3,21 @@ import { expect } from 'chai'
 import { shallow, render, mount } from 'enzyme'
 import React from 'react'
 
-import App from '../../src/components/App'
+import Photoset from '../../src/components/Photoset'
 
-describe('App', () => {
-  xit('should have a div', () => {
-    const wrapper = shallow(<App />)
-    expect(wrapper.find('div')).to.have.length(1)
+describe('Photoset', () => {
+
+  const testphotoset = [
+    '../../public/images/squares.jpeg',
+    '../../public/images/dandelion.jpg',
+    '../../public/images/laksa.jpg',
+    '../../public/images/purple.jpg',
+    '../../public/images/city.jpg'
+  ]
+
+
+  it('should have 5 images', () => {
+    const wrapper = render(<Photoset photoset={testphotoset}/>)
+    expect(wrapper.find('img')).to.have.length(5)
   })
 })

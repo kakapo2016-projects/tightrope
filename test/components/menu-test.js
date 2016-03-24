@@ -3,11 +3,15 @@ import { expect } from 'chai'
 import { shallow, render, mount } from 'enzyme'
 import React from 'react'
 
-import App from '../../src/components/App'
+import Menu from '../../src/components/Menu'
 
-describe('App', () => {
-  xit('should have a div', () => {
-    const wrapper = shallow(<App />)
-    expect(wrapper.find('div')).to.have.length(1)
+describe('Menu', () => {
+  it('should have an unordered list', () => {
+    const wrapper = shallow(<Menu />)
+    expect(wrapper.find('#menu')).to.have.length(1)
+  })
+  it('should have 4 items', () => {
+    const wrapper = shallow(<Menu />)
+    expect(wrapper.find('li')).to.have.length(4)
   })
 })
