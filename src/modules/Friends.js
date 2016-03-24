@@ -1,13 +1,11 @@
 import React from 'react'
-import Profile from '../modules/Profile'
+import Profile from './Profile'
 
 export default React.createClass({
-
   render: function () {
     return (
       <div>
-        <h1 id='main-title'>Tightrope</h1>
-        <Profile />
+        <h1>Friends</h1>
       </div>
     )
   }

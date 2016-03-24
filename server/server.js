@@ -37,12 +37,6 @@ passport.deserializeUser(function (id, done) {
 
 // passport route
 
-app.post('/login',
-  passport.authenticate('local', { failureRedirect: '/login' }),
-  function (req, res) {
-    res.redirect('/')
-  })
-
 // listener
 var PORT = process.env.PORT || 3000
 app.listen(PORT, function () {
