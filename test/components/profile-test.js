@@ -8,7 +8,7 @@ import Profile from '../../src/modules/Profile'
 
 describe('Profile', () => {
   it('should have a menu', () => {
-    const wrapper = render(<Profile />)
+    const wrapper = mount(<Profile />)
     expect(wrapper.find('#menu')).to.have.length(1)
   })
 
