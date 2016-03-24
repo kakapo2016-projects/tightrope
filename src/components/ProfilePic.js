@@ -5,7 +5,7 @@ export default React.createClass({
   render: function () {
     return (
       <div>
-        <img className="profilephoto" src={this.props.profilepic} />
+        <img className="profilephoto" src={this.props.photo} />
       </div>
     )
   }

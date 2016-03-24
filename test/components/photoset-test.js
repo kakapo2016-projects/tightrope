@@ -6,8 +6,17 @@ import React from 'react'
 import Photoset from '../../src/components/Photoset'
 
 describe('Photoset', () => {
-  xit('should have a div', () => {
+
+  const photoset = [
+    '../../images/squares.jpeg',
+    '../../images/dandelion.jpg',
+    '../../images/laksa.jpg',
+    '../../images/purple.jpg',
+    '../../images/city.jpg'
+  ]
+
+  it('should have a 5 images', () => {
     const wrapper = shallow(<Photoset />)
-    expect(wrapper.find('div')).to.have.length(1)
+    expect(wrapper.find('img')).to.have.length(5)
   })
 })

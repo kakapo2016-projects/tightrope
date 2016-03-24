@@ -24,7 +24,10 @@ export default React.createClass({
     return (
       <div>
         <h1 id="main-title">Tightrope</h1>
-        <Profile username={this.state.testuser.username} photo={this.state.photo} photoset={this.state.photoset}/>
+        <Profile
+          username={this.state.testuser.username}
+          photo={this.state.testuser.photo}
+          photoset={this.state.photoset}/>
       </div>
     )
   }
