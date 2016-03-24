@@ -7,16 +7,16 @@ import Photoset from '../../src/components/Photoset'
 
 describe('Photoset', () => {
 
-  const photoset = [
-    '../../images/squares.jpeg',
-    '../../images/dandelion.jpg',
-    '../../images/laksa.jpg',
-    '../../images/purple.jpg',
-    '../../images/city.jpg'
-  ]
+  // const photoset = [
+  //   '../../images/squares.jpeg',
+  //   '../../images/dandelion.jpg',
+  //   '../../images/laksa.jpg',
+  //   '../../images/purple.jpg',
+  //   '../../images/city.jpg'
+  // ]
 
   it('should have a 5 images', () => {
-    const wrapper = shallow(<Photoset />)
+    const wrapper = shallow(<Photoset photoset={photoset}/>)
     expect(wrapper.find('img')).to.have.length(5)
   })
 })
