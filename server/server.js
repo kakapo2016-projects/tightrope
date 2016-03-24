@@ -1,21 +1,10 @@
 var express = require('express')
 var path = require('path')
 var compression = require('compression')
+var passport = require('passport')
+var LocalStrategy = require('passport-local')
 
-var app = express()
-app.use(compression())
-
-// serve our static stuff like index.css
-app.use(express.static(path.join(__dirname, 'public')))
-
-// send all requests to index.html so browserHistory in React Router works
-app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'))
-})
-
-// importing routes
-require('./routes')(app);
-
+require('./routes')(app)
 
 // passport authentication
 var app = express()
