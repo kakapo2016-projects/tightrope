@@ -2,7 +2,6 @@
 import { expect } from 'chai'
 import { shallow, render, mount } from 'enzyme'
 import React from 'react'
-
 import Photo from '../../src/components/Photo'
 
 describe('Photo', () => {
