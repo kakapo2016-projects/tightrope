@@ -1,8 +1,5 @@
-module.exports = function(app) {
-
+module.exports = function (app) {
   app.get('/', function (req, res) {
-    res.send('Hello there, whats up?')
+    res.end('Hello there, whats up? Hello. Hi hi')
   })
-
-    //other routes..
 }
