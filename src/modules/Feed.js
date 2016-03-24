@@ -1,5 +1,4 @@
 import React from 'react'
-import Menu from '../components/Menu'
 import Photoset from '../components/Photoset'
 
 export default React.createClass({
@@ -7,8 +6,7 @@ export default React.createClass({
   render: function () {
     return (
       <div>
-      <h3>HEY</h3>
-        <Menu />
+      <h3>This is a feed</h3>
         <Photoset />
       </div>
     )

@@ -13,6 +13,7 @@ export default React.createClass({
           <li><NavLink to='/profile'>profile</NavLink></li>
           <li><NavLink to='/feed'>feed</NavLink></li>
           <li><NavLink to='/friends'>friends</NavLink></li>
+          <li><NavLink to='/login'>login</NavLink></li>
         </ul>
         <div>
           {this.props.children || <Feed/>}
