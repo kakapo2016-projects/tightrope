@@ -16,7 +16,7 @@ module.exports = function (app) {
     connection: {
       filename: __dirname + '/../data/tightrope.sqlite'
     },
-    useNullAsDefault: true,
+    useNullAsDefault: true
   })
 
   var db = require('./db.js')(knex)
@@ -24,11 +24,11 @@ module.exports = function (app) {
   // ----- initial test routes ----- //
 
   app.get('/', function (req, res) {
-    res.send('Hello there, whats up? Hello. Hi hi')
+    res.send('elon musk was here on /')
   })
 
   app.get('/test', function (req, res) {
-    res.send('Test. Check...1...2...')
+    res.send('You are on /test')
   })
 
   app.get('/api/v1/profile/:id', function (req, res) {
@@ -37,8 +37,8 @@ module.exports = function (app) {
 
   app.get('/api/v1/users/:id/profile', function (req, res) {
     console.log('GET received on /api/v1/users/:id/profile')
-    console.log('>>>>>>>>>>>>>>', req.params)
-    // use knex to do 'SELECT * FROM users WHERE userID=3' to sqlite DB
+    console.log('req.params is: ', req.params)
+    // use knex to do 'SELECT * FROM users WHERE user_id=2' to sqlite DB
     db.findOne('users', { user_id: req.params.id }, function (err, user) {
       if (err) { throw err }
       console.log(user)
@@ -46,14 +46,14 @@ module.exports = function (app) {
     })
   })
 
-  app.get('/users/:id', function (req, res) {
-    console.log('GET received on /users/:id')
-    console.log('>>>>>>>>>>>>>>', req.params)
-    // use knex to do 'SELECT * FROM users WHERE userID=3' to sqlite DB
-    db.findOne('users', { user_id: req.params.id }, function (err, user) {
+  app.get('/api/v1/photos/:id', function (req, res) {
+    console.log('GET received on /api/v1/photos/:id')
+    console.log('req.params is: ', req.params)
+    // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
+    db.findOne('photos', { photo_id: req.params.id }, function (err, photo) {
       if (err) { throw err }
-      console.log(user)
-      res.json(user)
+      console.log(photo)
+      res.json(photo)
     })
   })
 }
