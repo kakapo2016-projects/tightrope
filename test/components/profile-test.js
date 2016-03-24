@@ -8,9 +8,9 @@ global.Ω = require('lomega')
 import Profile from '../../src/modules/Profile'
 
 describe('Profile', () => {
-  it('should have a profile pic', () => {
-    const wrapper = mount(<Profile />)
-    expect(wrapper.contains(<ProfilePic />)).to.equal(true)
+  it('should render a profile picture', () => {
+    const wrapper = render(<Profile />)
+    expect(wrapper.find('.profilephoto').length).to.equal(1)
   })
 
   it('should have a heading of Simon', () => {

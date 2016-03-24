@@ -25,7 +25,6 @@ export default React.createClass({
 
   render: function () {
     return (
-
       <Col md={4} className='profile panel'>
         <ProfilePic profilepic={this.state.user.profilepic}/>
         <h2 className='username'>{this.state.user.username}</h2>
