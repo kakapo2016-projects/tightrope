@@ -1,15 +1,22 @@
-'use strict'
-
 import React from 'react'
-import ReactDOM from 'react-dom'
-import domready from 'domready'
+import { render } from 'react-dom'
 global.Ω = require('lomega')
+import { Router, Route, browserHistory, IndexRoute } from 'react-router'
+import App from './modules/App'
+import Feed from './modules/Feed'
+import Friends from './modules/Friends'
+import Login from './modules/Login'
+import Profile from './modules/Profile'
+require('./stylesheets/modules/main.sass')
 
-import App from './components/App'
-
-domready(() => {
-  ReactDOM.render(
-    <App />,
-    document.querySelector('#app')
-  )
-})
+render((
+  <Router history={browserHistory}>
+    <Route path='/' component={App}>
+      <IndexRoute component={Feed}/>
+      <Route path='/feed' component={Feed}/>
+      <Route path='/friends' component={Friends}/>
+      <Route path='/login' component={Login}/>
+      <Route path='/profile' component={Profile}/>
+    </Route>
+  </Router>
+), document.getElementById('app'))

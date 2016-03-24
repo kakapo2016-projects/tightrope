@@ -1,4 +1,5 @@
 module.exports = function (app) {
+  var passport = require('passport')
 
   // ----- dummy data for testing ----- //
 
@@ -56,4 +57,10 @@ module.exports = function (app) {
       res.json(photo)
     })
   })
+
+  app.post('/login',
+    passport.authenticate('local', { failureRedirect: '/login' }),
+    function (req, res) {
+      res.redirect('/')
+    })
 }

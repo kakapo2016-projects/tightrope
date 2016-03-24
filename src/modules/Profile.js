@@ -1,8 +1,9 @@
 import React from 'react'
-import Menu from '../components/Menu'
 import ProfilePic from '../components/ProfilePic'
 import Photoset from '../components/Photoset'
 import Accolades from '../components/Accolades'
+import { Col } from 'react-bootstrap'
+require('../stylesheets/modules/profile.sass')
 
 export default React.createClass({
 
@@ -23,14 +24,17 @@ export default React.createClass({
   },
 
   render: function () {
+    const {user, photoset} = this.state
+    
     return (
-      <div>
-        <Menu />
-        <h2 className='username'>{this.state.user.username}</h2>
-        <ProfilePic profilepic={this.state.user.profilepic}/>
-        <Accolades />
-        <Photoset photoset={this.state.photoset}/>
-      </div>
+      <Col md={4} className='profile panel'>
+        <ProfilePic profilepic={user.profilepic}/>
+        <h2 className='username'>{user.username}</h2>
+        <div className='accolades'>
+          <Accolades />
+        </div>
+        <Photoset photoset={photoset}/>
+      </Col>
     )
   }
 })

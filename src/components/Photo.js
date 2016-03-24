@@ -1,4 +1,5 @@
 import React from 'react'
+require('../stylesheets/modules/photo.sass')
 
 export default React.createClass({
 
