@@ -30,11 +30,12 @@ const config = {
     path: path.join(__dirname, './public'),
     publicPath: '/'
   },
+  devtool: 'inline-sourcemap',
   plugins: [
     new ExtractTextPlugin('bundle.css')
   ],
   resolve: {
-    extensions: ['', '.js', '.sass'],
+    extensions: ['', '.js', '.jsx', '.sass'],
     modulesDirectories: ['src', 'node_modules']
   }
 }
