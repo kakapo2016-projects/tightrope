@@ -3,4 +3,5 @@ node_modules
 bundle.js
 bundle.css
 tightrope.sqlite3
+npm-debug.log
 .DS_Store
