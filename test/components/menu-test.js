@@ -6,12 +6,12 @@ import React from 'react'
 import Menu from '../../src/components/Menu'
 
 describe('Menu', () => {
-  xit('should have a ul', () => {
+  it('should have an unordered list', () => {
     const wrapper = shallow(<Menu />)
     expect(wrapper.find('#menu')).to.have.length(1)
   })
-  xit('should have 3 lis', () => {
+  it('should have 4 items', () => {
     const wrapper = shallow(<Menu />)
-    expect(wrapper.find('li')).to.have.length(3)
+    expect(wrapper.find('li')).to.have.length(4)
   })
 })
