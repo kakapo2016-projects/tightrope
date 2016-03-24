@@ -41,6 +41,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "if-env": "^1.0.0",
     "knex": "^0.10.0",
+    "lodash": "^4.6.1",
     "lomega": "^1.0.3",
     "node-sass": "^3.4.2",
     "nodemon": "^1.9.1",
@@ -53,8 +54,9 @@
     "react-dom": "^0.14.7",
     "react-router": "^2.0.0",
     "react-router-bootstrap": "^0.20.1",
-    "sass-loader": "^3.2.0",
     "serve-static": "^1.10.2",
+    "sqlite3": "^3.1.2",
+    "sass-loader": "^3.2.0",
     "style-loader": "^0.13.0"
   },
   "devDependencies": {
@@ -66,7 +68,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "chai": "^3.5.0",
-    "chai-enzyme": "^0.4.0",
+    "chai-enzyme": "^0.4.1",
     "enzyme": "^1.6.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "http-server": "^0.8.5",
