@@ -31,7 +31,10 @@
   "homepage": "https://github.com/kakapo2016-projects/tightrope#readme",
   "dependencies": {
     "autoprefixer": "^6.3.4",
+    "aws-sdk": "^2.2.47",
+    "blueimp-file-upload": "^9.12.1",
     "body-parser": "^1.15.0",
+    "busboy": "^0.2.13",
     "compression": "^1.6.1",
     "cookie-parser": "^1.4.1",
     "css-loader": "^0.23.1",
@@ -39,6 +42,7 @@
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "extract-text-webpack-plugin": "^1.0.1",
+    "http": "0.0.0",
     "if-env": "^1.0.0",
     "knex": "^0.10.0",
     "lodash": "^4.6.1",
@@ -54,9 +58,11 @@
     "react-dom": "^0.14.7",
     "react-router": "^2.0.0",
     "react-router-bootstrap": "^0.20.1",
-    "serve-static": "^1.10.2",
-    "sqlite3": "^3.1.2",
     "sass-loader": "^3.2.0",
+    "serve-static": "^1.10.2",
+    "socket.io": "^1.4.5",
+    "socket.io-client": "^1.4.5",
+    "sqlite3": "^3.1.2",
     "style-loader": "^0.13.0"
   },
   "devDependencies": {
