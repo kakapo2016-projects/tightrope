@@ -1,3 +1,5 @@
+var passport = require('passport')
+
 module.exports = function (app) {
   // ----- dummy data for testing ----- //
   const dummy = {
@@ -18,4 +20,9 @@ module.exports = function (app) {
   app.get('/api/v1/profile/:id', function (req, res) {
     res.json(dummy)
   })
+  app.post('/login',
+    passport.authenticate('local', { failureRedirect: '/login' }),
+    function (req, res) {
+      res.redirect('/')
+    })
 }
