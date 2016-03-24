@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha -w --compilers js:babel-core/register --require ./test/test-helper.js \"test/**/*.@(js|jsx)\" && npm run lint",
+    "test": "mocha -w --compilers js:babel-core/register --require ./test/test-helper.js  \"test/**/*.@(js|jsx)\" --require ignore-styles && npm run lint",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:dev": "webpack-dev-server --inline --content-base public --history-api-fallback & nodemon ./server/server.js --exec babel-node --presets es2015,stage-2",
     "start:prod": "webpack && node ./server/server.js",
@@ -71,6 +71,7 @@
     "enzyme": "^1.6.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "http-server": "^0.8.5",
+    "ignore-styles": "^1.2.0",
     "jsdom": "^8.1.0",
     "mocha": "^2.4.5",
     "nightwatch": "^0.8.18",
