@@ -2,6 +2,8 @@ import React from 'react'
 import ProfilePic from '../components/ProfilePic'
 import Photoset from '../components/Photoset'
 import Accolades from '../components/Accolades'
+import { Col } from 'react-bootstrap'
+require('../stylesheets/modules/profile.sass')
 
 export default React.createClass({
 
@@ -23,12 +25,15 @@ export default React.createClass({
 
   render: function () {
     return (
-      <div>
-        <h2 className='username'>{this.state.user.username}</h2>
+
+      <Col md={4} className='profile'>
         <ProfilePic profilepic={this.state.user.profilepic}/>
-        <Accolades />
+        <h2 className='username'>{this.state.user.username}</h2>
+        <div className='accolades'>
+          <Accolades />
+        </div>
         <Photoset photoset={this.state.photoset}/>
-      </div>
+      </Col>
     )
   }
 })
