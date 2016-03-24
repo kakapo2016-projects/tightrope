@@ -9,8 +9,8 @@
   "scripts": {
     "test": "mocha -w --compilers js:babel-core/register --require ./test/test-helper.js \"test/**/*.@(js|jsx)\" && npm run lint",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:dev": "webpack-dev-server --inline --content-base public --history-api-fallback",
-    "start:prod": "webpack && node server.js",
+    "start:dev": "webpack-dev-server --inline --content-base public --history-api-fallback & nodemon ./server/server.js --exec babel-node --presets es2015,stage-2",
+    "start:prod": "webpack && node ./server/server.js",
     "lint": "standard src/**/*.js"
   },
   "repository": {
@@ -30,15 +30,18 @@
   },
   "homepage": "https://github.com/kakapo2016-projects/tightrope#readme",
   "dependencies": {
+    "autoprefixer": "^6.3.4",
     "body-parser": "^1.15.0",
     "compression": "^1.6.1",
     "cookie-parser": "^1.4.1",
     "domready": "^1.0.8",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
+    "extract-text-webpack-plugin": "^1.0.1",
     "if-env": "^1.0.0",
     "knex": "^0.10.0",
     "lomega": "^1.0.0",
+    "nodemon": "^1.9.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
