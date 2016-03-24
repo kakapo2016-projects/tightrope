@@ -1,10 +1,5 @@
-export default function (app) => {
-
-    app.get('/login', function(req, res){
-        res.render('login', {
-            title: 'Express Login'
-        })
-    })
-
-    //other routes..
+module.exports = function (app) {
+  app.get('/', function (req, res) {
+    res.end('Hello there, whats up? Hello. Hi hi')
+  })
 }
