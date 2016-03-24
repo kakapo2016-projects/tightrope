@@ -41,7 +41,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "if-env": "^1.0.0",
     "knex": "^0.10.0",
-    "lomega": "^1.0.0",
+    "lomega": "^1.0.3",
     "node-sass": "^3.4.2",
     "nodemon": "^1.9.1",
     "passport": "^0.3.2",
