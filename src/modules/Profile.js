@@ -2,6 +2,7 @@ import React from 'react'
 import Menu from '../components/Menu'
 import ProfilePic from '../components/ProfilePic'
 import Photoset from '../components/Photoset'
+import Accolades from '../components/Accolades'
 
 export default React.createClass({
 
@@ -27,6 +28,7 @@ export default React.createClass({
         <Menu />
         <h2 className='username'>{this.state.user.username}</h2>
         <ProfilePic profilepic={this.state.user.profilepic}/>
+        <Accolades />
         <Photoset photoset={this.state.photoset}/>
       </div>
     )
