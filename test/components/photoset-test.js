@@ -16,7 +16,7 @@ describe('Photoset', () => {
   ]
 
 
-  xit('should have 5 images', () => {
+  it('should have 5 images', () => {
     const wrapper = render(<Photoset photoset={testphotoset}/>)
     expect(wrapper.find('img')).to.have.length(5)
   })

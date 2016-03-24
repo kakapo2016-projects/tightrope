@@ -7,7 +7,7 @@ global.Ω = require('lomega')
 import Profile from '../../src/modules/Profile'
 
 describe('Profile', () => {
-  xit('should have a menu', () => {
+  it('should have a menu', () => {
     const wrapper = mount(<Profile />)
     expect(wrapper.find('#menu')).to.have.length(1)
   })
