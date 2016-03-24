@@ -1,6 +1,5 @@
 
 import { expect } from 'chai'
-import chaiEnzyme from 'chai-enzyme'
 import { shallow, render, mount } from 'enzyme'
 import React from 'react'
 import ProfilePic from '../../src/components/ProfilePic'
