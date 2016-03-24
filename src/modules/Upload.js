@@ -1,13 +1,12 @@
 import React from 'react'
-import Photoset from '../components/Photoset'
+import Profile from './Profile'
 
 export default React.createClass({
-
   render: function () {
     return (
       <div>
-      <h3>This is a feed</h3>
-        <Photoset />
+        <h1>Upload a new photo</h1>
+        <input type="file" class="file" name="files[]"></input>
       </div>
     )
   }
