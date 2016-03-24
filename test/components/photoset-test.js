@@ -3,11 +3,11 @@ import { expect } from 'chai'
 import { shallow, render, mount } from 'enzyme'
 import React from 'react'
 
-import App from '../../src/components/App'
+import Photoset from '../../src/components/Photoset'
 
-describe('App', () => {
+describe('Photoset', () => {
   xit('should have a div', () => {
-    const wrapper = shallow(<App />)
+    const wrapper = shallow(<Photoset />)
     expect(wrapper.find('div')).to.have.length(1)
   })
 })

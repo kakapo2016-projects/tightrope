@@ -9,7 +9,14 @@ export default React.createClass({
       testuser: {
         username: 'Simon',
         photo: "https://www.loomio.org/assets/people/simon-a37e0b965bbadd306a29caf1dd442c0b19d4c8fabac2d3fe23bab9bdc620824e.png"
-      }
+      },
+      photoset: [
+        '../../images/squares.jpeg',
+        '../../images/dandelion.jpg',
+        '../../images/laksa.jpg',
+        '../../images/purple.jpg',
+        '../../images/city.jpg'
+      ]
     }
   },
 
@@ -17,7 +24,7 @@ export default React.createClass({
     return (
       <div>
         <h1 id="main-title">Tightrope</h1>
-        <Profile testuser={this.state.testuser}/>
+        <Profile username={this.state.testuser.username} photo={this.state.photo} photoset={this.state.photoset}/>
       </div>
     )
   }
