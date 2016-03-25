@@ -6,8 +6,8 @@ module.exports = function (app, cors, corsOptions) {
 
   const dummy = {
     'username': 'Simon Teg',
-    'profilepic': 'url1',
-    'photoset': ['url1', 'url2'],
+    'profilepic': 'http://fillmurray.com/400/400',
+    'photoset': ['http://fillmurray.com/400/400', 'http://fillmurray.com/400/400'],
     'accolades': [{
       'credits': 10,
       'badges': ['one year', 'nine years', 'Nilu'],
