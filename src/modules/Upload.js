@@ -12,14 +12,21 @@ export default React.createClass({
       <div>
         <h1>Upload a new photo</h1>
         <form >
-          <FileInput
-            name='newImage'
-            accept='.png,.gif,.jpg'
-            placeholder='My new photo'
-            className='inputClass'
-            onChange={this.handleChange} />
+          <input
+            name="file"
+            type="file"
+            className="cloudinary-fileupload" data-cloudinary-field="image_id"
+            onChange={this.handleChange}>
+          </input>
         </form>
       </div>
     )
   }
 })
+{/*<FileInput
+  name='newImage'
+  accept='.png,.gif,.jpg'
+  placeholder='My new photo'
+  className='inputClass'
+   />*/}
+  {/*data-form-data={element.setAttribute('data-form-data', encodeURI(data))}*/}
