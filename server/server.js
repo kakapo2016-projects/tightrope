@@ -7,7 +7,9 @@ var Busboy = require('busboy')
 var AWS = require('aws-sdk')
 var socket = require('socket.io')
 var http = require('http')
-app.use(cors());
+var _ = require('lodash')
+
+app.use(cors())
 
 var corsOptions = {
   origin: '*'
@@ -25,7 +27,7 @@ app.use(passport.session())
 
 passport.use(new LocalStrategy(
   function (username, password, done) {
-    User.findOne ({ username: username }, function (err, user) {
+    User.findOne({ username: username }, function (err, user) {
       if (err) { return done(err) }
       if (!user) { return done(null, false) }
       if (!user.verifyPassword(password)) { return done(null, false) }
@@ -46,7 +48,7 @@ passport.deserializeUser(function (id, done) {
 
 // passport route
 
-//sockets
+// sockets
 var io = socket(http.Server(app))
 // keeps track of all the open sockets
 var sockets = {}
@@ -61,7 +63,7 @@ io.on('connection', function (socket) {
 app.post('/upload', function (req, res) {
   AWS.config.update({
     appKey: '',
-    jsKey: '',
+    jsKey: ''
   })
   var s3 = new AWS.S3()
 
@@ -69,18 +71,22 @@ app.post('/upload', function (req, res) {
     headers: req.headers
   })
 
-  busboy.on('file', function(fieldname, file, filename) {
+  busboy.on('file', function (fieldname, file, filename) {
     s3.upload({
       Bucket: 'bucketname',
       Key: new Date().getTime() + filename,
-      Body: file //stream
-    }, function(err, file){
-      res.json({
-        success: true
-      })
-    }).on('httpUploadProgress', function(evt) {
+      Body: file // stream
+    }, function (err, file) {
+      if (err) {
+        Ω('Error: ', err)
+      } else {
+        res.json({
+          success: true
+        })
+      }
+    }).on('httpUploadProgress', function (evt) {
       // emit progress
-      sockets[req.query.socketId].emit('uploadProgress', evt);
+      sockets[req.query.socketId].emit('uploadProgress', evt)
     })
   })
 
