@@ -1,5 +1,4 @@
 import React from 'react'
-import Profile from './Profile'
 
 export default React.createClass({
   render: function () {

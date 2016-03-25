@@ -1,5 +1,6 @@
-module.exports = function (app) {
+module.exports = function (app, cors, corsOptions) {
   var passport = require('passport')
+
 
   // ----- dummy data for testing ----- //
 
@@ -28,8 +29,8 @@ module.exports = function (app) {
     res.send('elon musk was here on /')
   })
 
-  app.get('/test', function (req, res) {
-    res.send('You are on /test')
+  app.get('/test', cors(corsOptions), function (req, res) {
+    res.send({user: 'You are on /test'})
   })
 
   app.get('/api/v1/profile/:id', function (req, res) {
