@@ -1,7 +1,6 @@
 module.exports = function (app, cors, corsOptions) {
   var passport = require('passport')
 
-
   // ----- dummy data for testing ----- //
 
   const dummy = {
@@ -47,8 +46,18 @@ module.exports = function (app, cors, corsOptions) {
     // use knex to do 'SELECT * FROM users WHERE user_id=2' to sqlite DB
     db.findOne('users', { user_id: req.params.id }, function (err, user) {
       if (err) { throw err }
-      console.log(user)
-      res.json(user)
+      var sendObj = {
+        'username': user.username,
+        'profilepic': user.profile_pic,
+        'photoset': ['http://fillmurray.com/400/400', 'http://fillmurray.com/400/400'],
+        'accolades': [{
+          'credits': 10,
+          'badges': ['one year', 'nine years', 'Nilu'],
+          'activeStreak': 6
+        }]
+      }
+      console.log(sendObj)
+      res.json(sendObj)
     })
   })
 
