@@ -1,14 +1,19 @@
 var express = require('express')
 var passport = require('passport')
 var LocalStrategy = require('passport-local')
+var cors = require('cors')
 var app = express()
 var Busboy = require('busboy')
 var AWS = require('aws-sdk')
 var socket = require('socket.io')
 var http = require('http')
+app.use(cors());
 
-require('./routes')(app)
-console.log('hi')
+var corsOptions = {
+  origin: '*'
+}
+
+require('./routes')(app, cors, corsOptions)
 // passport authentication
 
 app.use(require('serve-static')(__dirname + '../public'))
@@ -40,7 +45,6 @@ passport.deserializeUser(function (id, done) {
 })
 
 // passport route
-
 
 //sockets
 var io = socket(http.Server(app))
