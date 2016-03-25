@@ -6,9 +6,6 @@ import request from 'superagent'
 
 var Ω = require('lomega')
 
-// const socket = io.connect('https://api.cloudinary.com/v1_1/dvzbt8kfq/upload')
-// let stream = ss.createStream()
-
 export default React.createClass({
 
   uploadPhoto: function (file, type, id) {
@@ -26,17 +23,6 @@ export default React.createClass({
         }
       console.log('res', res)
       })
-
-    // ss(socket).emit('uploadPhoto', stream, {name: file.name, size: file.size})
-
-    // let blobStream = ss.createBlobReadStream(file).pipe(stream)
-    // calculate upload progress
-    // let size = 0
-    // blobStream.on('uploadPhoto', function (chunk) {
-    //   size += chunk.length
-    //   Ω(Math.floor(size / file.size * 100 + '%'))
-    // })
-    // blobStream.pipe(stream)
   },
 
   render () {

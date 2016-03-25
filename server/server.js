@@ -51,21 +51,8 @@ passport.deserializeUser(function (id, done) {
 
 // passport route
 
-// sockets
-// io.set('origins', 'http://localhost:8080')
-//
-// io.of('/upload').on('connection', function (socket) {
-//   Ω('connected to socket')
-//   ss(socket).on('uploadPhoto', function (stream, data) {
-//     var filename = path.basename(data.name)
-//     stream.pipe(fs.createWriteStream(filename))
-//   })
-// })
-//
-// $.cloudinary.config({ cloud_name: 'dvzbt8kfq', api_key: process.env.CLOUDINARY_API_KEY, api_secret: process.env.CLOUDINARY_API_KEY})
 
 cloudinary.cloudinary_js_config()
-// var cloudinary_cors = "http://" + request.headers.host + "/cloudinary_cors.html"
 
 // listener
 var PORT = process.env.PORT || 3000
