@@ -8,6 +8,7 @@ var AWS = require('aws-sdk')
 var socket = require('socket.io')
 var http = require('http')
 var _ = require('lodash')
+var Ω = require('lomega')
 
 app.use(cors())
 
