@@ -1,10 +1,15 @@
 var express = require('express')
 var passport = require('passport')
 var LocalStrategy = require('passport-local')
+var cors = require('cors')
 var app = express()
+app.use(cors());
 
-require('./routes')(app)
-console.log('hi')
+var corsOptions = {
+  origin: '*'
+};
+
+require('./routes')(app, cors, corsOptions)
 // passport authentication
 
 app.use(require('serve-static')(__dirname + '../public'))
