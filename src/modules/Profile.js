@@ -30,6 +30,7 @@ export default React.createClass({
     .end( function (err, res) {
       if (err) console.log('Error:', err)
       this.setState({user: res.body})
+      console.log(this.state)
     }.bind(this))
   },
 
