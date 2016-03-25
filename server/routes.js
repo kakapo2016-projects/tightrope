@@ -10,7 +10,7 @@ module.exports = function (app, cors, corsOptions) {
   const dummy = {
     'username': 'Simon Teg',
     'profilepic': 'http://fillmurray.com/400/400',
-    'photoset': ['http://fillmurray.com/400/400', 'http://fillmurray.com/400/400'],
+    'photoset': ['http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400'],
     'accolades': [{
       'credits': 10,
       'badges': ['one year', 'nine years', 'Nilu'],
@@ -57,7 +57,7 @@ module.exports = function (app, cors, corsOptions) {
       var sendObj = {
         'username': user.username,
         'profilepic': user.profile_pic,
-        'photoset': ['http://fillmurray.com/400/400', 'http://fillmurray.com/400/400'],
+        'photoset': ['http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400'],
         'accolades': [{
           'credits': 10,
           'badges': ['one year', 'nine years', 'Nilu'],
