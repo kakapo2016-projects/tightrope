@@ -2,6 +2,10 @@ var express = require('express')
 var passport = require('passport')
 var LocalStrategy = require('passport-local')
 var app = express()
+var Busboy = require('busboy')
+var AWS = require('aws-sdk')
+var socket = require('socket.io')
+var http = require('http')
 
 require('./routes')(app)
 console.log('hi')
@@ -36,6 +40,48 @@ passport.deserializeUser(function (id, done) {
 })
 
 // passport route
+
+
+//sockets
+var io = socket(http.Server(app))
+// keeps track of all the open sockets
+var sockets = {}
+
+io.on('connection', function (socket) {
+  var uniqueId = _.random(0, 100000000)
+  app.socket[uniqueId] = socket
+  socket.emit('id', uniqueId)
+})
+
+// Set up upload route
+app.post('/upload', function (req, res) {
+  AWS.config.update({
+    appKey: '',
+    jsKey: '',
+  })
+  var s3 = new AWS.S3()
+
+  var busboy = new Busboy({
+    headers: req.headers
+  })
+
+  busboy.on('file', function(fieldname, file, filename) {
+    s3.upload({
+      Bucket: 'bucketname',
+      Key: new Date().getTime() + filename,
+      Body: file //stream
+    }, function(err, file){
+      res.json({
+        success: true
+      })
+    }).on('httpUploadProgress', function(evt) {
+      // emit progress
+      sockets[req.query.socketId].emit('uploadProgress', evt);
+    })
+  })
+
+  req.pipe(busboy)
+})
 
 // listener
 var PORT = process.env.PORT || 3000

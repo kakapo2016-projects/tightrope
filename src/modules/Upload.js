@@ -6,7 +6,8 @@ export default React.createClass({
     return (
       <div>
         <h1>Upload a new photo</h1>
-        <input type="file" class="file" name="files[]"></input>
+        <input type="file" className="file" name="files[]"></input>
+        <input type="button" value="Submit"></input>
       </div>
     )
   }
