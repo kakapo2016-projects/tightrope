@@ -92,7 +92,6 @@ module.exports = function (app, cors, corsOptions) {
       username: req.body.username,
       password: req.body.password
     }).then(function (resp) {
-      console.log(typeof resp)
       respData = resp
       res.redirect('/test_pass')
     })
