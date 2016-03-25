@@ -5,10 +5,14 @@ module.exports = function (app, cors, corsOptions) {
   // ----- dummy data for testing ----- //
 
   const dummy = {
-    username: 'simon lenovo tegg',
-    profile_pic: 'http://rack.2.mshcdn.com/media/ZgkyMDE1LzEwLzE2Lzk4L2NhdG1vdXRoLmQyOWFiLnBuZwpwCXRodW1iCTk1MHg1MzQjCmUJanBn/ee79f012/f77/cat-mouth.jpg',
-    accolades: [],
-    all_user_photos: []
+    'username': 'Simon Teg',
+    'profilepic': 'http://fillmurray.com/400/400',
+    'photoset': ['http://fillmurray.com/400/400', 'http://fillmurray.com/400/400'],
+    'accolades': [{
+      'credits': 10,
+      'badges': ['one year', 'nine years', 'Nilu'],
+      'activeStreak': 6
+    }]
   }
 
   // ----- set up DB ----- //
