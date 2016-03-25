@@ -36,7 +36,7 @@ cloudinary.config({
 // Ask Simon how to deal with this. Convert base-64.
 // It works when I put in an absolute string of an image.
 app.post('/photos', cors(corsOptions), function (req, res) {
-  console.log('req', Object.keys(req.body))
+  // console.log('req', Object.keys(req.body))
   cloudinary.uploader.upload(Object.keys(req.body)[0], function (result) {
   // console.log('result', result)
   })

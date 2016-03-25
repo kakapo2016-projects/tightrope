@@ -12,7 +12,7 @@ export default React.createClass({
 
     const API_ROOT = 'https://api.cloudinary.com/v1_1/dvzbt8kfq/image/upload'
     const serverroot = 'http://localhost:3000/photos'
-    // Ω(file)
+    Ω(file)
     request
       .post(serverroot)
       .type('form')
