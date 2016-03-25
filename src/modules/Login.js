@@ -13,7 +13,7 @@ export default React.createClass({
 						/>
 					<br/>
 					<button
-						label="Sign In">Sign In</button>
+						label='Sign In'>Sign In</button>
 					<p>
 					</p>
 				</form>

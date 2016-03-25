@@ -3,7 +3,6 @@ import { Link } from 'react-router'
 import NavLink from './NavLink'
 import { Navbar, Nav } from 'react-bootstrap'
 
-
 export default React.createClass({
 
   render: function () {
@@ -11,7 +10,7 @@ export default React.createClass({
       <Navbar className='navbar navbar-static-top' >
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="/">tightrope</a>
+            <a href='/'>tightrope</a>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>

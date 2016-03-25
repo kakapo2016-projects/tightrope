@@ -27,7 +27,7 @@ export default React.createClass({
   componentWillMount: function () {
     request
     .get('http://localhost:3000/api/v1/users/1/profile')
-    .end( function (err, res) {
+    .end(function (err, res) {
       if (err) console.log('Error:', err)
       this.setState({user: res.body})
     }.bind(this))

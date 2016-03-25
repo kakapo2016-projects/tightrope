@@ -1,7 +1,6 @@
 module.exports = function (app, cors, corsOptions) {
   var passport = require('passport')
 
-
   // ----- dummy data for testing ----- //
 
   const dummy = {

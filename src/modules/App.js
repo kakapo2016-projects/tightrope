@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router'
 import Feed from './Feed'
 import Navbar from './Navbar'
 import { Grid, Row } from 'react-bootstrap'
