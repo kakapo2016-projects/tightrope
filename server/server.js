@@ -3,12 +3,15 @@ var passport = require('passport')
 var LocalStrategy = require('passport-local')
 var cors = require('cors')
 var app = express()
-var Busboy = require('busboy')
 var AWS = require('aws-sdk')
 var socket = require('socket.io')
 var http = require('http')
-var _ = require('lodash')
 var Ω = require('lomega')
+var ss = require('socket.io-stream')
+var io = require('socket.io').listen(80)
+var path = require('path')
+var Busboy = require('busboy')
+require('dotenv').config()
 
 app.use(cors())
 
@@ -50,49 +53,68 @@ passport.deserializeUser(function (id, done) {
 // passport route
 
 // sockets
-var io = socket(http.Server(app))
-// keeps track of all the open sockets
-var sockets = {}
 
-io.on('connection', function (socket) {
-  var uniqueId = _.random(0, 100000000)
-  app.socket[uniqueId] = socket
-  socket.emit('id', uniqueId)
+io.of('/upload').on('connection', function (socket) {
+  Ω('connected to socket')
+  ss(socket).on('uploadPhoto', function (stream, data) {
+    var filename = path.basename(data.name)
+    stream.pipe(fs.createWriteStream(filename))
+  })
 })
+// Define s3-upload-stream with S3 credentials.
+var s3Stream = require('s3-upload-stream')(new AWS.S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+}))
 
-// Set up upload route
-app.post('/upload', function (req, res) {
-  AWS.config.update({
-    appKey: '',
-    jsKey: ''
-  })
-  var s3 = new AWS.S3()
+// Handle uploading file to Amazon S3.
+// Uses the multipart file upload API.
+// function uploadS3 (readStream, key, callback) {
+//   var upload = s3Stream.upload({
+//     'Bucket': '',
+//     'Key': key
+//   })
+//   // Handle errors.
+//     upload.on('error', function (err) {
+//       callback(err)
+//     })
+//     // Handle progress.
+//     upload.on('part', function (details) {
+//       console.log(inspect(details))
+//     })
+//     // Handle upload completion.
+//     upload.on('uploaded', function (details) {
+//       callback()
+//     })
+//     // Pipe the Readable stream to the s3-upload-stream module.
+//     readStream.pipe(upload)
+//   }
+//   router.addRoute('/images', function (req, res, params) {
+//     if (req.method === 'POST') {
+//       // Create an Busyboy instance passing the HTTP Request headers.
+//       var busboy = new Busboy({ headers: req.headers })
+//       // Listen for event when Busboy finds a file to stream.
+//       busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
+//         // Handle uploading file to Amazon S3.
+//         // We are passing 'file' which is a ReadableStream,
+//         // 'filename' which is the name of the file
+//         // and a callback function to handle success/error.
+//       uploadS3(file, filename, function (err) {
+//         if (err) {
+//           res.statusCode = 500;
+//           res.end(err);
+//         } else {
+//           res.statusCode = 200;
+//           res.end('ok');
+//         }
+//       })
+//     })
+//       // Pipe the HTTP Request into Busboy.
+//       req.pipe(busboy);
+//     }
+//   })
 
-  var busboy = new Busboy({
-    headers: req.headers
-  })
 
-  busboy.on('file', function (fieldname, file, filename) {
-    s3.upload({
-      Bucket: 'bucketname',
-      Key: new Date().getTime() + filename,
-      Body: file // stream
-    }, function (err, file) {
-      if (err) {
-        Ω('Error: ', err)
-      } else {
-        res.json({
-          success: true
-        })
-      }
-    }).on('httpUploadProgress', function (evt) {
-      // emit progress
-      sockets[req.query.socketId].emit('uploadProgress', evt)
-    })
-  })
-
-  req.pipe(busboy)
-})
 
 // listener
 var PORT = process.env.PORT || 3000
