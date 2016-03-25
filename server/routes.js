@@ -2,8 +2,8 @@ module.exports = function (app, cors, corsOptions) {
   var passport = require('passport')
   var body_parser = require('body-parser')
 
-  app.use(body_parser.urlencoded({ extended: false }))  // parse application/x-www-form-urlencoded
-  app.use(body_parser.json())  // parse application/json
+  app.use(body_parser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
+  app.use(body_parser.json()) // parse application/json
 
   // ----- global var ----- //
 
@@ -66,7 +66,7 @@ module.exports = function (app, cors, corsOptions) {
         'photoset': ['http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400'],
         'accolades': [{
           'credits': user.credits,
-          'badges': ['one year', 'nine years', 'Nilu'],
+          'badges': [user.badge], // this needs work
           'activeStreak': user.active_streak
         }]
       }
@@ -87,6 +87,7 @@ module.exports = function (app, cors, corsOptions) {
   })
 
   // ----- POST routes ----- //
+  // ----- test POST routes
   app.post('/login_test', function (req, res) {
     knex('tests').insert({
       username: req.body.username,
@@ -115,7 +116,36 @@ module.exports = function (app, cors, corsOptions) {
     })
   })
 
-  app.post('/api/v1/photos_upload_stream', function (req, res) {
+  // ----- real POST routes ---- //
+
+  app.post('/api/v1/photos', function (req, res) {
+    console.log('POST to /api/v1/photos')
+    knex('photos').insert({
+      external_photo_id: req.body.external_photo_id,
+      user_id: req.body.user_id,
+      photo_url: req.body.photo_url,
+      caption: req.body.caption
+    }).then(function (resp) {
+      console.log(typeof resp)
+      // respData = resp
+      // res.redirect('/test_pass')
+      res.send('The response from the DB was: ' + resp)
+    })
+  })
+
+  app.post('/api/v1/login', function (req, res) {
+    console.log('POST to /api/v1/login')
+    knex('users').insert({
+      external_photo_id: req.body.external_photo_id,
+      user_id: req.body.user_id,
+      photo_url: req.body.photo_url,
+      caption: req.body.caption
+    }).then(function (resp) {
+      console.log(typeof resp)
+      // respData = resp
+      // res.redirect('/test_pass')
+      res.send('The response from the DB was: ' + resp)
+    })
   })
 
   // ----- UPDATE routes ----- //
