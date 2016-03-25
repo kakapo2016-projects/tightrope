@@ -5,6 +5,10 @@ module.exports = function (app, cors, corsOptions) {
   app.use(body_parser.urlencoded({ extended: false }))  // parse application/x-www-form-urlencoded
   app.use(body_parser.json())  // parse application/json
 
+  // ----- global var ----- //
+
+  var respData = ''
+
   // ----- dummy data for testing ----- //
 
   const dummy = {
@@ -41,12 +45,14 @@ module.exports = function (app, cors, corsOptions) {
   })
 
   app.get('/test_pass', function (req, res) {
-    res.send('successfully insert to db')
+    res.send('successfully insert to db ' + respData)
   })
 
   app.get('/api/v1/profile/:id', function (req, res) {
     res.json(dummy)
   })
+
+  // ----- GET routes ----- //
 
   app.get('/api/v1/users/:id/profile', function (req, res) {
     console.log('GET received on /api/v1/users/:id/profile')
@@ -59,9 +65,9 @@ module.exports = function (app, cors, corsOptions) {
         'profilepic': user.profile_pic,
         'photoset': ['http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400'],
         'accolades': [{
-          'credits': 10,
+          'credits': user.credits,
           'badges': ['one year', 'nine years', 'Nilu'],
-          'activeStreak': 6
+          'activeStreak': user.active_streak
         }]
       }
       console.log(sendObj)
@@ -80,6 +86,18 @@ module.exports = function (app, cors, corsOptions) {
     })
   })
 
+  // ----- POST routes ----- //
+  app.post('/login_test', function (req, res) {
+    knex('tests').insert({
+      username: req.body.username,
+      password: req.body.password
+    }).then(function (resp) {
+      console.log(typeof resp)
+      respData = resp
+      res.redirect('/test_pass')
+    })
+  })
+
   app.post('/login',
     passport.authenticate('local', { failureRedirect: '/login' }),
     function (req, res) {
@@ -87,17 +105,21 @@ module.exports = function (app, cors, corsOptions) {
     })
 
   app.post('/test_signup', function (req, res) {
-    console.log('req.body.username', req.body.username)
-    console.log('req.body.password', req.body.password)
-    console.log('>>>>>>>>>>>>>>> post at /test_signup')
+    console.log('post to /test_signup')
     knex('tests').insert({
       username: req.body.username,
       password: req.body.password
     }).then(function (resp) {
+      console.log(typeof resp)
+      respData = resp
       res.redirect('/test_pass')
     })
   })
 
   app.post('/api/v1/photos_upload_stream', function (req, res) {
   })
+
+  // ----- UPDATE routes ----- //
+  // ----- DELETE routes ----- //
+
 }
