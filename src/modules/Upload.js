@@ -23,10 +23,3 @@ export default React.createClass({
     )
   }
 })
-{/*<FileInput
-  name='newImage'
-  accept='.png,.gif,.jpg'
-  placeholder='My new photo'
-  className='inputClass'
-   />*/}
-  {/*data-form-data={element.setAttribute('data-form-data', encodeURI(data))}*/}

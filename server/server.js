@@ -6,8 +6,11 @@ var app = express()
 var Ω = require('lomega')
 var path = require('path')
 var cloudinary = require('cloudinary')
+var dotenv = require('dotenv')
 require('dotenv').config()
 
+dotenv.load()
+cloudinary.cloudinary_js_config()
 app.use(cors())
 
 var corsOptions = {
@@ -24,8 +27,19 @@ app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveU
 app.use(passport.initialize())
 app.use(passport.session())
 
+cloudinary.config({
+  cloud_name: 'dvzbt8kfq',
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+})
+
+// Ask Simon how to deal with this. Convert base-64.
+// It works when I put in an absolute string of an image.
 app.post('/photos', cors(corsOptions), function (req, res) {
-  console.log('req', req)
+  console.log('req', Object.keys(req.body))
+  cloudinary.uploader.upload(Object.keys(req.body)[0], function (result) {
+  // console.log('result', result)
+  })
 })
 
 passport.use(new LocalStrategy(
@@ -50,9 +64,6 @@ passport.deserializeUser(function (id, done) {
 })
 
 // passport route
-
-
-cloudinary.cloudinary_js_config()
 
 // listener
 var PORT = process.env.PORT || 3000
