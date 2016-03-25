@@ -1,5 +1,9 @@
 module.exports = function (app, cors, corsOptions) {
   var passport = require('passport')
+  var body_parser = require('body-parser')
+
+  app.use(body_parser.urlencoded({ extended: false }))  // parse application/x-www-form-urlencoded
+  app.use(body_parser.json())  // parse application/json
 
   // ----- dummy data for testing ----- //
 
@@ -34,6 +38,10 @@ module.exports = function (app, cors, corsOptions) {
 
   app.get('/test', cors(corsOptions), function (req, res) {
     res.send({user: 'You are on /test'})
+  })
+
+  app.get('/test_pass', function (req, res) {
+    res.send('successfully insert to db')
   })
 
   app.get('/api/v1/profile/:id', function (req, res) {
@@ -77,4 +85,19 @@ module.exports = function (app, cors, corsOptions) {
     function (req, res) {
       res.redirect('/')
     })
+
+  app.post('/test_signup', function (req, res) {
+    console.log('req.body.username', req.body.username)
+    console.log('req.body.password', req.body.password)
+    console.log('>>>>>>>>>>>>>>> post at /test_signup')
+    knex('tests').insert({
+      username: req.body.username,
+      password: req.body.password
+    }).then(function (resp) {
+      res.redirect('/test_pass')
+    })
+  })
+
+  app.post('/api/v1/photos_upload_stream', function (req, res) {
+  })
 }

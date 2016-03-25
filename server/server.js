@@ -3,11 +3,11 @@ var passport = require('passport')
 var LocalStrategy = require('passport-local')
 var cors = require('cors')
 var app = express()
-app.use(cors());
+app.use(cors())
 
 var corsOptions = {
   origin: '*'
-};
+}
 
 require('./routes')(app, cors, corsOptions)
 // passport authentication
@@ -15,6 +15,7 @@ require('./routes')(app, cors, corsOptions)
 app.use(require('serve-static')(__dirname + '../public'))
 app.use(require('cookie-parser')())
 app.use(require('body-parser').urlencoded({ extended: true }))
+app.use(require('body-parser').json())
 app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }))
 app.use(passport.initialize())
 app.use(passport.session())
