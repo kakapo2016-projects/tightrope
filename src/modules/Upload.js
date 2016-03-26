@@ -1,4 +1,5 @@
 import React from 'react'
+import { Col } from 'react-bootstrap'
 
 export default React.createClass({
   componentDidMount: function () {
@@ -15,15 +16,19 @@ export default React.createClass({
         callback: '/profile'
       },
       function(error, result) {
-        console.log('error and result', error, result)
-      })
+        var cloudinaryId = result[0].signature
+        var cloudinaryUrl = result[0].url
+        var userId = 1
+        console.log('error and result', cloudinaryUrl, cloudinaryUrl, userId)
+      }
+    )
   },
 
   render: function () {
     return (
-      <div>
+      <Col sm={12}>
         <a href='#' id='upload_widget_opener'></a>
-      </div>
+      </Col>
     )
   }
 })
