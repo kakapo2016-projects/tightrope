@@ -88,6 +88,17 @@ module.exports = function (app, cors, corsOptions) {
     })
   })
 
+  app.get('/api/v1/users/:id/photos', function (req, res) { // a request for all photos of one user
+    console.log('GET received on /api/v1/users/:id/photos')
+    console.log('req.params is: ', req.params)
+    // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
+    db.findMany('photos', { photo_id: req.params.id }, function (err, photo) {
+      if (err) { throw err }
+      console.log(photo)
+      res.json(photo) // returns the record for many photo
+    })
+  })
+
   // ----- POST routes ----- //
   // ----- test POST routes
   app.post('/login_test', function (req, res) { // this was just used for testing DB connections
