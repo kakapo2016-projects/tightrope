@@ -118,9 +118,9 @@ module.exports = function (app, cors, corsOptions) {
 
   // ----- real POST routes ---- //
 
-  app.post('/api/v1/photos', function (req, res) {
+  app.post('/api/v1/photos', function (req, res) { // receives a photo url as a string
     console.log('POST to /api/v1/photos')
-    knex('photos').insert({
+    knex('photos').insert({ // puts it in the DB
       external_photo_id: req.body.external_photo_id,
       user_id: req.body.user_id,
       photo_url: req.body.photo_url,
@@ -129,12 +129,22 @@ module.exports = function (app, cors, corsOptions) {
       console.log(typeof resp)
       // respData = resp
       // res.redirect('/test_pass')
-      res.send('The response from the DB was: ' + resp)
+      res.send('The response from the DB was: ' + resp) // returns the number from the DB of the newly added record
     })
   })
 
+  // not finished yet...
   app.post('/api/v1/login', function (req, res) {
     console.log('POST to /api/v1/login')
+    console.log('req.body.email is: ', req.body.email)
+    console.log('req.body.username: ', req.body.username)
+    console.log('req.body.password is: ', req.body.password)
+    db.findOne('photos', { photo_id: req.params.id }, function (err, photo) {
+      if (err) { throw err }
+      console.log(photo)
+      res.json(photo)
+    })
+
     knex('users').insert({
       external_photo_id: req.body.external_photo_id,
       user_id: req.body.user_id,
