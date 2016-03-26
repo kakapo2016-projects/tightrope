@@ -86,6 +86,7 @@ module.exports = function (app, cors, corsOptions) {
     })
   })
 
+<<<<<<< HEAD
   // ----- POST routes ----- //
   // ----- test POST routes
   app.post('/login_test', function (req, res) {
@@ -120,6 +121,7 @@ module.exports = function (app, cors, corsOptions) {
 
   app.post('/api/v1/photos', function (req, res) { // receives a photo url as a string
     console.log('POST to /api/v1/photos')
+    console.log('req.body is : ', req.body)
     knex('photos').insert({ // puts it in the DB
       external_photo_id: req.body.external_photo_id,
       user_id: req.body.user_id,
@@ -161,4 +163,18 @@ module.exports = function (app, cors, corsOptions) {
   // ----- UPDATE routes ----- //
   // ----- DELETE routes ----- //
 
+=======
+  // ----- authenication routes ----- //
+
+  app.get('/api/v1/login', function (req, res, next) {
+    passport.authenticate('local', function (err, user, info) {
+      if (err) { return next(err) }
+      if (!user) { return res.send({loggedIn: false}) }
+      req.logIn(user, function (err) {
+        if (err) { return next(err) }
+        return res.send({loggedIn: true})
+      })
+    })(req, res, next)
+  })
+>>>>>>> c12713f9618d6f21113e3610d963a8ba50ca8ba7
 }
