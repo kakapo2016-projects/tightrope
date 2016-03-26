@@ -1,5 +1,7 @@
 import React from 'react'
 import { Col } from 'react-bootstrap'
+import post from '../postRequest'
+require('../stylesheets/modules/upload')
 
 export default React.createClass({
   componentDidMount: function () {
@@ -11,15 +13,20 @@ export default React.createClass({
         cropping: 'server',
         'folder': 'user_photos',
         theme: 'minimal',
-        button_caption: 'Upload an Image',
+        button_caption: '<i class="fa fa-camera-retro fa-1x"></i>',
         cropping_aspect_ratio: 1,
         callback: '/profile'
       },
-      function(error, result) {
-        var cloudinaryId = result[0].signature
-        var cloudinaryUrl = result[0].url
-        var userId = 1
-        console.log('error and result', cloudinaryUrl, cloudinaryUrl, userId)
+      function (error, result) {
+        let userUpload = {
+          external_photo_id: result[0].signature,
+          user_id: 145,
+          photo_url: result[0].url,
+          caption: 'This is a test'
+        }
+        post('http://localhost:3000/api/v1/photos', userUpload, function (resp) {
+          console.log('Uploaded', resp)
+        })
       }
     )
   },
