@@ -3,8 +3,7 @@ var passport = require('passport')
 var LocalStrategy = require('passport-local')
 var cors = require('cors')
 var app = express()
-var Ω = require('lomega')
-var path = require('path')
+// var path = require('path')
 var cloudinary = require('cloudinary')
 var dotenv = require('dotenv')
 require('dotenv').config()
@@ -55,7 +54,7 @@ app.post('/photos', cors(corsOptions), function (req, res) {
 passport.use(new LocalStrategy(
   function (email, password, done) {
     console.log('In passport')
-    db.findOne ({ email: email }, function (resp) {
+    db.findOne({ email: email }, function (resp) {
       console.log(resp)
       if (resp.users.hashed_password === password) {
         console.log('checking password')

@@ -1,5 +1,6 @@
 module.exports = function (app, cors, corsOptions) {
   var passport = require('passport')
+  var path = require('join')
   var body_parser = require('body-parser')
 
   app.use(body_parser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
@@ -27,7 +28,7 @@ module.exports = function (app, cors, corsOptions) {
   var knex = require('knex')({
     client: 'sqlite3',
     connection: {
-      filename: __dirname + '/../data/tightrope.sqlite'
+      filename: path.join(__dirname, '/../data/tightrope.sqlite')
     },
     useNullAsDefault: true
   })
@@ -154,7 +155,7 @@ module.exports = function (app, cors, corsOptions) {
       external_photo_id: req.body.external_photo_id, // essential
       user_id: req.body.user_id, // essential - but coming from where?
       photo_url: req.body.photo_url, // essential
-      caption: req.body.caption // optional 
+      caption: req.body.caption // optional
     }, function (err, resp) {
       if (err) { throw err }
       console.log('The newly added row has id: ', resp)
@@ -170,7 +171,7 @@ module.exports = function (app, cors, corsOptions) {
     knex('users').insert({
       email: req.body.email,
       username: req.body.username,
-      hashed_password: req.body.password,
+      hashed_password: req.body.password
     }).then(function (resp) {
       console.log(typeof resp)
       // respData = resp
@@ -193,6 +194,20 @@ module.exports = function (app, cors, corsOptions) {
         }
       }
     )
+  })
+
+  app.post('/api/v1/signup', function (req, res) {
+    console.log('POST to /api/v1/photos')
+    console.log('req.body is : ', req.body)
+    knex('users').insert({ // puts it in the DB
+      email: req.body.email,
+      username: req.body.username,
+      hashed_password: req.body.password
+    }).then(function (resp) {
+      console.log(typeof resp)
+      // respData = resp
+      // res.redirect('/test_pass')
+      res.send('The response from the DB was: ' + resp) // returns the number from the DB of the newly added record
+    })
   }
-  )
-}
+  ) }

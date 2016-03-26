@@ -1,6 +1,6 @@
 import React from 'react'
 import Photoset from '../components/Photoset'
-
+import request from 'superagent'
 export default React.createClass({
   setInitialState: function () {
     return {
