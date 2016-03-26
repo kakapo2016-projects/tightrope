@@ -164,16 +164,14 @@ module.exports = function (app, cors, corsOptions) {
   // ----- DELETE routes ----- //
 
   // ----- authenication routes ----- //
-
-  app.get('/api/v1/login', function (req, res, next) {
-    console.log('oh yeah, it hit')
-    passport.authenticate('local', function (err, user, info) {
-      if (err) { return next(err) }
-      if (!user) { return res.send({loggedIn: false}) }
-      req.logIn(user, function (err) {
-        if (err) { return next(err) }
-        return res.send({loggedIn: true})
-      })
-    })(req, res, next)
-  })
-}
+    app.get('/api/v1/login', function (req, res) {
+      console.log('--------------->', req.query)
+      knex('users').where('email', req.body.email).select('password')
+      .then(function (resp){
+        if (resp === req) {
+        res.redirect('/api/v1/profile')
+        }
+      }
+    )
+  }
+)}

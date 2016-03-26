@@ -1,4 +1,3 @@
-
 var request = require('superagent')
 
 module.exports = function getRequest(geturl, callback) {
