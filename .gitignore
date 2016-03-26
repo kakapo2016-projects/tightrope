@@ -5,3 +5,4 @@ bundle.css
 tightrope.sqlite
 npm-debug.log
 .DS_Store
+data/tightrope.sqlite
