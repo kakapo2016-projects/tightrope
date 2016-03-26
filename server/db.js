@@ -23,11 +23,11 @@ module.exports = function (knex) {
 
     // INSERT INTO table VALUES (...) ...
     add: function (table, params, callback) { // params should be an object
-      var valueString = []
-      for (var i = 0; i < Object.keys(params).length; i++) {
-        valueString.push(params[Object.keys(params)[i]])
-      }
-      valueString = valueString.join('", "')
+      // var valueString = []
+      // for (var i = 0; i < Object.keys(params).length; i++) {
+      //   valueString.push(params[Object.keys(params)[i]])
+      // }
+      // valueString = valueString.join('", "')
       knex(table)
         .insert(params)
         .then(function (resp) {
@@ -46,7 +46,7 @@ module.exports = function (knex) {
     },
 
     // UPDATE table_name SET column1=value1,column2=value2,...WHERE some_column=some_value
-    update: function (table, searchParams, updateInfo, callback) { // searchParams should be an object
+    update: function (table, searchParams, updateInfo, callback) { // searchParams and updateInfo should be objects
       knex(table)
         .where(searchParams)
         .update(updateInfo)

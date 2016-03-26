@@ -2,7 +2,6 @@ module.exports = function (app, cors, corsOptions) {
   var passport = require('passport')
   var body_parser = require('body-parser')
 
-
   app.use(body_parser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
   app.use(body_parser.json()) // parse application/json
 
@@ -50,6 +49,7 @@ module.exports = function (app, cors, corsOptions) {
   })
 
   app.get('/api/v1/profile/:id', function (req, res) {
+    console.log('GET received on /api/v1/profile/:id - returning some dummy data')
     res.json(dummy)
   })
 
@@ -106,7 +106,7 @@ module.exports = function (app, cors, corsOptions) {
     })
 
   app.post('/test_signup', function (req, res) { // another test function
-    console.log('post to /test_signup')
+    console.log('POST to /test_signup')
     knex('tests').insert({
       username: req.body.username,
       password: req.body.password
@@ -117,14 +117,25 @@ module.exports = function (app, cors, corsOptions) {
     })
   })
 
+  app.post('/test_post', function (req, res) { // a request to post one photo
+    console.log('POST received on /test_post')
+    console.log('req.body is: ', req.body)
+    // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
+    db.add('tests', { username: req.body.username, password: req.body.password }, function (err, test_row) {
+      if (err) { throw err }
+      console.log('The newly added row has id: ', test_row)
+      res.json(test_row) // returns the record for one photo
+    })
+  })
+
   // ----- real POST routes ---- //
 
-  app.post('/api/v1/photos', function (req, res) { // receives a photo url as a string
+  app.post('/api/v1/photos-old', function (req, res) { // receives a photo url as a string
     console.log('POST to /api/v1/photos')
     console.log('req.body is : ', req.body)
     knex('photos').insert({ // puts it in the DB
       external_photo_id: req.body.external_photo_id, // essential
-      user_id: req.body.user_id, // essential - coming from where?
+      user_id: req.body.user_id, // essential - but coming from where?
       photo_url: req.body.photo_url, // essential
       caption: req.body.caption // optional
     }).then(function (resp) {
@@ -132,6 +143,22 @@ module.exports = function (app, cors, corsOptions) {
       // respData = resp
       // res.redirect('/test_pass')
       res.send('Posted data to photos table.The response from the DB was: ' + resp) // returns the number from the DB of the newly added record
+    })
+  })
+
+  app.post('/api/v1/photos', function (req, res) { // receives a photo url as a string
+    console.log('POST received on /api/v1/photos')
+    console.log('req.body is: ', req.body)
+    // use knex to do 'INSERT INTO photos (fields) VALUES (values)
+    db.add('photos', {
+      external_photo_id: req.body.external_photo_id, // essential
+      user_id: req.body.user_id, // essential - but coming from where?
+      photo_url: req.body.photo_url, // essential
+      caption: req.body.caption // optional 
+    }, function (err, resp) {
+      if (err) { throw err }
+      console.log('The newly added row has id: ', resp)
+      res.json(resp) // returns the id of the newly added photo record
     })
   })
 
@@ -158,7 +185,7 @@ module.exports = function (app, cors, corsOptions) {
   // ----- authentication routes ----- //
 
   app.get('/api/v1/login', function (req, res, next) {
-    console.log('oh yeah, it hit')
+    console.log('oh yeah, it hit - GET at /api/v1/login')
     passport.authenticate('local', function (err, user, info) {
       if (err) { return next(err) }
       if (!user) { return res.send({loggedIn: false}) }
