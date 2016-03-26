@@ -23,9 +23,10 @@
           theme: 'minimal',
           button_caption: 'Upload an Image',
           cropping_aspect_ratio: 1,
+          callback: '/profile'
         },
         function(error, result) {
-          console.log(error, result)
+          console.log('error and result', error, result)
         })
     </script>
   </body>

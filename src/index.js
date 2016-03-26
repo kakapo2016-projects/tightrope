@@ -14,7 +14,6 @@ render((
   <Router history={browserHistory}>
     <Route path='/' component={App}>
       <IndexRoute component={Feed}/>
-      <Route path='/feed' component={Feed}/>
       <Route path='/friends' component={Friends}/>
       <Route path='/login' component={Login}/>
       <Route path='/profile' component={Profile}/>
