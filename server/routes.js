@@ -179,4 +179,19 @@ module.exports = function (app, cors, corsOptions) {
         }
       })
   })
-}
+
+  app.post('/api/v1/signup', function (req, res) {
+    console.log('POST to /api/v1/photos')
+    console.log('req.body is : ', req.body)
+    knex('users').insert({ // puts it in the DB
+      email: req.body.email,
+      username: req.body.username,
+      hashed_password: req.body.password
+    }).then(function (resp) {
+      console.log(typeof resp)
+      // respData = resp
+      // res.redirect('/test_pass')
+      res.send('The response from the DB was: ' + resp) // returns the number from the DB of the newly added record
+    })
+  }
+) }

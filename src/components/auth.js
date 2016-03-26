@@ -19,11 +19,11 @@ export default {
     })
   },
 
-  getToken() {
+  getToken () {
     return localStorage.token
   },
 
-  logout(cb) {
+  logout (cb) {
     delete localStorage.token
     if (cb) cb()
     this.onChange(false)
