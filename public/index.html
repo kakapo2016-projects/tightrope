@@ -4,30 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="bundle.css">
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bundle.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <title>Tightrope</title>
   </head>
   <body id="body">
     <div id="app"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="bundle.js"></script>
     <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
-    <script type="text/javascript">
-      $('#upload_widget_opener').cloudinary_upload_widget(
-        {
-          cloud_name: 'dvzbt8kfq',
-          upload_preset: 'rwy3xr9i',
-          cropping: 'server',
-          'folder': 'user_photos',
-          theme: 'minimal',
-          button_caption: 'Upload an Image',
-          cropping_aspect_ratio: 1,
-          callback: '/profile'
-        },
-        function(error, result) {
-          console.log(error, result)
-        })
-    </script>
+    <script src="bundle.js"></script>
   </body>
 </html>
