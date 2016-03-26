@@ -54,7 +54,7 @@ module.exports = function (app, cors, corsOptions) {
 
   // ----- GET routes ----- //
 
-  app.get('/api/v1/users/:id/profile', function (req, res) {
+  app.get('/api/v1/users/:id/profile', function (req, res) { // a request for one users info
     console.log('GET received on /api/v1/users/:id/profile')
     console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM users WHERE user_id=2' to sqlite DB
@@ -71,24 +71,24 @@ module.exports = function (app, cors, corsOptions) {
         }]
       }
       console.log(sendObj)
-      res.json(sendObj)
+      res.json(sendObj) // returns the record for one user
     })
   })
 
-  app.get('/api/v1/photos/:id', function (req, res) {
+  app.get('/api/v1/photos/:id', function (req, res) { // a request for one photo
     console.log('GET received on /api/v1/photos/:id')
     console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     db.findOne('photos', { photo_id: req.params.id }, function (err, photo) {
       if (err) { throw err }
       console.log(photo)
-      res.json(photo)
+      res.json(photo) // returns the record for one photo
     })
   })
 
   // ----- POST routes ----- //
   // ----- test POST routes
-  app.post('/login_test', function (req, res) {
+  app.post('/login_test', function (req, res) { // this was just used for testing DB connections
     knex('tests').insert({
       username: req.body.username,
       password: req.body.password
@@ -104,7 +104,7 @@ module.exports = function (app, cors, corsOptions) {
       res.redirect('/')
     })
 
-  app.post('/test_signup', function (req, res) {
+  app.post('/test_signup', function (req, res) { // another test function
     console.log('post to /test_signup')
     knex('tests').insert({
       username: req.body.username,
@@ -122,47 +122,39 @@ module.exports = function (app, cors, corsOptions) {
     console.log('POST to /api/v1/photos')
     console.log('req.body is : ', req.body)
     knex('photos').insert({ // puts it in the DB
-      external_photo_id: req.body.external_photo_id,
-      user_id: req.body.user_id,
-      photo_url: req.body.photo_url,
-      caption: req.body.caption
+      external_photo_id: req.body.external_photo_id, // essential
+      user_id: req.body.user_id, // essential - coming from where?
+      photo_url: req.body.photo_url, // essential
+      caption: req.body.caption // optional
     }).then(function (resp) {
       console.log(typeof resp)
       // respData = resp
       // res.redirect('/test_pass')
-      res.send('The response from the DB was: ' + resp) // returns the number from the DB of the newly added record
+      res.send('Posted data to photos table.The response from the DB was: ' + resp) // returns the number from the DB of the newly added record
     })
   })
 
-  // not finished yet...
-  app.post('/api/v1/login', function (req, res) {
+  app.post('/api/v1/login', function (req, res) { // receives a JSON obj containing email, username , and password
     console.log('POST to /api/v1/login')
     console.log('req.body.email is: ', req.body.email)
     console.log('req.body.username: ', req.body.username)
     console.log('req.body.password is: ', req.body.password)
-    db.findOne('photos', { photo_id: req.params.id }, function (err, photo) {
-      if (err) { throw err }
-      console.log(photo)
-      res.json(photo)
-    })
-
     knex('users').insert({
-      external_photo_id: req.body.external_photo_id,
-      user_id: req.body.user_id,
-      photo_url: req.body.photo_url,
-      caption: req.body.caption
+      email: req.body.email,
+      username: req.body.username,
+      hashed_password: req.body.password,
     }).then(function (resp) {
       console.log(typeof resp)
       // respData = resp
       // res.redirect('/test_pass')
-      res.send('The response from the DB was: ' + resp)
+      res.send('Posted data to users table. The response from the DB was: ' + resp)
     })
   })
 
   // ----- UPDATE routes ----- //
   // ----- DELETE routes ----- //
 
-  // ----- authenication routes ----- //
+  // ----- authentication routes ----- //
 
   app.get('/api/v1/login', function (req, res, next) {
     passport.authenticate('local', function (err, user, info) {
