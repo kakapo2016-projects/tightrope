@@ -1,13 +1,11 @@
 import React from 'react'
-import Photoset from '../components/Photoset'
 
 export default React.createClass({
 
   render: function () {
     return (
       <div>
-      <h3>This is a feed</h3>
-        <Photoset />
+        <a href='#' id='upload_widget_opener'></a>
       </div>
     )
   }
