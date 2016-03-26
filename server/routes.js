@@ -86,7 +86,6 @@ module.exports = function (app, cors, corsOptions) {
     })
   })
 
-<<<<<<< HEAD
   // ----- POST routes ----- //
   // ----- test POST routes
   app.post('/login_test', function (req, res) {
@@ -163,7 +162,6 @@ module.exports = function (app, cors, corsOptions) {
   // ----- UPDATE routes ----- //
   // ----- DELETE routes ----- //
 
-=======
   // ----- authenication routes ----- //
 
   app.get('/api/v1/login', function (req, res, next) {
@@ -176,5 +174,4 @@ module.exports = function (app, cors, corsOptions) {
       })
     })(req, res, next)
   })
->>>>>>> c12713f9618d6f21113e3610d963a8ba50ca8ba7
 }
