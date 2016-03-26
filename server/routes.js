@@ -166,6 +166,7 @@ module.exports = function (app, cors, corsOptions) {
   // ----- authenication routes ----- //
 
   app.get('/api/v1/login', function (req, res, next) {
+    console.log('oh yeah, it hit')
     passport.authenticate('local', function (err, user, info) {
       if (err) { return next(err) }
       if (!user) { return res.send({loggedIn: false}) }

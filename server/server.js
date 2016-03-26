@@ -54,9 +54,11 @@ app.post('/photos', cors(corsOptions), function (req, res) {
 
 passport.use(new LocalStrategy(
   function (email, password, done) {
+    console.log('In passport')
     db.findOne ({ email: email }, function (resp) {
       console.log(resp)
       if (resp.users.hashed_password === password) {
+        console.log('checking password')
         return done(null, username)
       }
       // if (err) { return done(err) }
