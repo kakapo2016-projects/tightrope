@@ -2,7 +2,7 @@ import React from 'react'
 import { Input, ButtonInput } from 'react-bootstrap'
 import request from 'superagent'
 import Ω from 'lomega'
-import getRequest from './getRequest'
+import getRequest from './getrequest'
 import { Redirect } from 'react-router'
 
 export default React.createClass({
@@ -24,38 +24,38 @@ export default React.createClass({
 
   loginRequest: function () {
     request
-    .get('http://localhost:3000/api/v1/login')
-    .query({email: this.state.email})
-    .end(function (err, res) {
-      if (err) console.log('Error:', err)
-      this.setState({user: res.body})
-      Ω('---------> ', res.body)
-    }.bind(this))
+      .get('http://localhost:3000/api/v1/login')
+      .query({email: this.state.email})
+      .end(function (err, res) {
+        if (err) console.log('Error:', err)
+        this.setState({user: res.body})
+        Ω('---------> ', res.body)
+      }.bind(this))
   },
 
   signUpRequest: function () {
     Ω('Log in request')
     request
-    .post('http://localhost:3000/api/v1/signup')
-    .send({email: this.state.email, username: this.state.email, password: this.state.password})
-    .end(function (err, res) {
-      if (err) console.log('Error:', err)
-      this.setState({user: res.body})
-      Ω('resbod ---------> ', res.body)
-    }.bind(this))
+      .post('http://localhost:3000/api/v1/signup')
+      .send({email: this.state.email, username: this.state.email, password: this.state.password})
+      .end(function (err, res) {
+        if (err) console.log('Error:', err)
+        this.setState({user: res.body})
+        Ω('resbod ---------> ', res.body)
+      }.bind(this))
   },
 
-  handlePassChange (e) {
+  handlePassChange(e) {
     Ω('handlePassChange')
     this.setState({password: e.target.value})
   },
 
-  handleEmailChange (e) {
+  handleEmailChange(e) {
     Ω('handleEmailChange')
     this.setState({email: e.target.value})
   },
 
-  handleUsernameChange (e) {
+  handleUsernameChange(e) {
     Ω('handleUsernameChange')
     this.setState({username: e.target.value})
   },
@@ -85,22 +85,46 @@ export default React.createClass({
     this.setState({email: '', password: ''})
   },
 
-  render () {
+  render() {
     return (
     <div>
       <form onSubmit={this.handleSubmit}>
-         <Input type='email' label='Email Address' placeholder='Enter email' value={this.state.email} onChange={this.handleEmailChange} />
-         <Input type='password' label='Password' placeholder='Enter password' value={this.state.password} onChange={this.handlePassChange} />
-         <ButtonInput type='submit' value='submit' />
-       </form>
-
-       <form onSubmit={this.handleSignupSubmit}>
-          <Input type='email' label='Email Address' placeholder='Enter email' value={this.state.email} onChange={this.handleEmailChange} />
-          <Input type='text' label='Username' placeholder='User Name' value={this.state.username} onChange={this.handleUsernameChange} />
-          <Input type='password' label='Password' placeholder='Enter password' value={this.state.password} onChange={this.handlePassChange} />
-          <ButtonInput type='submit' value='submit' />
-        </form>
-     </div>
+        <Input
+          type='email'
+          label='Email Address'
+          placeholder='Enter email'
+          value={this.state.email}
+          onChange={this.handleEmailChange} />
+        <Input
+          type='password'
+          label='Password'
+          placeholder='Enter password'
+          value={this.state.password}
+          onChange={this.handlePassChange} />
+        <ButtonInput type='submit' value='submit' />
+      </form>
+      <form onSubmit={this.handleSignupSubmit}>
+        <Input
+          type='email'
+          label='Email Address'
+          placeholder='Enter email'
+          value={this.state.email}
+          onChange={this.handleEmailChange} />
+        <Input
+          type='text'
+          label='Username'
+          placeholder='User Name'
+          value={this.state.username}
+          onChange={this.handleUsernameChange} />
+        <Input
+          type='password'
+          label='Password'
+          placeholder='Enter password'
+          value={this.state.password}
+          onChange={this.handlePassChange} />
+        <ButtonInput type='submit' value='submit' />
+      </form>
+    </div>
 
     )
   }
