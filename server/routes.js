@@ -72,9 +72,16 @@ module.exports = function (app, cors, corsOptions) {
     })
   })
 
-  app.post('/login',
-    passport.authenticate('local', { failureRedirect: '/login' }),
-    function (req, res) {
-      res.redirect('/')
-    })
+  // ----- authenication routes ----- //
+
+  app.get('/api/v1/login', function (req, res, next) {
+    passport.authenticate('local', function (err, user, info) {
+      if (err) { return next(err) }
+      if (!user) { return res.send({loggedIn: false}) }
+      req.logIn(user, function (err) {
+        if (err) { return next(err) }
+        return res.send({loggedIn: true})
+      })
+    })(req, res, next)
+  })
 }
