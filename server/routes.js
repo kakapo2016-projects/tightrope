@@ -194,4 +194,5 @@ module.exports = function (app, cors, corsOptions) {
       }
     )
   }
-  )}
+  )
+}
