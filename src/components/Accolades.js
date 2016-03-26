@@ -3,7 +3,6 @@ import _ from 'lodash'
 
 export default React.createClass({
   render: function () {
-    Ω(this.props.accolades[0].badges)
     var accolades = this.props.accolades[0]
     return (
       <div className='accolades'>

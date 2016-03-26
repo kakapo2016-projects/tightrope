@@ -2,7 +2,6 @@ module.exports = function (app, cors, corsOptions) {
   var passport = require('passport')
   var body_parser = require('body-parser')
 
-
   app.use(body_parser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
   app.use(body_parser.json()) // parse application/json
 
@@ -165,14 +164,29 @@ module.exports = function (app, cors, corsOptions) {
 
   // ----- authenication routes ----- //
 
-    app.get('/api/v1/login', function (req, res) {
-      console.log('--------------->', req.query)
-      knex('users').where('email', req.body.email).select('password')
-      .then(function (resp){
+  app.get('/api/v1/login', function (req, res) {
+    console.log('--------------->', req.query)
+    knex('users').where('email', req.body.email).select('password')
+      .then(function (resp) {
         if (resp === req) {
-        res.redirect('/api/v1/profile')
+          res.redirect('/api/v1/profile')
         }
       }
     )
+  })
+
+  app.post('/api/v1/signup', function (req, res) {
+    console.log('POST to /api/v1/photos')
+    console.log('req.body is : ', req.body)
+    knex('users').insert({ // puts it in the DB
+      email: req.body.email,
+      username: req.body.username,
+      hashed_password: req.body.password
+    }).then(function (resp) {
+      console.log(typeof resp)
+      // respData = resp
+      // res.redirect('/test_pass')
+      res.send('The response from the DB was: ' + resp) // returns the number from the DB of the newly added record
+    })
   }
-)}
+) }

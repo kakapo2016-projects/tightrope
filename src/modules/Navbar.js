@@ -6,7 +6,7 @@ require('../stylesheets/modules/upload.sass')
 
 export default React.createClass({
 
-  getInitialState() {
+  getInitialState () {
     return {loggedin: true}
   },
 
