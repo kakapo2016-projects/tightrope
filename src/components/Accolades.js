@@ -1,20 +1,20 @@
 import React from 'react'
+import _ from 'lodash'
 
 export default React.createClass({
   render: function () {
-    let Accolade = ['32', '45', '1', '19']
+    Ω(this.props.accolades[0].badges)
+    var accolades = this.props.accolades[0]
     return (
-      <div>
-        <h3>Accolades</h3>
-        <ul className='badges'>
-          <li>img</li>
-          <li>img</li>
-          <li>img</li>
-          <li>img</li>
-        </ul>
+      <div className='accolades'>
+        <div className='badges'>
+          {_.map(accolades.badges, function (badge) {
+            return <span>{badge} </span>
+          })}
+        </div>
         <div>
-          <h3>Active:{this.props.active}</h3>
-          <h3>Credits:{this.props.credits}</h3>
+        <h3>Credits: {accolades.credits}</h3>
+        <h3>Active streak: {accolades.activeStreak}</h3>
         </div>
       </div>
     )
