@@ -18,3 +18,9 @@ describe('Profile', () => {
     expect (wrapper.props().username).to.equal('Simon')
   })
 })
+
+
+
+//username length >1
+//profilePic has slice(0, 4) === 'http'
+//accolades should 
