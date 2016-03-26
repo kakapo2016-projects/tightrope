@@ -106,7 +106,7 @@ module.exports = function (app, cors, corsOptions) {
     })
 
   app.post('/test_signup', function (req, res) {
-    console.log('post to /test_signup')
+    `console`.log('post to /test_signup')
     knex('tests').insert({
       username: req.body.username,
       password: req.body.password
