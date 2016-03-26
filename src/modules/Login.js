@@ -48,6 +48,7 @@ export default React.createClass({
          <Input type="password" label="Password" placeholder="Enter password" value={this.state.password} onChange={this.handlePassChange} />
          <ButtonInput type="submit" value="post" />
        </form>
+
     )
   }
 })

@@ -7,6 +7,7 @@ import Feed from './modules/Feed'
 import Friends from './modules/Friends'
 import Login from './modules/Login'
 import Profile from './modules/Profile'
+import Upload from './modules/Upload'
 require('./stylesheets/modules/main.sass')
 
 render((
@@ -17,6 +18,7 @@ render((
       <Route path='/friends' component={Friends}/>
       <Route path='/login' component={Login}/>
       <Route path='/profile' component={Profile}/>
+      <Route path='/upload' component={Upload}/>
     </Route>
   </Router>
 ), document.getElementById('app'))
