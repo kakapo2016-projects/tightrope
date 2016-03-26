@@ -2,8 +2,9 @@ import React from 'react'
 import { Input, ButtonInput } from 'react-bootstrap'
 import request from 'superagent'
 import Ω from 'lomega'
-import getRequest from './getRequest'
+import getRequest from '../getRequest'
 import { Redirect } from 'react-router'
+import { Col, Row } from 'react-bootstrap'
 
 export default React.createClass({
   getInitialState: function () {
@@ -87,21 +88,25 @@ export default React.createClass({
 
   render () {
     return (
-    <div>
-      <form onSubmit={this.handleSubmit}>
-         <Input type='email' label='Email Address' placeholder='Enter email' value={this.state.email} onChange={this.handleEmailChange} />
-         <Input type='password' label='Password' placeholder='Enter password' value={this.state.password} onChange={this.handlePassChange} />
-         <ButtonInput type='submit' value='submit' />
-       </form>
-
-       <form onSubmit={this.handleSignupSubmit}>
-          <Input type='email' label='Email Address' placeholder='Enter email' value={this.state.email} onChange={this.handleEmailChange} />
-          <Input type='text' label='Username' placeholder='User Name' value={this.state.username} onChange={this.handleUsernameChange} />
-          <Input type='password' label='Password' placeholder='Enter password' value={this.state.password} onChange={this.handlePassChange} />
-          <ButtonInput type='submit' value='submit' />
-        </form>
-     </div>
-
+      <Row>
+        <Col sm={5}>
+          <h2>Sign in</h2>
+          <form onSubmit={this.handleSubmit}>
+             <Input type='email' label='Email Address' placeholder='Enter email' value={this.state.email} onChange={this.handleEmailChange} />
+             <Input type='password' label='Password' placeholder='Enter password' value={this.state.password} onChange={this.handlePassChange} />
+             <ButtonInput type='submit' value='submit' />
+           </form>
+         </Col>
+         <Col sm={5} smOffset={2}>
+          <h2>Sign up</h2>
+           <form onSubmit={this.handleSignupSubmit}>
+              <Input type='email' label='Email Address' placeholder='Enter email' value={this.state.email} onChange={this.handleEmailChange} />
+              <Input type='text' label='Username' placeholder='User Name' value={this.state.username} onChange={this.handleUsernameChange} />
+              <Input type='password' label='Password' placeholder='Enter password' value={this.state.password} onChange={this.handlePassChange} />
+              <ButtonInput type='submit' value='submit' />
+            </form>
+          </Col>
+       </Row>
     )
   }
 })
