@@ -6,7 +6,7 @@ import { Navbar, Nav } from 'react-bootstrap'
 export default React.createClass({
 
   getInitialState() {
-    return {loggedin: false}
+    return {loggedin: true}
   },
 
   render: function () {
@@ -28,7 +28,6 @@ export default React.createClass({
                   <NavLink to='/login'>profile</NavLink>
                 )}
                 </li>
-              <li><NavLink to='/feed'>feed</NavLink></li>
               <li><NavLink to='/friends'>friends</NavLink></li>
               <li><NavLink to='/upload'>upload</NavLink></li>
               <li><NavLink to='/login'>login</NavLink></li>

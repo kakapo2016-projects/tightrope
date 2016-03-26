@@ -1,6 +1,7 @@
 import React from 'react'
 import { Input, ButtonInput } from 'react-bootstrap'
 import request from 'superagent'
+import { Redirect } from 'react-router'
 
 
 export default React.createClass({
@@ -9,7 +10,6 @@ export default React.createClass({
   },
 
   loginRequest: function () {
-    Ω('Log in request')
     request
     .get('http://localhost:3000/api/v1/login')
     .end( function (err, res) {
