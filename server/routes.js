@@ -164,6 +164,7 @@ module.exports = function (app, cors, corsOptions) {
   // ----- DELETE routes ----- //
 
   // ----- authenication routes ----- //
+
     app.get('/api/v1/login', function (req, res) {
       console.log('--------------->', req.query)
       knex('users').where('email', req.body.email).select('password')
