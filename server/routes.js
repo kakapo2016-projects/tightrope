@@ -2,6 +2,7 @@ module.exports = function (app, cors, corsOptions) {
   var passport = require('passport')
   var body_parser = require('body-parser')
 
+
   app.use(body_parser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
   app.use(body_parser.json()) // parse application/json
 
@@ -165,6 +166,7 @@ module.exports = function (app, cors, corsOptions) {
   // ----- authenication routes ----- //
 
   app.get('/api/v1/login', function (req, res, next) {
+    console.log('oh yeah, it hit')
     passport.authenticate('local', function (err, user, info) {
       if (err) { return next(err) }
       if (!user) { return res.send({loggedIn: false}) }
