@@ -1,6 +1,6 @@
 module.exports = function (app, cors, corsOptions) {
   var passport = require('passport')
-  var path = require('join')
+  var path = require('path')
   var body_parser = require('body-parser')
 
   app.use(body_parser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
