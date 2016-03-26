@@ -5,7 +5,7 @@ import { Navbar, Nav } from 'react-bootstrap'
 
 export default React.createClass({
 
-  getInitialState() {
+  getInitialState () {
     return {loggedin: false}
   },
 

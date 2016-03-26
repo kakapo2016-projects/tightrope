@@ -6,7 +6,7 @@ export default React.createClass({
   render: function () {
     return (
       <div className='photoset'>
-        {_.map(this.props.photoset, function(photo) {
+        {_.map(this.props.photoset, function (photo) {
           return <Photo photo={photo}/>
         })}
       </div>
