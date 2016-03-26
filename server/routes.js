@@ -2,7 +2,6 @@ module.exports = function (app, cors, corsOptions) {
   var passport = require('passport')
   var body_parser = require('body-parser')
 
-
   app.use(body_parser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
   app.use(body_parser.json()) // parse application/json
 
@@ -12,7 +11,7 @@ module.exports = function (app, cors, corsOptions) {
 
   // ----- dummy data for testing ----- //
 
-  const dummy = {
+  var dummy = {
     'username': 'Simon Teg',
     'profilepic': 'http://fillmurray.com/400/400',
     'photoset': ['http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400'],
@@ -165,15 +164,19 @@ module.exports = function (app, cors, corsOptions) {
 
   // ----- authenication routes ----- //
 
-  app.get('/api/v1/login', function (req, res, next) {
-    console.log('oh yeah, it hit')
-    passport.authenticate('local', function (err, user, info) {
-      if (err) { return next(err) }
-      if (!user) { return res.send({loggedIn: false}) }
-      req.logIn(user, function (err) {
-        if (err) { return next(err) }
-        return res.send({loggedIn: true})
+  app.get('/api/v1/login', function (req, res) {
+    knex('users')
+      .where('email', req.query.email)
+      .select('hashed_password')
+      .then(function (resp) {
+        console.log(resp[0].hashed_password)
+        if (req.query.password === resp[0].hashed_password) {
+          console.log('test1')
+          res.send('password_match')
+        } else {
+          console.log('test2')
+          res.send('password_incorrect')
+        }
       })
-    })(req, res, next)
   })
 }

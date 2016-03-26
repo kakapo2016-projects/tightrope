@@ -12,9 +12,16 @@ export default React.createClass({
     Ω('Log in request')
     request
     .get('http://localhost:3000/api/v1/login')
+    .query({email: this.state.email, password: this.state.password})
     .end( function (err, res) {
-      if (err) console.log('Error:', err)
-      this.setState({user: res.body})
+      if (err) throw err
+      console.log('>>>>>>>>>>', res.text)
+      if (res.text === 'password_match') {
+        console.log('log in')
+
+      } else if (res.text === 'password_incorrect') {
+        console.log('wrong password')
+      }
     }.bind(this))
   },
 
@@ -30,25 +37,35 @@ export default React.createClass({
 
   handleSubmit: function(e) {
     console.log('handleSubmit')
-        e.preventDefault()
-        var email = this.state.email
-        var password = this.state.password
-        if (!email || !password) {
-          return
-        }
-        this.loginRequest({email: email, password: password})
-        this.setState({email: '', password: ''})
-      },
-
+    e.preventDefault()
+    var email = this.state.email
+    var password = this.state.password
+    if (!email || !password) {
+      return
+    }
+    this.loginRequest({email: email, password: password})
+    this.setState({email: '', password: ''})
+  },
 
   render () {
 		return (
       <form onSubmit={this.handleSubmit}>
-         <Input type="email" label="Email Address" placeholder="Enter email" value={this.state.email} onChange={this.handleEmailChange} />
-         <Input type="password" label="Password" placeholder="Enter password" value={this.state.password} onChange={this.handlePassChange} />
+         <Input
+           type="email"
+           label="Email Address"
+           placeholder="Enter email"
+           value={this.state.email}
+           onChange={this.handleEmailChange}
+          />
+         <Input
+           type="password"
+           label="Password"
+           placeholder="Enter password"
+           value={this.state.password}
+           onChange={this.handlePassChange}
+          />
          <ButtonInput type="submit" value="post" />
        </form>
-
     )
   }
 })
