@@ -3,7 +3,15 @@ var passport = require('passport')
 var LocalStrategy = require('passport-local')
 var cors = require('cors')
 var app = express()
-app.use(cors());
+var Ω = require('lomega')
+var path = require('path')
+var cloudinary = require('cloudinary')
+var dotenv = require('dotenv')
+require('dotenv').config()
+
+dotenv.load()
+cloudinary.cloudinary_js_config()
+app.use(cors())
 
 var corsOptions = {
   origin: '*'
@@ -31,9 +39,21 @@ app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveU
 app.use(passport.initialize())
 app.use(passport.session())
 
+cloudinary.config({
+  cloud_name: 'dvzbt8kfq',
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+})
+
+app.post('/photos', cors(corsOptions), function (req, res) {
+  cloudinary.uploader.upload(Object.keys(req.body)[0], function (result) {
+  // console.log('result', result)
+  })
+})
+
 passport.use(new LocalStrategy(
-  function (username, password, done) {
-    db.findOne ({ username: username }, function (resp) {
+  function (email, password, done) {
+    db.findOne ({ email: email }, function (resp) {
       console.log(resp)
       if (resp.users.hashed_password === password) {
         return done(null, username)
