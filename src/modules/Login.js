@@ -2,7 +2,7 @@ import React from 'react'
 import { Input, ButtonInput } from 'react-bootstrap'
 import request from 'superagent'
 import Ω from 'lomega'
-import getRequest from './getRequest'
+import getRequest from '../getrequest'
 import { Redirect } from 'react-router'
 
 export default React.createClass({
