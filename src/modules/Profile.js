@@ -11,26 +11,24 @@ export default React.createClass({
   getInitialState: function () {
     return {
       user: {
-        username: 'Simon',
-        profilepic: 'https://www.loomio.org/assets/people/simon-a37e0b965bbadd306a29caf1dd442c0b19d4c8fabac2d3fe23bab9bdc620824e.png'
-      },
-      photoset: [
-        '/images/squares.jpeg',
-        '/images/dandelion.jpg',
-        '/images/laksa.jpg',
-        '/images/purple.jpg',
-        '/images/city.jpg'
-      ]
+        'username': '',
+        'profilepic': '',
+        'photoset': [''],
+        'accolades': [{
+          'credits': 0,
+          'badges': ['hi', 'hi'],
+          'activeStreak': 0
+        }]
+      }
     }
   },
 
-  componentWillMount: function () {
+  componentDidMount: function () {
     request
     .get('http://localhost:3000/api/v1/users/1/profile')
     .end(function (err, res) {
       if (err) console.log('Error:', err)
       this.setState({user: res.body})
-      console.log(this.state)
     }.bind(this))
   },
 
@@ -38,15 +36,13 @@ export default React.createClass({
     const {user, photoset} = this.state
     return (
       <Row>
-        <Col md={4} className='profile panel'>
-          <ProfilePic profilepic={user.profilepic}/>
-          <h2 className='username'>{user.username}</h2>
-          <div className='accolades'>
-            <Accolades />
-          </div>
+        <Col sm={4} className='profile panel'>
+          <ProfilePic profilepic={this.state.user.profilepic}/>
+          <h2 className='username'>{this.state.user.username}</h2>
+          <Accolades accolades={this.state.user.accolades}/>
         </Col>
-        <Col md={8} className='feed'>
-          <Photoset photoset={photoset}/>
+        <Col sm={8} className='feed centered' className='container-fluid'>
+          <Photoset photoset={this.state.user.photoset}/>
         </Col>
       </Row>
     )
