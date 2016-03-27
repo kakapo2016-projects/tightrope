@@ -224,20 +224,10 @@ module.exports = function (app, cors, corsOptions) {
   app.get('/api/v1/login', function (req, res) {
     console.log('req', req.query)
     knex('users')
-<<<<<<< HEAD
-      .where('email', req.query.email)
-      // .where('email', 'admin@tightrope.io')
-      .select('user_id', 'hashed_password')
-      .then(function (resp) {
-        console.log('resp is: ', resp)
-        console.log('resp[0].user_id is: ', resp[0].user_id)
-        console.log('resp[0].hashed_password is: ', resp[0].hashed_password)
-=======
       .where({'email': req.query.email})
       .select('hashed_password', 'user_id')
       .then(function (resp) {
         console.log('Fucker fucker', resp)
->>>>>>> d5de5cd3b420dcd919887f7edf7971007cb04769
         if (resp.length <= 0) {
           console.log('Database cannot find user')
         } else {
