@@ -1,6 +1,4 @@
 import React from 'react'
-import Photoset from '../components/Photoset'
-import request from 'superagent'
 import FeedPhotos from '../components/Feed-photos'
 import get from '../get-request'
 require('../stylesheets/modules/feed.sass')
@@ -11,6 +9,7 @@ export default React.createClass({
       photos: []
     }
   },
+
   loadPhotosFromServer: function() {
     get('http://localhost:3000/api/v1/photos/', '', function (err, res) {
       if (err) console.log('Error:', err)
@@ -21,7 +20,7 @@ export default React.createClass({
 
   componentWillMount: function () {
     this.loadPhotosFromServer();
-    setInterval(this.loadCommentsFromServer, 2000);
+    setInterval(this.loadPhotosFromServer, 2000);
   },
 
   render: function () {
