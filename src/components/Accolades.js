@@ -4,17 +4,22 @@ import _ from 'lodash'
 export default React.createClass({
 
   render: function () {
-    var accolades = this.props.accolades[0]
+    console.log('accolades!!! ', this.props.accolades)
+    let credits = this.props.accolades.credits
+    let active_streak = this.props.accolades.active_streak
+    let badges = this.props.accolades.badges
+    console.log('accolades: ', this.props.accolades)
+
     return (
       <div className='accolades'>
         <div className='badges'>
-          {_.map(accolades.badges, function (badge) {
-            return <span>{badge} </span>
-          })}
+        {_.map(badges, function (badge) {
+          return <span>{badge} </span>
+        })}
         </div>
         <div>
-          <h3>Credits: {accolades.credits}</h3>
-          <h3>Active streak: {accolades.activeStreak}</h3>
+          <h3>Credits: {credits}</h3>
+          <h3>Active streak: {active_streak}</h3>
         </div>
       </div>
     )
