@@ -26,12 +26,22 @@ module.exports = function (app, cors, corsOptions) {
 
   // ----- set up DB ----- //
 
+  // var knex = require('knex')({
+  //   client: 'sqlite3',
+  //   connection: {
+  //     filename: path.join(__dirname, '/../data/tightrope.sqlite3')
+  //   },
+  //   useNullAsDefault: true
+  // })
+  //
+  // var db = require('./db.js')(knex)
+
   var knex = require('knex')({
-    client: 'sqlite3',
+    client: 'pg',
     connection: {
-      filename: path.join(__dirname, '/../data/tightrope.sqlite3')
-    },
-    useNullAsDefault: true
+      host: '127.0.0.1',
+      database: 'tightrope_dev'
+    }
   })
 
   var db = require('./db.js')(knex)
@@ -240,7 +250,7 @@ module.exports = function (app, cors, corsOptions) {
     console.log('POST to /api/v1/signup')
     console.log('req.body is : ', req.body.username)
     bcrypt.genSalt(10, function (err, salt) {
-      if (err) { console.log('Error in genSalt: ', err)}
+      if (err) { console.log('Error in genSalt: ', err) }
       bcrypt.hash(req.body.username.password, salt, function (err, hash) {
         if (err) { console.log('Error in sign up: ', err) }
         console.log(hash)
