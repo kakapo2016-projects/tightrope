@@ -3,10 +3,10 @@ import _ from 'lodash'
 
 export default React.createClass({
   render: function () {
-    console.log(this.props.feedPhotos)
+    console.log('Props', this.props.photos)
     return (
       <div className='photoset'>
-        {_.map(this.props.feedPhotos.photos, function (photo) {
+        {_.map(this.props.photos, function (photo) {
           return (
             <div>
               <div className='panel feedPhoto'>
