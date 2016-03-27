@@ -39,6 +39,11 @@ export default React.createClass({
     )
   },
 
+  logOut: function () {
+    cookie.remove('userId', { path: '/' });
+    cookie.remove('loggedIn', { path: '/' });
+  },
+
   render: function () {
     return (
       <div className='navWrap'>
@@ -54,7 +59,7 @@ export default React.createClass({
               <li><Link to='/' activeClassName='active' onlyActiveOnIndex>feed</Link></li>
               <li><NavLink to='/profile'>profile</NavLink></li>
               <li><NavLink to='/friends'>friends</NavLink></li>
-              { cookie.load('loggedIn') ? <li><NavLink to='/login'>logout</NavLink></li> : <li><NavLink to='/login'>Fuck</NavLink></li>
+              { cookie.load('loggedIn') ? <li><NavLink onClick={this.logOut} to='/login'>logout</NavLink></li> : <li><NavLink to='/login'>login</NavLink></li>
             }
               <li id='upload'></li>
             </Nav>
