@@ -16,7 +16,7 @@ exports.up = function (knex, Promise) {
       table.string('external_photo_id')
       table.integer('user_id')
       table.integer('likes')
-      table.blob('photo')
+      table.binary('photo')
       table.string('photo_url')
       table.string('caption')
       table.timestamp('created_at').defaultTo(knex.fn.now())
