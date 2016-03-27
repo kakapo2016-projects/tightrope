@@ -235,16 +235,16 @@ module.exports = function (app, cors, corsOptions) {
 
   app.post('/api/v1/signup', function (req, res) {
     console.log('POST to /api/v1/signup')
-    console.log('req.body is : ', req.body)
+    console.log('req.body is : ', req.body.username)
     bcrypt.genSalt(10, function (err, salt) {
       if (err) { console.log('Error in genSalt: ', err)}
-      bcrypt.hash(req.body.password, salt, function (err, hash) {
+      bcrypt.hash(req.body.username.password, salt, function (err, hash) {
         if (err) { console.log('Error in sign up: ', err) }
         console.log(hash)
         // var newId = uuid.v4()
         knex('users').insert({ // puts it in the DB
-          email: req.body.email,
-          username: req.body.username,
+          email: req.body.username.email,
+          username: req.body.username.username,
           hashed_password: hash
         }).then(function (resp) {
           console.log(typeof resp)

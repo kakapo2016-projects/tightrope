@@ -25,7 +25,8 @@ export default React.createClass({
   loginRequest: function (useremail, password) {
     console.log('Login attempting')
     get('http://localhost:3000/api/v1/login', {email: useremail}, (err, res) => {
-      console.log('Server resp ',res)
+      console.log('Server resp ', res)
+
       if (err) { console.log('ERROR: ', err); return }
       if (res === null) { alert('you call that a valid email address, idiot?'); return }
       if (password === res.passwordHash) {
