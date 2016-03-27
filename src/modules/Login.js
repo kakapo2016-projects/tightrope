@@ -38,10 +38,16 @@ export default React.createClass({
   loginRequest: function () {
     console.log('this is a get request', this.state.user)
     request
-    .get('http://localhost:3000/api/v1/login', {email: this.state.email}, function (err, res) {
-      if (err) console.log('Error:', err)
-      this.setState({user: res.body})
-      Ω('---------> ', res.body)
+    .get('http://localhost:3000/api/v1/login')
+    .query({email: this.state.email, password: this.state.password})
+    .end( function (err, res) {
+      if (err) throw err
+      console.log('>>>>>>>>>>', res.text)
+      if (res.text === 'password_match') {
+        console.log('log in')
+      } else if (res.text === 'password_incorrect') {
+        console.log('wrong password')
+      }
     }.bind(this))
   },
 
@@ -80,7 +86,7 @@ export default React.createClass({
           <form onSubmit={this.handleSubmit}>
              <Input type='email' label='Email Address' placeholder='Enter email' value={this.state.email} onChange={this.handleEmailChange} />
              <Input type='password' label='Password' placeholder='Enter password' value={this.state.password} onChange={this.handlePassChange} />
-             <ButtonInput type='submit' value='Submit' />
+             <ButtonInput type='submit' value='Sign In' />
            </form>
          </Col>
          <Col sm={5} smOffset={2}>
