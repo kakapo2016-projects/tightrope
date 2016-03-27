@@ -1,10 +1,11 @@
 import React from 'react'
 import { Input, ButtonInput } from 'react-bootstrap'
 import request from 'superagent'
-import getRequest from '../get-request'
+import get from '../get-request'
 import { Redirect } from 'react-router'
 import { Col, Row } from 'react-bootstrap'
-import Signup from './Signup'
+import Signup from '../components/Signup'
+import Signin from '../components/Signin'
 
 export default React.createClass({
   getInitialState: function () {
@@ -23,8 +24,9 @@ export default React.createClass({
     }.bind(this))
   },
 
-  attemptLogIn: function (email, password) {
-    getRequest(`http://localhost:3000/api/v1/user${email}`, (err, res) => {
+  loginRequest: function (useremail, password) {
+    console.log('Login attempting')
+    get('http://localhost:3000/api/v1/login', {email: useremail}, (err, res) => {
       if (err) { console.log('ERROR: ', err); return }
       if (res === null) { alert('you call that a valid email address, idiot?'); return }
       if (password === res.passwordHash) {
@@ -35,66 +37,16 @@ export default React.createClass({
     })
   },
 
-  loginRequest: function () {
-    console.log('this is a get request', this.state.user)
-    request
-    .get('http://localhost:3000/api/v1/login')
-    .query({email: this.state.email, password: this.state.password})
-    .end( function (err, res) {
-      if (err) throw err
-      console.log('>>>>>>>>>>', res.text)
-      if (res.text === 'password_match') {
-        console.log('log in')
-      } else if (res.text === 'password_incorrect') {
-        console.log('wrong password')
-      }
-    }.bind(this))
-  },
-
-  handlePassChange (e) {
-    Ω('handlePassChange')
-    this.setState({password: e.target.value})
-  },
-
-  handleEmailChange (e) {
-    Ω('handleEmailChange')
-    this.setState({email: e.target.value})
-  },
-
-  handleUsernameChange (e) {
-    Ω('handleUsernameChange')
-    this.setState({username: e.target.value})
-  },
-
-  handleSubmit: function (e) {
-    console.log('handleSubmit')
-    e.preventDefault()
-    var email = this.state.email
-    var password = this.state.password
-    if (!email || !password) {
-      return
-    }
-    this.loginRequest({email: email, password: password})
-    this.setState({email: '', password: ''})
-  },
-
   render () {
     return (
       <Row>
         <Col sm={5}>
-          <h2>Sign in</h2>
-          <form onSubmit={this.handleSubmit}>
-             <Input type='email' label='Email Address' placeholder='Enter email' value={this.state.email} onChange={this.handleEmailChange} />
-             <Input type='password' label='Password' placeholder='Enter password' value={this.state.password} onChange={this.handlePassChange} />
-             <ButtonInput type='submit' value='Sign In' />
-           </form>
+          <Signin loginRequest={this.loginRequest} />
          </Col>
          <Col sm={5} smOffset={2}>
            <Signup signUpRequest={this.signUpRequest} />
           </Col>
        </Row>
-
-
     )
   }
 })
