@@ -5,17 +5,17 @@ export default React.createClass({
     getInitialState: function () { return { username: '', password: '', email: '' } },
 
   handlePassword (e) {
-    Ω('handleSignupPassChange')
+    console.log('handleSignupPassChange')
     this.setState({password: e.target.value})
   },
 
   handleEmail (e) {
-    Ω('handleSignupEmailChange')
+    console.log('handleSignupEmailChange')
     this.setState({email: e.target.value})
   },
 
   handleUsername (e) {
-    Ω('handleUsernameChange')
+    console.log('handleUsernameChange')
     this.setState({username: e.target.value})
   },
 

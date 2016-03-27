@@ -8,9 +8,6 @@ module.exports = {
     },
     useNullAsDefault: true
   },
-
   directory: __dirname + '/migrations',
-
   tableName: 'migrations'
-
 }

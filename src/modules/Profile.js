@@ -12,20 +12,20 @@ export default React.createClass({
   // getInitialState: function () {
   //   return {      data: [
   //           {
-  //             "photos": {
-  //               "photoset": []
+  //             'photos': {
+  //               'photoset': []
   //             },
-  //             "profile": {
-  //               "accolades": [
+  //             'profile': {
+  //               'accolades': [
   //                 {
-  //                   "activeStreak": 0,
-  //                   "badges": [],
-  //                   "credits": 0
+  //                   'activeStreak': 0,
+  //                   'badges': [],
+  //                   'credits': 0
   //                 }
   //               ],
-  //               "photoset": [],
-  //               "profilepic": "",
-  //               "username": ""
+  //               'photoset': [],
+  //               'profilepic': '',
+  //               'username': ''
   //             }
   //           }
   //         ]
