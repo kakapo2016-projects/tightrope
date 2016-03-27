@@ -2,12 +2,26 @@ import React from 'react'
 import { Input, ButtonInput } from 'react-bootstrap'
 import request from 'superagent'
 import Ω from 'lomega'
-import getRequest from '../getrequest'
+import get from '../getRequest'
 import { Redirect } from 'react-router'
+import { Col, Row } from 'react-bootstrap'
+import Signup from './Signup'
 
 export default React.createClass({
   getInitialState: function () {
     return {}
+  },
+
+  signUpRequest: function (username, email, password) {
+    Ω('Log in request')
+    request
+    .post('http://localhost:3000/api/v1/signup')
+    .send({email: email, username: username, password: password})
+    .end(function (err, res) {
+      if (err) console.log('Error:', err)
+      this.setState({user: res.body})
+      Ω('resbod ---------> ', res.body)
+    }.bind(this))
   },
 
   attemptLogIn: function (email, password) {
@@ -23,25 +37,12 @@ export default React.createClass({
   },
 
   loginRequest: function () {
+    console.log('this is a get request', this.state.user)
     request
-    .get('http://localhost:3000/api/v1/login')
-    .query({email: this.state.email})
-    .end(function (err, res) {
+    .get('http://localhost:3000/api/v1/login', {email: this.state.email}, function (err, res) {
       if (err) console.log('Error:', err)
       this.setState({user: res.body})
       Ω('---------> ', res.body)
-    }.bind(this))
-  },
-
-  signUpRequest: function () {
-    Ω('Log in request')
-    request
-    .post('http://localhost:3000/api/v1/signup')
-    .send({email: this.state.email, username: this.state.email, password: this.state.password})
-    .end(function (err, res) {
-      if (err) console.log('Error:', err)
-      this.setState({user: res.body})
-      Ω('resbod ---------> ', res.body)
     }.bind(this))
   },
 
@@ -60,19 +61,6 @@ export default React.createClass({
     this.setState({username: e.target.value})
   },
 
-  handleSignupSubmit: function (e) {
-    console.log('handleSignupSubmit')
-    e.preventDefault()
-    var email = this.state.email
-    var username = this.state.username
-    var password = this.state.password
-    if (!email || !password || !username) {
-      return
-    }
-    this.signUpRequest({email: email, password: password})
-    this.setState({email: '', password: '', username: ''})
-  },
-
   handleSubmit: function (e) {
     console.log('handleSubmit')
     e.preventDefault()
@@ -87,20 +75,23 @@ export default React.createClass({
 
   render () {
     return (
-    <div>
-      <form onSubmit={this.handleSubmit}>
-         <Input type='email' label='Email Address' placeholder='Enter email' value={this.state.email} onChange={this.handleEmailChange} />
-         <Input type='password' label='Password' placeholder='Enter password' value={this.state.password} onChange={this.handlePassChange} />
-         <ButtonInput type='submit' value='submit' />
-       </form>
+      <Row>
+        <Col sm={5}>
+          <h2>Sign in</h2>
+          <form onSubmit={this.handleSubmit}>
+             <Input type='email' label='Email Address' placeholder='Enter email' value={this.state.email} onChange={this.handleEmailChange} />
+             <Input type='password' label='Password' placeholder='Enter password' value={this.state.password} onChange={this.handlePassChange} />
+             <ButtonInput type='submit' value='Submit' />
+           </form>
 
-       <form onSubmit={this.handleSignupSubmit}>
-          <Input type='email' label='Email Address' placeholder='Enter email' value={this.state.email} onChange={this.handleEmailChange} />
-          <Input type='text' label='Username' placeholder='User Name' value={this.state.username} onChange={this.handleUsernameChange} />
-          <Input type='password' label='Password' placeholder='Enter password' value={this.state.password} onChange={this.handlePassChange} />
-          <ButtonInput type='submit' value='submit' />
-        </form>
-     </div>
+           <Signup signUpRequest={this.signUpRequest} />
+
+         </Col>
+         <Col sm={5} smOffset={2}>
+
+          </Col>
+       </Row>
+
 
     )
   }
