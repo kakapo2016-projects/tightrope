@@ -5,7 +5,7 @@ import request from 'superagent'
 import get from '../get-request'
 import post from '../post-request'
 import cookie from 'react-cookie'
-import { browserHistory } from 'react-router'
+// import { browserHistory } from 'react-router'
 import { Col, Row } from 'react-bootstrap'
 import Signup from '../components/Signup'
 import Signin from '../components/Signin'
@@ -41,21 +41,21 @@ export default React.createClass({
   },
 
   setLoginCookie: function (userId) {
-    this.setState({ userId });
+    this.setState({ userId})
     cookie.save('userId', userId, { path: '/' })
     cookie.save('loggedIn', true, { path: '/' })
   },
 
-  render () {
+  render() {
     return (
-      <Row>
-        <Col sm={5}>
-          <Signin loginRequest={this.loginRequest} />
-         </Col>
-         <Col sm={5} smOffset={2}>
-           <Signup signUpRequest={this.signUpRequest} />
-          </Col>
-       </Row>
+    <Row>
+      <Col sm={5}>
+      <Signin loginRequest={this.loginRequest} />
+      </Col>
+      <Col sm={5} smOffset={2}>
+      <Signup signUpRequest={this.signUpRequest} />
+      </Col>
+    </Row>
     )
   }
 })

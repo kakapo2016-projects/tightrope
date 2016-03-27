@@ -5,13 +5,16 @@ require('../stylesheets/modules/feed.sass')
 
 export default React.createClass({
   setInitialState: function () {
+    console.log('in Friends - setInitialState')
     return {
       friends: []
     }
   },
 
   loadFriendsFromServer: function () {
-    get('localhost:3000/api/v1/users/1/friends', '', function (err, res) {
+    console.log('in Friends - loadFriendsFromServer')
+    // get('localhost:3000/api/v1/users/1/friends', '', function (err, res) {
+    get('localhost:3000/api/v1/users/dummyid/friends', '', function (err, res) {
       if (err) console.log('Error:', err)
       console.log('Friends res is :', res)
       this.setState({friends: res})
@@ -19,11 +22,13 @@ export default React.createClass({
   },
 
   componentWillMount: function () {
+    console.log('in Friends - componentWillMount')
     this.loadFriendsFromServer()
     setInterval(this.loadFriendsFromServer, 2000)
   },
 
   render: function () {
+    console.log('in Friends - render')
     let displayFriends = []
     if (this.state !== null) {
       displayFriends = this.state.friends
