@@ -39,6 +39,7 @@ export default React.createClass({
     )
   },
 
+
   logout: function () {
     cookie.remove('userId', { path: '/' })
     cookie.remove('loggedIn', { path: '/' })

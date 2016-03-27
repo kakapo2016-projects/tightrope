@@ -1,4 +1,5 @@
 import React from 'react'
+import { browserHistory } from 'react-router'
 import { Input, ButtonInput } from 'react-bootstrap'
 import request from 'superagent'
 import get from '../get-request'
