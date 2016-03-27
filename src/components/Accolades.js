@@ -2,6 +2,7 @@ import React from 'react'
 import _ from 'lodash'
 
 export default React.createClass({
+  
   render: function () {
     console.log('accolades!!! ', this.props.accolades)
     let credits = this.props.accolades.credits

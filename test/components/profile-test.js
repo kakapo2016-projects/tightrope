@@ -1,9 +1,7 @@
-
 import { expect } from 'chai'
-import { shallow, render, mount } from 'enzyme'
+import { render, mount } from 'enzyme'
 import React from 'react'
 import ProfilePic from '../../src/components/ProfilePic'
-global.Ω = require('lomega')
 
 import Profile from '../../src/modules/Profile'
 
@@ -19,8 +17,6 @@ describe('Profile', () => {
   })
 })
 
-
-
 //username length >1
 //profilePic has slice(0, 4) === 'http'
-//accolades should 
+//accolades should

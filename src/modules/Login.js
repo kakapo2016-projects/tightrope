@@ -1,7 +1,6 @@
 import React from 'react'
 import { browserHistory } from 'react-router'
-import { Input, ButtonInput } from 'react-bootstrap'
-import request from 'superagent'
+import { ButtonInput } from 'react-bootstrap'
 import get from '../get-request'
 import post from '../post-request'
 import cookie from 'react-cookie'
@@ -15,11 +14,11 @@ export default React.createClass({
   },
 
   signUpRequest: function (username, email, password) {
-    Ω('Log in request')
+    console.log('Log in request')
     post('http://localhost:3000/api/v1/signup', {email: email, username: username, password: password}, function (err, res) {
       if (err) console.log('Error:', err)
       this.setState({user: res.body})
-      Ω('resbod ---------> ', res.body)
+      console.log('resbod ---------> ', res.body)
     }.bind(this))
   },
 
@@ -28,7 +27,7 @@ export default React.createClass({
     get('http://localhost:3000/api/v1/login', {email: useremail, password: password}, (err, res) => {
       console.log('Server resp ', res)
       if (err) console.log('Error: ', err)
-      if (res === null) { alert('No response from server')}
+      if (res === null) { alert('No response from server') }
       if (res.login === true) {
         console.log('sucessfully logged in!')
         this.setLoginCookie(res.userId)
@@ -40,7 +39,7 @@ export default React.createClass({
   },
 
   setLoginCookie: function (userId) {
-    this.setState({ userId });
+    this.setState({ userId })
     cookie.save('userId', userId, { path: '/' })
     cookie.save('loggedIn', true, { path: '/' })
   },
