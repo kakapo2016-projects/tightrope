@@ -1,4 +1,5 @@
 import React from 'react'
+import { browserHistory } from 'react-router'
 import { Link } from 'react-router'
 import NavLink from './NavLink'
 import { Navbar, Nav } from 'react-bootstrap'
@@ -13,7 +14,6 @@ export default React.createClass({
   },
 
   componentDidMount: function () {
-    console.log('Uploading')
     $('#upload').cloudinary_upload_widget(
       {
         cloud_name: 'dvzbt8kfq',
@@ -33,7 +33,6 @@ export default React.createClass({
           caption: 'This is a test'
         }
         post('http://localhost:3000/api/v1/photos', userUpload, function (resp) {
-          console.log('Uploaded', resp)
         })
       }
     )
@@ -44,6 +43,7 @@ export default React.createClass({
     cookie.remove('userId', { path: '/' })
     cookie.remove('loggedIn', { path: '/' })
   },
+
 
   render: function () {
     return (

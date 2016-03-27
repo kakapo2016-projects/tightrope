@@ -4,6 +4,7 @@ import ProfilePic from '../components/ProfilePic'
 import Photoset from '../components/Photoset'
 import Accolades from '../components/Accolades'
 import { Col, Row } from 'react-bootstrap'
+import get from '../get-request'
 require('../stylesheets/modules/profile.sass')
 
 export default React.createClass({
@@ -24,9 +25,7 @@ export default React.createClass({
   },
 
   componentDidMount: function () {
-    request
-    .get('http://localhost:3000/api/v1/users/1/profile')
-    .end(function (err, res) {
+    get('http://localhost:3000/api/v1/users/1/profile', '', function (err, res) {
       if (err) console.log('Error:', err)
       this.setState({user: res.body})
     }.bind(this))
