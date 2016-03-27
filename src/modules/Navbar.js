@@ -51,12 +51,7 @@ export default React.createClass({
           <Navbar.Collapse className='navbar-collapse'>
             <Nav pullRight>
               <li><Link to='/' activeClassName='active' onlyActiveOnIndex>feed</Link></li>
-              <li>{this.state.loggedIn ? (
-                  <NavLink to='/profile'>profile</NavLink>
-                ) : (
-                  <NavLink to='/login'>profile</NavLink>
-                )}
-                </li>
+              <li><NavLink to='/profile'>profile</NavLink></li>
               <li><NavLink to='/friends'>friends</NavLink></li>
               <li><NavLink to='/login'>login</NavLink></li>
               <li id='upload'></li>
