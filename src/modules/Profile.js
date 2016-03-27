@@ -50,7 +50,7 @@ export default React.createClass({
     return (
       <Row>
         <Col sm={4} className='profile panel'>
-          <ProfilePic profilepic={profile_pic}/>
+          <ProfilePic profilePic={profile_pic}/>
           <h2 className='username'>{username}</h2>
           <Accolades accolades={accolades}/>
         </Col>

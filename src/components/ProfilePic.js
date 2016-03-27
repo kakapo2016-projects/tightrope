@@ -3,10 +3,11 @@ import React from 'react'
 export default React.createClass({
 
   render: function () {
-    console.log('Profile Pic: ', this.props.profilepic)
+    let profilePic = this.props.profilePic
+    console.log('Profile Pic: ', profilePic)
     return (
       <div>
-        <img className='profilephoto' src={this.props.profilepic} />
+        <img className='profilephoto' src={profilePic} />
       </div>
     )
   }
