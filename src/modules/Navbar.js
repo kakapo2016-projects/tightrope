@@ -28,7 +28,7 @@ export default React.createClass({
       function (error, result) {
         let userUpload = {
           external_photo_id: result[0].signature,
-          user_id: 145,
+          user_id: cookie.load('userId'),
           photo_url: result[0].url,
           caption: 'This is a test'
         }
@@ -37,6 +37,11 @@ export default React.createClass({
         })
       }
     )
+  },
+
+  logout: function () {
+    cookie.remove('userId', { path: '/' })
+    cookie.remove('loggedIn', { path: '/' })
   },
 
   render: function () {
@@ -54,7 +59,7 @@ export default React.createClass({
               <li><Link to='/' activeClassName='active' onlyActiveOnIndex>feed</Link></li>
               <li><NavLink to='/profile'>profile</NavLink></li>
               <li><NavLink to='/friends'>friends</NavLink></li>
-              { cookie.load('loggedIn') ? <li><NavLink to='/login'>logout</NavLink></li> : <li><NavLink to='/login'>Fuck</NavLink></li>
+              { cookie.load('loggedIn') ? <li><NavLink onClick={this.logout} to='/login'>logout</NavLink></li> : <li><NavLink to='/login'>login</NavLink></li>
             }
               <li id='upload'></li>
             </Nav>
