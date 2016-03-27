@@ -100,6 +100,17 @@ module.exports = function (app, cors, corsOptions) {
     })
   })
 
+  app.get('/api/v1/photos', function (req, res) { // a request for all photos from all users
+    console.log('GET received on /api/v1/photos')
+    // console.log('req.params is: ', req.params)
+    // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
+    db.findMany('photos', function (err, photoSet) {
+      if (err) { throw err }
+      console.log(photoSet)
+      res.json(photoSet) // returns the record for many photos
+    })
+  })
+
   // ----- POST routes ----- //
   // ----- test POST routes
   app.post('/login_test', function (req, res) { // this was just used for testing DB connections
@@ -198,7 +209,6 @@ module.exports = function (app, cors, corsOptions) {
   // ----- authentication routes ----- //
 
   app.get('/api/v1/login', function (req, res) {
-
     knex('users')
       .where('email', req.query.email)
       .select('hashed_password')
@@ -224,8 +234,10 @@ module.exports = function (app, cors, corsOptions) {
   app.post('/api/v1/signup', function (req, res) {
     console.log('POST to /api/v1/photos')
     console.log('req.body is : ', req.body)
-    bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.genSalt(10, function (err, salt) {
+      if (err) { throw err }
       bcrypt.hash(req.body.password, salt, function (err, hash) {
+        if (err) { throw err }
         console.log(hash)
         // var newId = uuid.v4()
         knex('users').insert({ // puts it in the DB
