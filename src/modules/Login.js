@@ -93,15 +93,45 @@ export default React.createClass({
     return (
     <div>
       <form onSubmit={this.handleSubmit}>
-         <Input type='email' label='Email Address' placeholder='Enter email' value={this.state.email} onChange={this.handleEmailChange} />
-         <Input type='password' label='Password' placeholder='Enter password' value={this.state.password} onChange={this.handlePassChange} />
+         <Input
+           type='email'
+           label='Email Address'
+           placeholder='Enter email'
+           value={this.state.email}
+           onChange={this.handleEmailChange}
+          />
+         <Input
+           type='password'
+           label='Password'
+           placeholder='Enter password'
+           value={this.state.password}
+           onChange={this.handlePassChange}
+          />
          <ButtonInput type='submit' value='submit' />
        </form>
 
        <form onSubmit={this.handleSignupSubmit}>
-          <Input type='email' label='Email Address' placeholder='Enter email' value={this.state.email} onChange={this.handleEmailChange} />
-          <Input type='text' label='Username' placeholder='User Name' value={this.state.username} onChange={this.handleUsernameChange} />
-          <Input type='password' label='Password' placeholder='Enter password' value={this.state.password} onChange={this.handlePassChange} />
+          <Input
+            type='email'
+            label='Email Address'
+            placeholder='Enter email'
+            value={this.state.email}
+            onChange={this.handleEmailChange}
+          />
+          <Input
+            type='text'
+            label='Username'
+            placeholder='User Name'
+            value={this.state.username}
+            onChange={this.handleUsernameChange}
+          />
+          <Input
+            type='password'
+            label='Password'
+            placeholder='Enter password'
+            value={this.state.password}
+            onChange={this.handlePassChange}
+          />
           <ButtonInput type='submit' value='submit' />
         </form>
      </div>

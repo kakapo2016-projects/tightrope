@@ -1,6 +1,6 @@
 module.exports = function (app, cors, corsOptions) {
   var passport = require('passport')
-  var path = require('join')
+  var path = require('path')
   var body_parser = require('body-parser')
 
   app.use(body_parser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
@@ -186,17 +186,32 @@ module.exports = function (app, cors, corsOptions) {
   // ----- authentication routes ----- //
 
   app.get('/api/v1/login', function (req, res) {
+
     knex('users')
       .where('email', req.query.email)
-      .select('hashed_password')
+      .select('hashed_password', 'user_id', 'username')
       .then(function (resp) {
         console.log(resp[0].hashed_password)
-        if (req.query.password === resp[0].hashed_password) {
-          console.log('test1')
-          res.send('password_match')
+        if (resp.length <= 0) {
+          res.redirect('/api/v1/login')
         } else {
-          console.log('test2')
-          res.send('password_incorrect')
+          db.findOne(('users', { username: username }, function (err, user) {
+            if (err) throw err
+            if (!user) {
+              res.json({ success: false, message: 'authentication faled. user not found.' })
+            } else if (user) {
+              bcrypt.compare(req.query.password, resp[0].hashed_password, function (err, respo) {
+                if (err) throw err
+                if (respo === true) {
+                  console.log('test1')
+                  res.send('password_match')
+                } else {
+                  console.log('test2')
+                  res.send('password_incorrect')
+                }
+              })
+            }
+          })
         }
       })
   })
@@ -204,15 +219,22 @@ module.exports = function (app, cors, corsOptions) {
   app.post('/api/v1/signup', function (req, res) {
     console.log('POST to /api/v1/photos')
     console.log('req.body is : ', req.body)
-    knex('users').insert({ // puts it in the DB
-      email: req.body.email,
-      username: req.body.username,
-      hashed_password: req.body.password
-    }).then(function (resp) {
-      console.log(typeof resp)
-      // respData = resp
-      // res.redirect('/test_pass')
-      res.send('The response from the DB was: ' + resp) // returns the number from the DB of the newly added record
+    bcrypt.genSalt(10, function(err, salt) {
+      bcrypt.hash(req.body.password, salt, function (err, hash) {
+        console.log(hash)
+        // var newId = uuid.v4()
+        knex('users').insert({ // puts it in the DB
+          email: req.body.email,
+          username: req.body.username,
+          hashed_password: hash
+        }).then(function (resp) {
+          console.log(typeof resp)
+          // respData = resp
+          // res.redirect('/test_pass')
+          res.send('The response from the DB was: ' + resp) // returns the number from the DB of the newly added record
+        })
+      })
     })
   }
-  ) }
+  )
+}
