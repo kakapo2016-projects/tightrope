@@ -211,17 +211,19 @@ module.exports = function (app, cors, corsOptions) {
   app.get('/api/v1/login', function (req, res) {
     knex('users')
       .where('email', req.query.email)
-      .select('hashed_password')
+      .select('user_id', 'hashed_password')
       .then(function (resp) {
-        console.log(resp[0].hashed_password)
+        console.log('resp[0].user_id is: ', resp[0].user_id)
+        console.log('resp[0].hashed_password is: ', resp[0].hashed_password)
         if (resp.length <= 0) {
           res.redirect('/api/v1/login')
         } else {
           bcrypt.compare(req.query.password, resp[0].hashed_password, function (err, respo) {
             if (err) throw err
             if (respo === true) {
+              console.log('respo is: ', respo)
               console.log('test1')
-              res.send('password_match')
+              res.send('password_match for respo[0].user_id: ' + respo[0].user_id)
             } else {
               console.log('test2')
               res.send('password_incorrect')
