@@ -1,5 +1,5 @@
 import React from 'react'
-
+require('../stylesheets/modules/friends.sass')
 export default React.createClass({
 
   getInitialState: function () {
