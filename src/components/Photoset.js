@@ -4,9 +4,11 @@ import _ from 'lodash'
 
 export default React.createClass({
   render: function () {
+    console.log('PHOTOOOOOS', this.props.photoset)
+    let photos = this.props.photoset
     return (
       <div className='photoset'>
-        {_.map(this.props.photoset, function (photo) {
+        {_.map(photos, function (photo) {
           return <Photo photo={photo}/>
         })}
       </div>
