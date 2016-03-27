@@ -29,14 +29,14 @@ export default {
     this.onChange(false)
   },
 
-  loggedIn() {
+  loggedIn () {
     return !!localStorage.token
   },
 
-  onChange() {}
+  onChange () {}
 }
 
-function pretendRequest(email, pass, cb) {
+function pretendRequest (email, pass, cb) {
   setTimeout(() => {
     if (email === 'joe@example.com' && pass === 'password1') {
       cb({

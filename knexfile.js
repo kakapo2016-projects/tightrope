@@ -7,9 +7,6 @@ module.exports = {
       database: 'tightrope_dev'
     }
   },
-
   directory: __dirname + '/migrations',
-
   tableName: 'migrations'
-
 }

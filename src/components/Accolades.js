@@ -2,6 +2,7 @@ import React from 'react'
 import _ from 'lodash'
 
 export default React.createClass({
+  
   render: function () {
     var accolades = this.props.accolades[0]
     return (
