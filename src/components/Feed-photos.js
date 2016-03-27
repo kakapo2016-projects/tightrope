@@ -3,7 +3,6 @@ import _ from 'lodash'
 
 export default React.createClass({
   render: function () {
-    console.log('Props', this.props.photos)
     return (
       <div className='photoset'>
         {_.map(this.props.photos, function (photo) {

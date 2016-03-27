@@ -1,10 +1,11 @@
 import React from 'react'
+import { browserHistory } from 'react-router'
 import { Input, ButtonInput } from 'react-bootstrap'
 import request from 'superagent'
 import get from '../get-request'
 import post from '../post-request'
 import cookie from 'react-cookie'
-import { Redirect } from 'react-router'
+import { browserHistory } from 'react-router'
 import { Col, Row } from 'react-bootstrap'
 import Signup from '../components/Signup'
 import Signin from '../components/Signin'
@@ -32,6 +33,7 @@ export default React.createClass({
       if (res.login === true) {
         console.log('sucessfully logged in!')
         this.setLoginCookie(res.userId)
+        browserHistory.push('/')
       } else {
         console.log('incorrect password!')
       }
