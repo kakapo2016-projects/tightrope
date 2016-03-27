@@ -27,7 +27,7 @@ export default React.createClass({
     if (!email || !password) {
       return
     }
-    this.props.loginRequest({email: email, password: password})
+    this.props.loginRequest(email, password)
     this.setState({email: '', password: ''})
   },
 
