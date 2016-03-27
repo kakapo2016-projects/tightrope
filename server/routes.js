@@ -29,7 +29,7 @@ module.exports = function (app, cors, corsOptions) {
   var knex = require('knex')({
     client: 'sqlite3',
     connection: {
-      filename: path.join(__dirname, '/../data/tightrope.sqlite')
+      filename: path.join(__dirname, '/../data/tightrope.sqlite3')
     },
     useNullAsDefault: true
   })
@@ -63,23 +63,13 @@ module.exports = function (app, cors, corsOptions) {
     // use knex to do 'SELECT * FROM users WHERE user_id=2' to sqlite DB
     db.findOne('users', { user_id: req.params.id }, function (err, user) {
       if (err) { throw err }
-      var sendObj = {
-        'username': user.username,
-        'profilepic': user.profile_pic,
-        'photoset': ['http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400', 'http://fillmurray.com/400/400'],
-        'accolades': [{
-          'credits': user.credits,
-          'badges': [user.badge], // this needs work
-          'activeStreak': user.active_streak
-        }]
-      }
-      console.log(sendObj)
-      res.json(sendObj) // returns the record for one user
+      console.log(user)
+      res.json(user) // returns the record for one user
     })
   })
 
   app.get('/api/v1/photos/:id', function (req, res) { // a request for one photo
-    console.log('GET received on /api/v1/photos/:id')
+    console.log('GET received on /api/v1/photos/:id', req)
     console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     db.findOne('photos', { photo_id: req.params.id }, function (err, photo) {
