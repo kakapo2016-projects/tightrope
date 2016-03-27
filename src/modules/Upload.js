@@ -1,6 +1,6 @@
 import React from 'react'
 import { Col } from 'react-bootstrap'
-import post from '../postRequest'
+import post from '../post-request'
 require('../stylesheets/modules/upload')
 
 export default React.createClass({
