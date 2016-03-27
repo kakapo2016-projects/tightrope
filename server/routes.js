@@ -216,17 +216,17 @@ module.exports = function (app, cors, corsOptions) {
       .then(function (resp) {
         console.log('Fucker fucker', resp)
         if (resp.length <= 0) {
-          res.redirect('/api/v1/login')
+          console.log('Database cannot find user')
         } else {
           bcrypt.compare(req.query.password, resp[0].hashed_password, function (err, respo) {
             console.log('After bcrypt', respo)
             if (err) console.log('Login error: ', err)
             if (respo === true) {
-              console.log('test1')
-              res.send(resp)
+              console.log('Password correct on server', resp)
+              res.send({login: true, userId: resp[0].user_id})
             } else {
-              console.log('test2')
-              res.send('Password incorrect')
+              console.log('Password incorrect on server')
+              res.send({login: false})
             }
           })
         }

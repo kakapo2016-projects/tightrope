@@ -3,6 +3,7 @@ import { Input, ButtonInput } from 'react-bootstrap'
 import request from 'superagent'
 import get from '../get-request'
 import post from '../post-request'
+import cookie from 'react-cookie'
 import { Redirect } from 'react-router'
 import { Col, Row } from 'react-bootstrap'
 import Signup from '../components/Signup'
@@ -24,18 +25,23 @@ export default React.createClass({
 
   loginRequest: function (useremail, password) {
     console.log('Login attempting')
-    get('http://localhost:3000/api/v1/login', {email: useremail}, (err, res) => {
+    get('http://localhost:3000/api/v1/login', {email: useremail, password: password}, (err, res) => {
       console.log('Server resp ', res)
-
-      if (err) { console.log('ERROR: ', err); return }
-      if (res === null) { alert('you call that a valid email address, idiot?'); return }
-      if (password === res.passwordHash) {
-        console.log(res.user_id)
+      if (err) console.log('Error: ', err)
+      if (res === null) { alert('No response from server')}
+      if (res.login === true) {
         console.log('sucessfully logged in!')
+        this.setLoginCookie(res.userId)
       } else {
         console.log('incorrect password!')
       }
     })
+  },
+
+  setLoginCookie: function (userId) {
+    this.setState({ userId });
+    cookie.save('userId', userId, { path: '/' })
+    cookie.save('loggedIn', true, { path: '/' })
   },
 
   render () {

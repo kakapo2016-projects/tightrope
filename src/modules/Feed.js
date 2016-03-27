@@ -14,7 +14,6 @@ export default React.createClass({
     get('http://localhost:3000/api/v1/photos/', '', function (err, res) {
       if (err) console.log('Error:', err)
       this.setState({photos: res})
-      console.log('After setting', this.state.photos)
     }.bind(this))
   },
 
