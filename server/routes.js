@@ -211,8 +211,10 @@ module.exports = function (app, cors, corsOptions) {
   app.get('/api/v1/login', function (req, res) {
     knex('users')
       .where('email', req.query.email)
+      // .where('email', 'admin@tightrope.io')
       .select('user_id', 'hashed_password')
       .then(function (resp) {
+        console.log('resp is: ', resp)
         console.log('resp[0].user_id is: ', resp[0].user_id)
         console.log('resp[0].hashed_password is: ', resp[0].hashed_password)
         if (resp.length <= 0) {
