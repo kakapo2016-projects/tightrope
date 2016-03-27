@@ -82,12 +82,9 @@ export default React.createClass({
              <Input type='password' label='Password' placeholder='Enter password' value={this.state.password} onChange={this.handlePassChange} />
              <ButtonInput type='submit' value='Submit' />
            </form>
-
-           <Signup signUpRequest={this.signUpRequest} />
-
          </Col>
          <Col sm={5} smOffset={2}>
-
+           <Signup signUpRequest={this.signUpRequest} />
           </Col>
        </Row>
 
