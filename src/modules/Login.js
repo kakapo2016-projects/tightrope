@@ -1,8 +1,7 @@
 import React from 'react'
 import { Input, ButtonInput } from 'react-bootstrap'
 import request from 'superagent'
-import Ω from 'lomega'
-import get from '../getRequest'
+import getRequest from '../get-request'
 import { Redirect } from 'react-router'
 import { Col, Row } from 'react-bootstrap'
 import Signup from './Signup'
@@ -89,12 +88,9 @@ export default React.createClass({
              <Input type='password' label='Password' placeholder='Enter password' value={this.state.password} onChange={this.handlePassChange} />
              <ButtonInput type='submit' value='Sign In' />
            </form>
-
-           <Signup signUpRequest={this.signUpRequest} />
-
          </Col>
          <Col sm={5} smOffset={2}>
-
+           <Signup signUpRequest={this.signUpRequest} />
           </Col>
        </Row>
 

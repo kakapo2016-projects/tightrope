@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import NavLink from './NavLink'
 import { Navbar, Nav } from 'react-bootstrap'
+import post from '../post-request'
 require('../stylesheets/modules/upload.sass')
 
 export default React.createClass({
