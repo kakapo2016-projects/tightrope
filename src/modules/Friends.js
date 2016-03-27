@@ -1,44 +1,38 @@
 import React from 'react'
-import FeedFriends from '../components/Feed-friends'
+import FeedPhotos from '../components/Feed-photos'
+import FriendsList from '../components/friends-list'
 import get from '../get-request'
 require('../stylesheets/modules/feed.sass')
 
 export default React.createClass({
   setInitialState: function () {
-    console.log('in Friends - setInitialState')
     return {
-      friends: []
+      photos: []
     }
   },
 
-  loadFriendsFromServer: function () {
-    console.log('in Friends - loadFriendsFromServer')
-    // get('localhost:3000/api/v1/users/1/friends', '', function (err, res) {
-    get('localhost:3000/api/v1/users/dummyid/friends', '', function (err, res) {
+  loadPhotosFromServer: function () {
+    get('http://localhost:3000/api/v1/photos/', '', function (err, res) {
       if (err) console.log('Error:', err)
-      console.log('Friends res is :', res)
-      this.setState({friends: res})
+      this.setState({photos: res})
+    // setInterval(this.loadPhotosFromServer, 2000)
     }.bind(this))
   },
 
   componentWillMount: function () {
-    console.log('in Friends - componentWillMount')
-    this.loadFriendsFromServer()
-    setInterval(this.loadFriendsFromServer, 2000)
+    this.loadPhotosFromServer()
   },
 
   render: function () {
-    console.log('in Friends - render')
-    let displayFriends = []
+    let displayPhotos = []
     if (this.state !== null) {
-      displayFriends = this.state.friends
+      displayPhotos = this.state.photos
     }
     return (
     <div>
-      <h1>Friends</h1>
-      <FeedFriends friends={displayFriends} />
+      <FeedPhotos photos={displayPhotos} />
       <p>
-        You currently have no friends.
+        You currently have no friends ...except me.
       </p>
     </div>
     )
