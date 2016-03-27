@@ -2,6 +2,7 @@ module.exports = function (app, cors, corsOptions) {
   var passport = require('passport')
   var path = require('path')
   var body_parser = require('body-parser')
+  var bcrypt = require('bcrypt')
 
   app.use(body_parser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
   app.use(body_parser.json()) // parse application/json
@@ -189,27 +190,20 @@ module.exports = function (app, cors, corsOptions) {
 
     knex('users')
       .where('email', req.query.email)
-      .select('hashed_password', 'user_id', 'username')
+      .select('hashed_password')
       .then(function (resp) {
         console.log(resp[0].hashed_password)
         if (resp.length <= 0) {
           res.redirect('/api/v1/login')
         } else {
-          db.findOne(('users', { username: username }, function (err, user) {
+          bcrypt.compare(req.query.password, resp[0].hashed_password, function (err, respo) {
             if (err) throw err
-            if (!user) {
-              res.json({ success: false, message: 'authentication faled. user not found.' })
-            } else if (user) {
-              bcrypt.compare(req.query.password, resp[0].hashed_password, function (err, respo) {
-                if (err) throw err
-                if (respo === true) {
-                  console.log('test1')
-                  res.send('password_match')
-                } else {
-                  console.log('test2')
-                  res.send('password_incorrect')
-                }
-              })
+            if (respo === true) {
+              console.log('test1')
+              res.send('password_match')
+            } else {
+              console.log('test2')
+              res.send('password_incorrect')
             }
           })
         }
@@ -235,6 +229,5 @@ module.exports = function (app, cors, corsOptions) {
         })
       })
     })
-  }
-  )
+  })
 }
