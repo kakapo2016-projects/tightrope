@@ -2,7 +2,7 @@ import React from 'react'
 import _ from 'lodash'
 
 export default React.createClass({
-  
+
   render: function () {
     var accolades = this.props.accolades[0]
     return (
@@ -13,8 +13,8 @@ export default React.createClass({
           })}
         </div>
         <div>
-        <h3>Credits: {accolades.credits}</h3>
-        <h3>Active streak: {accolades.activeStreak}</h3>
+          <h3>Credits: {accolades.credits}</h3>
+          <h3>Active streak: {accolades.activeStreak}</h3>
         </div>
       </div>
     )
