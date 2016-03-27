@@ -10,12 +10,12 @@ export default React.createClass({
   },
 
   handlePassChange (e) {
-    Ω('handlePassChange')
+    console.log('handlePassChange')
     this.setState({password: e.target.value})
   },
 
   handleEmailChange (e) {
-    Ω('handleEmailChange')
+    console.log('handleEmailChange')
     this.setState({email: e.target.value})
   },
 
@@ -31,15 +31,15 @@ export default React.createClass({
     this.setState({email: '', password: ''})
   },
 
-render () {
-  return (
-    <div>
-      <h2>Sign in</h2>
-      <form onSubmit={this.handleSubmit}>
-         <Input type='email' label='Email Address' placeholder='Enter email' value={this.state.email} onChange={this.handleEmailChange} />
-         <Input type='password' label='Password' placeholder='Enter password' value={this.state.password} onChange={this.handlePassChange} />
-         <ButtonInput type='submit' value='Sign In' />
-       </form>
+  render () {
+    return (
+      <div>
+        <h2>Sign in</h2>
+        <form onSubmit={this.handleSubmit}>
+          <Input type='email' label='Email Address' placeholder='Enter email' value={this.state.email} onChange={this.handleEmailChange} />
+          <Input type='password' label='Password' placeholder='Enter password' value={this.state.password} onChange={this.handlePassChange} />
+          <ButtonInput type='submit' value='Sign In' />
+        </form>
       </div>
     )
   }

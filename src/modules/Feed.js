@@ -4,13 +4,14 @@ import get from '../get-request'
 require('../stylesheets/modules/feed.sass')
 
 export default React.createClass({
+
   setInitialState: function () {
     return {
       photos: []
     }
   },
 
-  loadPhotosFromServer: function() {
+  loadPhotosFromServer: function () {
     get('http://localhost:3000/api/v1/photos/', '', function (err, res) {
       if (err) console.log('Error:', err)
       this.setState({photos: res})

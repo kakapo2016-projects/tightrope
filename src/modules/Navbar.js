@@ -1,5 +1,4 @@
 import React from 'react'
-import { browserHistory } from 'react-router'
 import { Link } from 'react-router'
 import NavLink from './NavLink'
 import { Navbar, Nav } from 'react-bootstrap'
@@ -26,24 +25,26 @@ export default React.createClass({
         callback: '/profile'
       },
       function (error, result) {
-        let userUpload = {
-          external_photo_id: result[0].signature,
-          user_id: cookie.load('userId'),
-          photo_url: result[0].url,
-          caption: 'This is a test'
+        if (error) {
+          console.log('Error: ', error)
+        } else {
+          let userUpload = {
+            external_photo_id: result[0].signature,
+            user_id: cookie.load('userId'),
+            photo_url: result[0].url,
+            caption: 'This is a test'
+          }
+          post('http://localhost:3000/api/v1/photos', userUpload, function (resp) {
+          })
         }
-        post('http://localhost:3000/api/v1/photos', userUpload, function (resp) {
-        })
       }
     )
   },
-
 
   logout: function () {
     cookie.remove('userId', { path: '/' })
     cookie.remove('loggedIn', { path: '/' })
   },
-
 
   render: function () {
     return (
@@ -60,8 +61,7 @@ export default React.createClass({
               <li><Link to='/' activeClassName='active' onlyActiveOnIndex>feed</Link></li>
               <li><NavLink to='/profile'>profile</NavLink></li>
               <li><NavLink to='/friends'>friends</NavLink></li>
-              { cookie.load('loggedIn') ? <li><NavLink onClick={this.logout} to='/login'>logout</NavLink></li> : <li><NavLink to='/login'>login</NavLink></li>
-            }
+              { cookie.load('loggedIn') ? <li><NavLink onClick={this.logout} to='/login'>logout</NavLink></li> : <li><NavLink to='/login'>login</NavLink></li> }
               <li id='upload'></li>
             </Nav>
           </Navbar.Collapse>

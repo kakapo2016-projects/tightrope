@@ -18,15 +18,19 @@ export default React.createClass({
         callback: '/profile'
       },
       function (error, result) {
-        let userUpload = {
-          external_photo_id: result[0].signature,
-          user_id: 145,
-          photo_url: result[0].url,
-          caption: 'This is a test'
+        if (error) {
+          console.log('Error: ', error)
+        } else {
+          let userUpload = {
+            external_photo_id: result[0].signature,
+            user_id: 145,
+            photo_url: result[0].url,
+            caption: 'This is a test'
+          }
+          post('http://localhost:3000/api/v1/photos', userUpload, function (resp) {
+            console.log('Uploaded', resp)
+          })
         }
-        post('http://localhost:3000/api/v1/photos', userUpload, function (resp) {
-          console.log('Uploaded', resp)
-        })
       }
     )
   },

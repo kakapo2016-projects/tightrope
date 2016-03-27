@@ -1,16 +1,12 @@
 module.exports = {
 
   development: {
-    client: 'sqlite3',
+    client: 'pg',
     connection: {
-      filename: './data/tightrope.sqlite3'
-
-    },
-    useNullAsDefault: true
+      host: '127.0.0.1',
+      database: 'tightrope_dev'
+    }
   },
-
   directory: __dirname + '/migrations',
-
   tableName: 'migrations'
-
 }
