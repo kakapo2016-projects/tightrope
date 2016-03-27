@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import NavLink from './NavLink'
 import { Navbar, Nav } from 'react-bootstrap'
 import post from '../post-request'
+import cookie from 'react-cookie'
 require('../stylesheets/modules/upload.sass')
 
 export default React.createClass({
@@ -51,14 +52,10 @@ export default React.createClass({
           <Navbar.Collapse className='navbar-collapse'>
             <Nav pullRight>
               <li><Link to='/' activeClassName='active' onlyActiveOnIndex>feed</Link></li>
-              <li>{this.state.loggedIn ? (
-                  <NavLink to='/profile'>profile</NavLink>
-                ) : (
-                  <NavLink to='/login'>profile</NavLink>
-                )}
-                </li>
+              <li><NavLink to='/profile'>profile</NavLink></li>
               <li><NavLink to='/friends'>friends</NavLink></li>
-              <li><NavLink to='/login'>login</NavLink></li>
+              { cookie.load('loggedIn') ? <li><NavLink to='/login'>logout</NavLink></li> : <li><NavLink to='/login'>Fuck</NavLink></li>
+            }
               <li id='upload'></li>
             </Nav>
           </Navbar.Collapse>
