@@ -209,24 +209,24 @@ module.exports = function (app, cors, corsOptions) {
   // ----- authentication routes ----- //
 
   app.get('/api/v1/login', function (req, res) {
+    console.log('req', req.query)
     knex('users')
-      .where('email', req.query.email)
-      .select('user_id', 'hashed_password')
+      .where({'email': req.query.email})
+      .select('hashed_password', 'user_id')
       .then(function (resp) {
-        console.log('resp[0].user_id is: ', resp[0].user_id)
-        console.log('resp[0].hashed_password is: ', resp[0].hashed_password)
+        console.log('Fucker fucker', resp)
         if (resp.length <= 0) {
           res.redirect('/api/v1/login')
         } else {
           bcrypt.compare(req.query.password, resp[0].hashed_password, function (err, respo) {
-            if (err) throw err
+            console.log('After bcrypt', respo)
+            if (err) console.log('Login error: ', err)
             if (respo === true) {
-              console.log('respo is: ', respo)
               console.log('test1')
-              res.send('password_match for respo[0].user_id: ' + respo[0].user_id)
+              res.send(resp)
             } else {
               console.log('test2')
-              res.send('password_incorrect')
+              res.send('Password incorrect')
             }
           })
         }
@@ -234,12 +234,12 @@ module.exports = function (app, cors, corsOptions) {
   })
 
   app.post('/api/v1/signup', function (req, res) {
-    console.log('POST to /api/v1/photos')
+    console.log('POST to /api/v1/signup')
     console.log('req.body is : ', req.body)
     bcrypt.genSalt(10, function (err, salt) {
-      if (err) { throw err }
+      if (err) { console.log('Error in genSalt: ', err)}
       bcrypt.hash(req.body.password, salt, function (err, hash) {
-        if (err) { throw err }
+        if (err) { console.log('Error in sign up: ', err) }
         console.log(hash)
         // var newId = uuid.v4()
         knex('users').insert({ // puts it in the DB
