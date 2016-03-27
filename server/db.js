@@ -21,12 +21,13 @@ module.exports = function (knex) {
         })
     },
 
-    // SELECT * FROM table WHERE ...
-    findMany: function (table, params, callback) { // params should be an object
-      var key = Object.keys(params)[0]
-      console.log(key, params[key])
-      knex(table)
-        .where(key, params[key])
+    // SELECT * FROM table
+    findMany: function (table, callback) {
+      // var key = Object.keys(params)[0]
+      // console.log(key, params[key])
+      knex.select().table(table)
+        // knex(table)
+        // .where(key, params[key])
         .then(function (resp) {
           callback(null, resp) // returns many
         })
