@@ -9,7 +9,6 @@ import get from '../get-request'
 require('../stylesheets/modules/profile.sass')
 
 export default React.createClass({
-<<<<<<< HEAD
   getInitialState: function () {
   return {
     photos:[],
