@@ -7,3 +7,4 @@ tightrope.sqlite3
 npm-debug.log
 .DS_Store
 bin
+selenium-debug.log
