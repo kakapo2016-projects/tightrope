@@ -1,7 +1,7 @@
 exports.up = function (knex, Promise) {
   return Promise.all([
     knex.schema.createTable('users', function (table) {
-      table.increments('id').primary()
+      table.increments('user_id').primary()
       table.string('username').unique()
       table.string('hashed_password')
       table.string('email').unique()
@@ -12,18 +12,19 @@ exports.up = function (knex, Promise) {
     }),
 
     knex.schema.createTable('photos', function (table) {
-      table.increments('id').primary()
+      table.increments('photo_id').primary()
       table.string('external_photo_id')
       table.integer('user_id')
       table.integer('likes')
       table.binary('photo')
       table.string('photo_url')
       table.string('caption')
+      table.integer('comments')
       table.timestamp('created_at').defaultTo(knex.fn.now())
     }),
 
     knex.schema.createTable('fans', function (table) {
-      table.increments('id').primary()
+      table.increments('fanship_id').primary()
       table.integer('user_id_a')
       table.integer('user_id_b')
       table.string('comment')
@@ -31,7 +32,7 @@ exports.up = function (knex, Promise) {
     }),
 
     knex.schema.createTable('comments', function (table) {
-      table.increments('id').primary()
+      table.increments('comment_id').primary()
       table.integer('photo_id')
       table.integer('user_id')
       table.string('comment')
@@ -39,7 +40,7 @@ exports.up = function (knex, Promise) {
     }),
 
     knex.schema.createTable('badges', function (table) {
-      table.increments('id').primary()
+      table.increments('badge_id').primary()
       table.integer('user_id')
       table.string('badge')
       table.timestamp('created_at').defaultTo(knex.fn.now())

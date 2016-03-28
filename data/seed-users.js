@@ -1,5 +1,6 @@
 module.exports = [
   { username: 'jason', hashed_password: 'jason', email: 'jason@tightrope.io', profile_pic: 'http://placekitten.com/200/300', credits: 100000000, active_streak: 10000, created_at: '2015-02-26 01:22:30' },
   { username: 'admin', hashed_password: 'admin', email: 'admin@tightrope.io', profile_pic: 'http://placekitten.com/200/300', credits: 0, active_streak: 0, created_at: '2015-02-26 01:22:30' },
-  { username: 'nick', hashed_password: 'nick', email: 'nick@tightrope.io', profile_pic: 'http://placekitten.com/200/300', credits: 9, active_streak: 1, created_at: '2015-02-26 01:22:30' }
+  { username: 'nick', hashed_password: 'nick', email: 'nick@tightrope.io', profile_pic: 'http://placekitten.com/200/300', credits: 9, active_streak: 1, created_at: '2015-02-26 01:22:30' },
+  { username: 'test', hashed_password: '$2a$10$1wj8y9QOrlqZ0imw3x5fn.b.2MZ98PmRrhLR7K7QC3Frl6iqr06OG', email: 'test@test', profile_pic: 'http://fillmurray.com/800/800', credits: 9, active_streak: 32, created_at: '2015-02-26 01:22:30'}
 ]
