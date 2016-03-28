@@ -1,8 +1,11 @@
+import moment from 'moment'
+
 module.exports = function (app, cors, corsOptions) {
   var passport = require('passport')
   var path = require('path')
   var body_parser = require('body-parser')
   var bcrypt = require('bcrypt')
+  var moment = require('moment')
 
   app.use(body_parser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
   app.use(body_parser.json()) // parse application/json
@@ -134,6 +137,16 @@ module.exports = function (app, cors, corsOptions) {
     })
   })
 
+  app.get('/api/v1/slack', function (req, res) {
+    console.log('req.query is: ', req.query.user_id)
+    // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
+    db.findOne('users', { user_id: req.query.user_id }, function (err, resp) {
+      if (err) { console.log("Error in slack request: ", err) }
+      console.log('Sever slack response: ', resp)
+      res.json(resp)
+    })
+  })
+
   app.get('/api/v1/users/:id/friends', function (req, res) { // a request for all friends of one user
     //- if user_1 is a fan of user_2 then in the fans table then this is represented as:
     // 'user_id_a=1, user_id_b=2'
@@ -145,6 +158,8 @@ module.exports = function (app, cors, corsOptions) {
       res.json(resp.rows) // returns the record for many friend
     })
   })
+
+
 
   // ----- POST routes ----- //
   // ----- test POST routes
@@ -215,9 +230,17 @@ module.exports = function (app, cors, corsOptions) {
       photo_url: req.body.photo_url, // essential
       caption: req.body.caption // optional
     }, function (err, resp) {
-      if (err) { throw err }
+      if (err) { console.log('Error: ', err) }
       console.log('The newly added row has id: ', resp)
       res.json(resp) // returns the id of the newly added photo record
+      db.update('users', {user_id: req.body.user_id}, {
+        doa: moment().add(1, 'days'),
+        updated_at: moment()
+      }, function (err, resp) {
+        console.log('Updating user')
+        if (err) { throw err }
+        console.log('Dates added: ', resp)
+      })
     })
   })
 
@@ -280,7 +303,10 @@ module.exports = function (app, cors, corsOptions) {
         knex('users').insert({ // puts it in the DB
           email: req.body.username.email,
           username: req.body.username.username,
-          hashed_password: hash
+          hashed_password: hash,
+          doa: moment().add(1, 'days'),
+          created_at: new Date(),
+          updated_at: new Date()
         }).then(function (resp) {
           console.log(typeof resp)
           // respData = resp
