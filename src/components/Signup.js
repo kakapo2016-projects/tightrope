@@ -41,8 +41,7 @@ export default React.createClass({
       <div className='sign-up'>
         <h2>Sign up</h2>
         <form onSubmit={this.handleSubmit}>
-          <Input
-            type='email'
+          <Input type='email'
             label='Email Address'
             placeholder='Enter email'
             value={this.state.email}
@@ -54,6 +53,7 @@ export default React.createClass({
             placeholder='User Name'
             value={this.state.username}
             onChange={this.handleUsername}
+
           />
           <Input
             type='password'
