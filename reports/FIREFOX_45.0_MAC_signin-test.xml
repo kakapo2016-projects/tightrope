@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="1">
+
+  <testsuite name="signin-test"
+    errors="0" failures="0" hostname="" id="" package="signin-test" skipped="0"
+    tests="1" time="8.062" timestamp="Mon, 28 Mar 2016 00:16:45 GMT">
+  
+    <testcase name="Checking for login redirect" time="8.062" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+  
+  </testsuite>
+</testsuites>
