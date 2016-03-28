@@ -4,6 +4,7 @@ import get from '../get-request'
 require('../stylesheets/modules/feed.sass')
 
 export default React.createClass({
+
   setInitialState: function () {
     return {
       photos: []

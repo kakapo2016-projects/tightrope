@@ -1,6 +1,5 @@
 import React from 'react'
 import { render } from 'react-dom'
-global.Ω = require('lomega')
 import { Router, Route, browserHistory, IndexRoute } from 'react-router'
 import App from './modules/App'
 import Feed from './modules/Feed'
