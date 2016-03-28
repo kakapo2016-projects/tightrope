@@ -10,11 +10,11 @@ export default React.createClass({
     }
   },
 
-  loadPhotosFromServer: function() {
+  loadPhotosFromServer: function () {
     get('http://localhost:3000/api/v1/photos/', '', function (err, res) {
       if (err) console.log('Error:', err)
       this.setState({photos: res})
-      // setInterval(this.loadPhotosFromServer, 2000)
+    // setInterval(this.loadPhotosFromServer, 2000)
     }.bind(this))
   },
 
@@ -28,9 +28,9 @@ export default React.createClass({
       displayPhotos = this.state.photos
     }
     return (
-      <div>
-        <FeedPhotos photos={displayPhotos} />
-      </div>
+    <div>
+      <FeedPhotos photos={displayPhotos} />
+    </div>
     )
   }
 })

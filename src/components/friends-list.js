@@ -5,8 +5,8 @@ export default React.createClass({
   render: function () {
     console.log('Friends Props from friend-list', this.props.friends)
     return (
-    <div className='friendset'>
-      {_.map(this.props.friends, function (friend) {
+    <div className='photoset'>
+      {_.map(this.props.friends, function (photo) {
          return (
          <div>
            <div className='panel feedPhoto'>
@@ -18,7 +18,7 @@ export default React.createClass({
              </div>
            </div>
            <div className='username'>
-             {friend.username}
+             {photo.username}
            </div>
          </div>
          )
