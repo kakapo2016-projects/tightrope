@@ -19,6 +19,7 @@ exports.up = function (knex, Promise) {
       table.binary('photo')
       table.string('photo_url')
       table.string('caption')
+      table.integer('comments')
       table.timestamp('created_at').defaultTo(knex.fn.now())
     }),
 
