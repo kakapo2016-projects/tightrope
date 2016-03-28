@@ -2,13 +2,11 @@ import React from 'react'
 import _ from 'lodash'
 
 export default React.createClass({
-  
+
   render: function () {
-    console.log('accolades!!! ', this.props.accolades)
     let credits = this.props.accolades.credits
     let active_streak = this.props.accolades.active_streak
     let badges = this.props.accolades.badges
-    console.log('accolades: ', this.props.accolades)
 
     return (
       <div className='accolades'>
