@@ -62,7 +62,7 @@ export default React.createClass({
             value={this.state.password}
             onChange={this.handlePassword}
           />
-        <ButtonInput
+          <ButtonInput
             type='submit'
             value='Sign In' />
         </form>

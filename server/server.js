@@ -15,8 +15,11 @@ var corsOptions = {
   origin: '*'
 }
 
-require('./routes')(app, cors, corsOptions)
-// passport authentication
+  // ----- routes ----- //
+
+require('./get-routes')(app, cors, corsOptions)
+require('./post-routes')(app, cors, corsOptions)
+require('./authentication-routes')(app, cors, corsOptions)
 
   // ----- set up DB ----- //
 
