@@ -82,6 +82,17 @@ module.exports = function (app, cors, corsOptions) {
     })
   })
 
+  app.get('/api/v2/photos', function (req, res) { // a request for all photos from all users
+    console.log('GET received on /api/v1/photos')
+    // console.log('req.params is: ', req.params)
+    // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
+    db.getPhotoStreak(function (err, resp) {
+      if (err) { throw err }
+      console.log(' is: ', resp)
+      res.json(resp) // returns the record for many photos
+    })
+  })
+
   app.get('/api/v1/slack', function (req, res) {
     console.log('req.query is: ', req.query.user_id)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
