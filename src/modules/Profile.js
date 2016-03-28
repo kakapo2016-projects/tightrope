@@ -11,15 +11,14 @@ require('../stylesheets/modules/profile.sass')
 export default React.createClass({
 
   getInitialState: function () {
-  return {
-    photos:[],
-    profile: {
-      profile_pic: '',
-      username: '',
-      badges: [],
-      credits: 0,
-      active_streak: 0,
-      username: ''
+    return {
+      photos: [],
+      profile: {
+        profile_pic: '',
+        username: '',
+        badges: [],
+        credits: 0,
+        active_streak: 0
       }
     }
   },
