@@ -29,9 +29,10 @@ export default React.createClass({
       displayPhotos = this.state.photos
     }
     return (
-    <div>
-      <FeedPhotos photos={displayPhotos} />
-    </div>
+      <div>
+        <h1 id='test'>test</h1>
+        <FeedPhotos photos={displayPhotos} />
+      </div>
     )
   }
 })

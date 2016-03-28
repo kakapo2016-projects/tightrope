@@ -50,9 +50,9 @@ export default React.createClass({
     }
     return (
     <div>
-      <h2>People you are a fan of</h2>
       <FriendsList friends={friends} />
     </div>
+
     )
   }
 })

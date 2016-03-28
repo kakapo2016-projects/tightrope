@@ -36,9 +36,21 @@ export default React.createClass({
       <div id="signin-form">
         <h2>Sign in</h2>
         <form onSubmit={this.handleSubmit}>
-          <Input type='email' label='Email Address' placeholder='Enter email' value={this.state.email} onChange={this.handleEmailChange} />
-          <Input type='password' label='Password' placeholder='Enter password' value={this.state.password} onChange={this.handlePassChange} />
-          <ButtonInput type='submit' value='Sign In' />
+          <Input
+            type='email'
+            label='Email Address'
+            placeholder='Enter email'
+            value={this.state.email}
+            onChange={this.handleEmailChange} />
+          <Input
+            type='password' 
+            label='Password'
+            placeholder='Enter password'
+            value={this.state.password}
+            onChange={this.handlePassChange} />
+          <ButtonInput
+            type='submit'
+            value='Sign In' />
         </form>
       </div>
     )
