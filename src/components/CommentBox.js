@@ -1,6 +1,6 @@
 import React from 'react'
 import get from '../get-request-simple'
-import cookie fro 'react-cookie'
+import cookie from 'react-cookie'
 // import CommentList from 'CommentList'
 // import CommentForm from 'CommentForm'
 
