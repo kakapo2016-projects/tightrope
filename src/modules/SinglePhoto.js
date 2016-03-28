@@ -3,6 +3,7 @@ import Comments from '../components/Comments'
 import request from 'superagent'
 
 export default React.createClass({
+
   loadPhotosFromServer: function () {
     request
       .get('http://localhost:3000/api/v1/photos/' + this.props.params.photo_id, '', function (err, res) {
