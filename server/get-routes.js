@@ -60,6 +60,17 @@ module.exports = function (app, cors, corsOptions) {
     })
   })
 
+  app.get('/api/v1/photo/:id/comment', function (req, res) { // a request for all comments of one photo
+    console.log('GET received on /api/v1/photo/:id/comment')
+    console.log('req.params is: ', req.params)
+    // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
+    db.findMany('comments', { photo_id: req.params.id }, function (err, comments) {
+      if (err) { console.log('ERROR in comments', err) }
+      console.log(comments)
+      res.json(comments) // returns the record for many photo
+    })
+  })
+
   app.get('/api/v1/photos', function (req, res) { // a request for all photos from all users
     console.log('GET received on /api/v1/photos')
     // console.log('req.params is: ', req.params)
@@ -91,14 +102,5 @@ module.exports = function (app, cors, corsOptions) {
       console.log('friend is: ', resp)
       res.json(resp.rows) // returns the record for many friend
     })
-  })
-  app.get('/api/v1/photos/:id/comments', function (req, res) {
-    //gets comments for photos by id
-    knex.raw('comments')
-      .join('photos', 'photo_id', '=', 'comments.photo_id')
-      .join('users', 'user_id', '=', 'comments.user_id')
-      .select('photo_id', 'comments').then(function (resp) {
-        console.log('>>>>>>>>>', resp)
-      })
   })
 }

@@ -1,16 +1,16 @@
 import React from 'react'
-import request from 'superagent'
+import get from '../get-request-simple'
+import cookie fro 'react-cookie'
 // import CommentList from 'CommentList'
 // import CommentForm from 'CommentForm'
 
 export default React.createClass({
 
   loadCommentsFromServer: function () {
-    request
-      .get('http://localhost:3000/api/v1/comments/', '', function (err, res) {
-        if (err) console.log('Error:', err)
-      }.bind(this))
-      // console.log(res)
+    get('/api/v1/photo/' + cookie.load('userId') + '/comment', function (err, res) {
+      if (err) { console.log(err)}
+      console.log(res)
+    })
   },
   //make a route for api/v1/comments
 
