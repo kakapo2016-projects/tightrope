@@ -56,10 +56,10 @@ export default React.createClass({
             />
           <Input
             type='password'
-            abel='Password'
+            label='Password'
             placeholder='Enter password'
             value={this.state.password}
-            onChange={this.handlePassword} 
+            onChange={this.handlePassword}
             />
           <ButtonInput
             type='submit'
