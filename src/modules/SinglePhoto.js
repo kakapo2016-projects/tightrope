@@ -1,5 +1,5 @@
 import React from 'react'
-import CommentBox from '../components/CommentBox'
+// import CommentBox from '../components/CommentBox'
 import request from 'superagent'
 import { Row, Col } from 'react-bootstrap'
 require('../stylesheets/modules/single-photo.sass')
@@ -20,13 +20,12 @@ export default React.createClass({
 
   render: function () {
     return (
-      
+
       <Row>
       <Col md={8} className='single-photo'>
         <img className='img-responsive' src={this.state ? this.state.photo_url : ''} />
       </Col>
       <Col md={4}>
-        <CommentBox />
       </Col>
       </Row>
     )

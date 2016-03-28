@@ -31,7 +31,7 @@ export default React.createClass({
     this.props.signUpRequest({
       email: email,
       username: username,
-      password: password
+      password: password,
     })
     this.setState({email: '', username: '', password: ''})
   },

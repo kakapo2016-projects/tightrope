@@ -55,7 +55,7 @@ export default React.createClass({
         <Signin loginRequest={this.loginRequest} />
       </Col>
       <Col sm={5} smOffset={2}>
-        <Signup signUpRequest={this.signUpRequest} />
+        <Signup loginRequest={this.loginRequest} signUpRequest={this.signUpRequest} />
       </Col>
     </Row>
     )
