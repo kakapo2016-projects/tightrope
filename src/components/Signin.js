@@ -33,7 +33,7 @@ export default React.createClass({
 
   render () {
     return (
-      <div>
+      <div id="signin-form">
         <h2>Sign in</h2>
         <form onSubmit={this.handleSubmit}>
           <Input type='email' label='Email Address' placeholder='Enter email' value={this.state.email} onChange={this.handleEmailChange} />

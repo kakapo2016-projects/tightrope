@@ -39,21 +39,21 @@ export default React.createClass({
   },
 
   setLoginCookie: function (userId) {
-    this.setState({ userId })
+    this.setState({ userId})
     cookie.save('userId', userId, { path: '/' })
     cookie.save('loggedIn', true, { path: '/' })
   },
 
-  render () {
+  render() {
     return (
-      <Row>
-        <Col sm={5}>
-          <Signin loginRequest={this.loginRequest} />
-         </Col>
-         <Col sm={5} smOffset={2}>
-           <Signup signUpRequest={this.signUpRequest} />
-          </Col>
-       </Row>
+    <Row>
+      <Col sm={5}>
+      <Signin loginRequest={this.loginRequest} />
+      </Col>
+      <Col sm={5} smOffset={2}>
+      <Signup signUpRequest={this.signUpRequest} />
+      </Col>
+    </Row>
     )
   }
 })
