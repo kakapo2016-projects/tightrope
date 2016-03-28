@@ -36,16 +36,17 @@ module.exports = function (app, cors, corsOptions) {
           console.log('Fucker fucker', resp)
           if (resp.length <= 0) {
             console.log('Database cannot find user')
+            res.send({ nomatch: true })
           } else {
             bcrypt.compare(req.query.password, resp[0].hashed_password, function (err, respo) {
               console.log('After bcrypt', respo)
               if (err) console.log('Login error: ', err)
               if (respo === true) {
                 console.log('Password correct on server', resp)
-                res.send({login: true, userId: resp[0].user_id})
+                res.send({ login: true, userId: resp[0].user_id })
               } else {
                 console.log('Password incorrect on server')
-                res.send({login: false})
+                res.send({ login: false })
               }
             })
           }
