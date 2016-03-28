@@ -53,18 +53,18 @@ export default React.createClass({
             placeholder='User Name'
             value={this.state.username}
             onChange={this.handleUsername}
-            />
+
+          />
           <Input
             type='password'
             label='Password'
             placeholder='Enter password'
             value={this.state.password}
             onChange={this.handlePassword}
-            />
+          />
           <ButtonInput
             type='submit'
-            value='Sign In'
-            />
+            value='Sign In' />
         </form>
       </div>
     )

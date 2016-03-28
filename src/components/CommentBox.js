@@ -13,6 +13,7 @@ export default React.createClass({
       this.setState({})
     }.bind(this))
   },
+  // make a route for api/v1/comments
 
   componentWillMount: function () {
     this.loadCommentsFromServer()
@@ -29,3 +30,6 @@ export default React.createClass({
     )
   }
 })
+
+// <CommentList data={this.state.data} />
+// <CommentForm onCommentSubmit={this.handleCommentSubmit} />

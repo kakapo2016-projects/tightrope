@@ -25,10 +25,24 @@ exports.up = function (knex, Promise) {
     }),
 
     knex.schema.createTable('fans', function (table) {
+<<<<<<< HEAD
+<<<<<<< HEAD
+      table.increments('fanship_id').primary()
+      table.integer('user_id_a')
+      table.integer('user_id_b')
+      table.string('comment')
+      table.timestamps()
+=======
+=======
+>>>>>>> ef422694437efdc7f80c1c298885caac87a10775
       table.integer('liker_id').references('users.user_id')
       table.integer('liked_id').references('users.user_id')
       table.timestamp('created_at').defaultTo(knex.fn.now())
       table.primary(['liker_id', 'liked_id'])
+<<<<<<< HEAD
+>>>>>>> 4b3010b233ddf5d68fe3e0f9774e8d0a1b4fe113
+=======
+>>>>>>> ef422694437efdc7f80c1c298885caac87a10775
     }),
 
     knex.schema.createTable('comments', function (table) {
