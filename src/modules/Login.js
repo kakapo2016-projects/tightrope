@@ -30,6 +30,7 @@ export default React.createClass({
       console.log('Server resp ', res)
       if (err) console.log('Error: ', err)
       if (res === null) { alert('No response from server') }
+      if (res.nomatch === true) { browserHistory.push('/404') }
       if (res.login === true) {
         slack(res.userId, function () {
           console.log('sucessfully logged in!')
