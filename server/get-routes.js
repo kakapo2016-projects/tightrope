@@ -86,7 +86,7 @@ module.exports = function (app, cors, corsOptions) {
     // console.log('req.query is: ', req.query.user_id)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     db.findOne('users', { user_id: req.query.user_id }, function (err, resp) {
-      if (err) { console.log("Error in slack request: ", err) }
+      if (err) { console.log('Error in slack request: ', err) }
       console.log('Server slack response: ', resp)
       res.json(resp)
     })
