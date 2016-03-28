@@ -51,19 +51,63 @@ export default React.createClass({
     if (this.state !== null) {
       displayFriends = this.state.friends
     }
+    let friendsList = [
+  {
+    "profile_pic": "http://www.fillmurray.com/800/800",
+    "username": "surferChick64",
+    "active_streak": 32,
+    "badges": [
+      "nilu",
+      "1 year"
+    ],
+    "userId": 1
+  },
+  {
+    "profile_pic": "http://www.fillmurray.com/800/800",
+    "username": "madboi_ashley",
+    "active_streak": 32,
+    "badges": [
+      "nilu",
+      "1 year"
+    ],
+    "userId": 2
+  },
+  {
+    "profile_pic": "http://www.fillmurray.com/800/800",
+    "username": "therealelonmusk",
+    "active_streak": 32,
+    "badges": [
+      "nilu",
+      "1 year"
+    ],
+    "userId": 3
+  },
+  {
+    "profile_pic": "http://www.fillmurray.com/800/800",
+    "username": "howsit_howard",
+    "active_streak": 32,
+    "badges": [
+      "nilu",
+      "1 year"
+    ],
+    "userId": 5
+  },
+  {
+    "profile_pic": "http://www.fillmurray.com/800/800",
+    "username": "nick_attack",
+    "active_streak": 32,
+    "badges": [
+      "nilu",
+      "1 year"
+    ],
+    "userId": 6
+  }
+]
+
     return (
     <div>
-      <p>
-        You currently have no friends ...except me.
-      </p>
-      <p>
-        But here are some pretty photos...
-      </p>
-      <FeedPhotos photos={displayPhotos} />
-      <p>
-        Your friends would go here, but you dont have any. You still have me though. Arent computers nicer than people?
-      </p>
-      <FriendsList friends={displayFriends} />
+      <h2>People you are a fan of</h2>
+      <FriendsList friends={friendsList} />
     </div>
     )
   }

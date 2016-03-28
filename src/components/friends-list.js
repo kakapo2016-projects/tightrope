@@ -1,26 +1,21 @@
 import React from 'react'
 import _ from 'lodash'
+require('../stylesheets/modules/friends')
 
 export default React.createClass({
   render: function () {
-    console.log('Friends Props from friend-list', this.props.friends)
     return (
-    <div className='photoset'>
+    <div className='friends'>
       {_.map(this.props.friends, function (photo) {
          return (
-         <div>
-           <div className='panel feedPhoto'>
-             <img src={photo.photo_url} className='img-responsive' />
-             <div className='feedInfo'>
-               <span className='likes'><i className="fa fa-gratipay">{photo.likes}</i></span>
-               <span className='comments'><i className="fa fa-comments">{photo.comments}</i></span>
-               <span className='streak'><i className="fa fa-space-shuttle">{photo.activeStreak}</i></span>
+           <div className='panel friendPanel'>
+             <img src={photo.profile_pic} className='img-responsive' />
+             <div className='friendInfo'>
+               <h3 className='username'>{photo.username}</h3>
+               <span className='likes'>{photo.badges}</span>
+               <span className='streak'>Active streak: {photo.active_streak}</span>
              </div>
            </div>
-           <div className='username'>
-             {photo.username}
-           </div>
-         </div>
          )
        })}
     </div>

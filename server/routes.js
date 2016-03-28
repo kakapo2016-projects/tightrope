@@ -135,15 +135,14 @@ module.exports = function (app, cors, corsOptions) {
   })
 
   app.get('/api/v1/users/:id/friends', function (req, res) { // a request for all friends of one user
-    // NOTE - if user_1 is a fan of user_2 then in the fans table then this is represented as:
+    //- if user_1 is a fan of user_2 then in the fans table then this is represented as:
     // 'user_id_a=1, user_id_b=2'
     console.log('GET received on /api/v1/users/:id/friends')
     console.log('req.params is: ', req.params)
-    // use knex to do 'SELECT * FROM friends WHERE user_id=3' to sqlite DB
-    db.findMany('fans', { user_id_a: req.params.id }, function (err, friend) {
-      if (err) { throw err }
-      console.log('friend is: ', friend)
-      res.json(friend) // returns the record for many friend
+    knex.raw('SELECT likers.username AS liker, likeds.* AS liked FROM users AS likers LEFT JOIN fans ON likers.user_id = fans.liker_id LEFT JOIN users AS likeds ON fans.liked_id = likeds.user_id WHERE likers.user_id = 4;').then(function (resp) {
+      // if (err) { console.log('Error', err)}
+      console.log('friend is: ', resp)
+      res.json(resp.rows) // returns the record for many friend
     })
   })
 
