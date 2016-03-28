@@ -1,6 +1,7 @@
 import React from 'react'
 import Comments from '../components/Comments'
 import request from 'superagent'
+require('../stylesheets/modules/single-photo.sass')
 
 export default React.createClass({
 
