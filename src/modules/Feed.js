@@ -5,6 +5,7 @@ require('../stylesheets/modules/feed.sass')
 
 export default React.createClass({
 
+  // getInitialState ?
   setInitialState: function () {
     return {
       photos: []
@@ -12,6 +13,7 @@ export default React.createClass({
   },
 
   loadPhotosFromServer: function () {
+    // does this load all photos or photos from users that the user follows?
     get('http://localhost:3000/api/v1/photos/', '', function (err, res) {
       if (err) console.log('Error:', err)
       this.setState({photos: res})
@@ -24,6 +26,7 @@ export default React.createClass({
   },
 
   render: function () {
+    // use getInitialState to set state.photos as an empty array and avoid the 29-32
     let displayPhotos = []
     if (this.state !== null) {
       displayPhotos = this.state.photos

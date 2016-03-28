@@ -1,3 +1,7 @@
+//nice
+// do these db methods have tests?
+// you could cover this in the nightwatch integration tests`
+
 module.exports = function (knex) {
   // these are standard SQL queries
   return {

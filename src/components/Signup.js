@@ -25,6 +25,7 @@ export default React.createClass({
     var email = this.state.email
     var password = this.state.password
     var username = this.state.username
+    // same as notes in signin.js
     if (!email || !password || !username) {
       return
     }

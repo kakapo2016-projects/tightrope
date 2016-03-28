@@ -24,6 +24,7 @@ export default React.createClass({
     e.preventDefault()
     var email = this.state.email
     var password = this.state.password
+    // test if email and password truthy (and valid formats) -> then execute loginRequest
     if (!email || !password) {
       return
     }
@@ -32,11 +33,16 @@ export default React.createClass({
   },
 
   render () {
+    // break up attribute of long jsx elements on new line
     return (
       <div id="signin-form">
         <h2>Sign in</h2>
         <form onSubmit={this.handleSubmit}>
-          <Input type='email' label='Email Address' placeholder='Enter email' value={this.state.email} onChange={this.handleEmailChange} />
+          <Input 
+            type='email' 
+            label='Email Address' 
+            placeholder='Enter email' v
+            alue={this.state.email} onChange={this.handleEmailChange} />
           <Input type='password' label='Password' placeholder='Enter password' value={this.state.password} onChange={this.handlePassChange} />
           <ButtonInput type='submit' value='Sign In' />
         </form>

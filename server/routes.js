@@ -1,3 +1,6 @@
+// where are the api tests?
+// you could cover this in the nightwatch integration tests
+
 module.exports = function (app, cors, corsOptions) {
   var passport = require('passport')
   var path = require('path')
@@ -54,6 +57,7 @@ module.exports = function (app, cors, corsOptions) {
   //
   // var db = require('./db.js')(knex)
 
+  // require the knex config from knexfile
   var knex = require('knex')({
     client: 'pg',
     connection: {
@@ -89,6 +93,7 @@ module.exports = function (app, cors, corsOptions) {
   })
 
   // ----- GET routes ----- //
+  // nice routes
 
   app.get('/api/v1/users/:id/profile', function (req, res) { // a request for one users info
     console.log('GET received on /api/v1/users/:id/profile')
@@ -190,6 +195,7 @@ module.exports = function (app, cors, corsOptions) {
 
   // ----- real POST routes ---- //
 
+  // should unauthenticated users  be able to post photos?
   app.post('/api/v1/photos-old', function (req, res) { // receives a photo url as a string
     console.log('POST to /api/v1/photos')
     console.log('req.body is : ', req.body)
@@ -206,10 +212,12 @@ module.exports = function (app, cors, corsOptions) {
     })
   })
 
+  // should unauthenticated users  be able to post photos?
   app.post('/api/v1/photos', function (req, res) { // receives a photo url as a string
     console.log('POST received on /api/v1/photos')
     console.log('req.body is: ', req.body)
     // use knex to do 'INSERT INTO photos (fields) VALUES (values)
+    // is validtion performed here or on the frontend?
     db.add('photos', {
       external_photo_id: req.body.external_photo_id, // essential
       user_id: req.body.user_id, // essential - but coming from where?
@@ -227,6 +235,8 @@ module.exports = function (app, cors, corsOptions) {
     console.log('req.body.email is: ', req.body.email)
     console.log('req.body.username: ', req.body.username)
     console.log('req.body.password is: ', req.body.password)
+    // is validtion performed here or on the frontend?
+    // what if the same email already exists in the database?
     knex('users').insert({
       email: req.body.email,
       username: req.body.username,

@@ -7,6 +7,7 @@ import cookie from 'react-cookie'
 require('../stylesheets/modules/feed.sass')
 
 export default React.createClass({
+  // getInitialState ?
   setInitialState: function () {
     console.log('In Friends - setInitialState')
     return {
@@ -43,14 +44,20 @@ export default React.createClass({
 
   render: function () {
     console.log('In Friends - render')
+    // use getInitialState to set friends as an empty array
     let displayPhotos = []
     if (this.state !== null) {
       displayPhotos = this.state.friends
     }
+    // duplication?
     let displayFriends = []
     if (this.state !== null) {
       displayFriends = this.state.friends
     }
+
+    // indent jsx one more tab
+    // render text "you have no firend.." etc conditionally
+      // check if friends.length === 0   
     return (
     <div>
       <p>

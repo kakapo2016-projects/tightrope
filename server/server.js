@@ -50,6 +50,8 @@ app.post('/photos', cors(corsOptions), function (req, res) {
   })
 })
 
+// is thi going to be commented back in? 
+// where is the passport setup done?
 // passport.use(new LocalStrategy(
 //   function (email, password, done) {
 //     console.log('In passport')
