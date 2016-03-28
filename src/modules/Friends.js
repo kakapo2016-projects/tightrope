@@ -32,6 +32,7 @@ export default React.createClass({
       if (err) console.log('Error:', err)
       console.log('My friends are: ', res)
       this.setState({friends: res})
+      console.log("I SET IT", this.state)
     // setInterval(this.loadPhotosFromServer, 2000)
     }.bind(this))
   },
@@ -43,71 +44,14 @@ export default React.createClass({
 
   render: function () {
     console.log('In Friends - render')
-    let displayPhotos = []
+    let friends = []
     if (this.state !== null) {
-      displayPhotos = this.state.friends
+      friends = this.state.friends
     }
-    let displayFriends = []
-    if (this.state !== null) {
-      displayFriends = this.state.friends
-    }
-    let friendsList = [
-  {
-    "profile_pic": "http://www.fillmurray.com/800/800",
-    "username": "surferChick64",
-    "active_streak": 32,
-    "badges": [
-      "nilu",
-      "1 year"
-    ],
-    "userId": 1
-  },
-  {
-    "profile_pic": "http://www.fillmurray.com/800/800",
-    "username": "madboi_ashley",
-    "active_streak": 32,
-    "badges": [
-      "nilu",
-      "1 year"
-    ],
-    "userId": 2
-  },
-  {
-    "profile_pic": "http://www.fillmurray.com/800/800",
-    "username": "therealelonmusk",
-    "active_streak": 32,
-    "badges": [
-      "nilu",
-      "1 year"
-    ],
-    "userId": 3
-  },
-  {
-    "profile_pic": "http://www.fillmurray.com/800/800",
-    "username": "howsit_howard",
-    "active_streak": 32,
-    "badges": [
-      "nilu",
-      "1 year"
-    ],
-    "userId": 5
-  },
-  {
-    "profile_pic": "http://www.fillmurray.com/800/800",
-    "username": "nick_attack",
-    "active_streak": 32,
-    "badges": [
-      "nilu",
-      "1 year"
-    ],
-    "userId": 6
-  }
-]
-
     return (
     <div>
       <h2>People you are a fan of</h2>
-      <FriendsList friends={friendsList} />
+      <FriendsList friends={friends} />
     </div>
     )
   }
