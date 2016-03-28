@@ -24,6 +24,24 @@ module.exports = function (app, cors, corsOptions) {
     }]
   }
 
+  var dummyFriends = [
+    {
+      'fanship_id': 15,
+      'user_id_a': 11,
+      'user_id_b': 15
+    },
+    {
+      'fanship_id': 16,
+      'user_id_a': 11,
+      'user_id_b': 16
+    },
+    {
+      'fanship_id': 17,
+      'user_id_a': 11,
+      'user_id_b': 13
+    }
+  ]
+
   // ----- set up DB ----- //
 
   // var knex = require('knex')({
@@ -63,6 +81,11 @@ module.exports = function (app, cors, corsOptions) {
   app.get('/api/v1/profile/:id', function (req, res) {
     console.log('GET received on /api/v1/profile/:id - returning some dummy data')
     res.json(dummy)
+  })
+
+  app.get('/api/v1/users/dummyid/friends', function (req, res) {
+    console.log('GET received on /api/v1/users/dummyid/friends - returning some dummy friends')
+    res.json(dummyFriends)
   })
 
   // ----- GET routes ----- //
@@ -121,7 +144,7 @@ module.exports = function (app, cors, corsOptions) {
       if (err) { throw err }
       console.log('friend is: ', friend)
       res.json(friend) // returns the record for many friend
-    })
+    }).then(console.log('jkl;hh'))
   })
 
   // ----- POST routes ----- //
