@@ -14,7 +14,6 @@ export default React.createClass({
         {_.map(badges, function (badge) {
           return <span>{badge} </span>
         })}
-
         </div>
         <div>
           <h3>Credits: {credits}</h3>

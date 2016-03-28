@@ -9,6 +9,7 @@ import get from '../get-request'
 require('../stylesheets/modules/profile.sass')
 
 export default React.createClass({
+
   getInitialState: function () {
   return {
     photos:[],
@@ -35,9 +36,8 @@ export default React.createClass({
   },
 
   render: function () {
-
     let { profile_pic, username } = this.state.profile
-    let { photos }  = this.state
+    let { photos } = this.state
     let accolades = this.state.profile
 
     return (
