@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="6"
+            failures="0"
+            tests="2">
+
+  <testsuite name="friends-test"
+    errors="6" failures="0" hostname="" id="" package="friends-test" skipped="0"
+    tests="2" time="4.576" timestamp="Mon, 28 Mar 2016 20:05:40 GMT">
+  
+    <testcase name="Log in" time="4.355" assertions="1">
+
+    
+    </testcase>
+      <system-err>
+         ERROR: Unable to locate element: &quot;input[type=&quot;email&quot;]&quot; using: css selector
+ ERROR: Unable to locate element: &quot;input[type=&quot;password&quot;]&quot; using: css selector
+ ERROR: Unable to locate element: &quot;input[value=&quot;Sign In&quot;]&quot; using: css selector
+ ERROR: Unable to locate element: &quot;containsText(&quot;#main&quot;, &quot;friends&quot;)&quot; using: css selector
+ ERROR: Unable to locate element: &quot;#test&quot; using: css selector
+      </system-err>
+  
+    <testcase name="navagate from feed to friends" time="0.2210" assertions="1">
+
+    
+    </testcase>
+      <system-err>
+         ERROR: Unable to locate element: &quot;input[type=&quot;email&quot;]&quot; using: css selector
+ ERROR: Unable to locate element: &quot;input[type=&quot;password&quot;]&quot; using: css selector
+ ERROR: Unable to locate element: &quot;input[value=&quot;Sign In&quot;]&quot; using: css selector
+ ERROR: Unable to locate element: &quot;containsText(&quot;#main&quot;, &quot;friends&quot;)&quot; using: css selector
+ ERROR: Unable to locate element: &quot;#test&quot; using: css selector
+      </system-err>
+  
+  
+  </testsuite>
+</testsuites>
