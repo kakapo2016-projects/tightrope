@@ -30,7 +30,6 @@ export default React.createClass({
     }
     return (
       <div>
-        <h1 id='test'>test</h1>
         <FeedPhotos photos={displayPhotos} />
       </div>
     )
