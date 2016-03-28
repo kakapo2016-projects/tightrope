@@ -1,7 +1,6 @@
 import moment from 'moment'
 
 module.exports = function (app, cors, corsOptions) {
-  var passport = require('passport')
   var path = require('path')
   var body_parser = require('body-parser')
   var bcrypt = require('bcrypt')
