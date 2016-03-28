@@ -32,6 +32,7 @@ export default React.createClass({
       if (err) console.log('Error:', err)
       console.log('My friends are: ', res)
       this.setState({friends: res})
+      console.log("I SET IT", this.state)
     // setInterval(this.loadPhotosFromServer, 2000)
     }.bind(this))
   },
@@ -43,28 +44,15 @@ export default React.createClass({
 
   render: function () {
     console.log('In Friends - render')
-    let displayPhotos = []
+    let friends = []
     if (this.state !== null) {
-      displayPhotos = this.state.friends
-    }
-    let displayFriends = []
-    if (this.state !== null) {
-      displayFriends = this.state.friends
+      friends = this.state.friends
     }
     return (
-      <div>
-        <p>
-          You currently have no friends ...except me.
-        </p>
-        <p>
-          But here are some pretty photos...
-        </p>
-        <FeedPhotos photos={displayPhotos} />
-        <p>
-          Your friends would go here, but you dont have any. You still have me though. Arent computers nicer than people?
-        </p>
-        <FriendsList friends={displayFriends} />
-      </div>
+    <div>
+      <FriendsList friends={friends} />
+    </div>
+
     )
   }
 })
