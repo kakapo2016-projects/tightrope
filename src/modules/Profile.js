@@ -25,7 +25,7 @@ export default React.createClass({
   },
 
   componentDidMount: function () {
-    console.log('making request')
+    // console.log('making request')
     get('http://localhost:3000/api/v1/users/' + cookie.load('userId') + '/photos', '', function (err, res) {
       console.log('getting response')
       if (err) console.log('Error:', err)
@@ -42,9 +42,8 @@ export default React.createClass({
   },
 
   render: function () {
-
     let { profile_pic, username } = this.state.profile
-    let { photos }  = this.state
+    let { photos } = this.state
     let accolades = this.state.profile
 
     return (
