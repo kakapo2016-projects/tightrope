@@ -9,11 +9,10 @@ export default React.createClass({
   loadCommentsFromServer: function () {
     get('/api/v1/photo/' + cookie.load('userId') + '/comment', function (err, res) {
       if (err) { console.log(err) }
-      console.log('res', res)
-      this.setState({})
+      console.log('res', res.body.comments)
+      this.setState({comments: res.body.comments})
     }.bind(this))
   },
-  // make a route for api/v1/comments
 
   componentWillMount: function () {
     this.loadCommentsFromServer()
@@ -23,8 +22,7 @@ export default React.createClass({
     console.log('this', this)
     return (
       <div className='comment-box'>
-        <h2>Comments:</h2>
-        <CommentList />
+        <CommentList comments={this.state.comments}/>
         <CommentForm />
       </div>
     )

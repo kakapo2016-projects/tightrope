@@ -1,4 +1,5 @@
 import React from 'react'
+import {ButtonInput, Input} from 'react-bootstrap'
 
 export default React.createClass({
 
@@ -6,8 +7,8 @@ export default React.createClass({
     return (
       <div className='comment-form'>
         <form>
-          <input type='text' placeholder='Add a comment' name='comment' />
-          <input type='submit' value='Post' />
+          <Input type='textarea' placeholder='Add a comment' />
+          <ButtonInput type='submit' value='Post' />
         </form>
       </div>
     )
