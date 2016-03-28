@@ -25,11 +25,10 @@ exports.up = function (knex, Promise) {
     }),
 
     knex.schema.createTable('fans', function (table) {
-      table.increments('fanship_id').primary()
-      table.integer('user_id_a')
-      table.integer('user_id_b')
-      table.string('comment')
-      table.timestamps()
+      table.integer('liker_id').references('users.user_id')
+      table.integer('liked_id').references('users.user_id')
+      table.timestamp('created_at').defaultTo(knex.fn.now())
+      table.primary(['liker_id', 'liked_id'])
     }),
 
     knex.schema.createTable('comments', function (table) {
