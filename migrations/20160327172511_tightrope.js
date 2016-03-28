@@ -25,11 +25,18 @@ exports.up = function (knex, Promise) {
     }),
 
     knex.schema.createTable('fans', function (table) {
+<<<<<<< HEAD
       table.increments('fanship_id').primary()
       table.integer('user_id_a')
       table.integer('user_id_b')
       table.string('comment')
       table.timestamps()
+=======
+      table.integer('liker_id').references('users.user_id')
+      table.integer('liked_id').references('users.user_id')
+      table.timestamp('created_at').defaultTo(knex.fn.now())
+      table.primary(['liker_id', 'liked_id'])
+>>>>>>> 4b3010b233ddf5d68fe3e0f9774e8d0a1b4fe113
     }),
 
     knex.schema.createTable('comments', function (table) {

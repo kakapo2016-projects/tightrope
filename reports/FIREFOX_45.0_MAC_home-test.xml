@@ -5,14 +5,17 @@
 
   <testsuite name="home-test"
     errors="0" failures="0" hostname="" id="" package="home-test" skipped="0"
-    tests="1" time="6.048" timestamp="Mon, 28 Mar 2016 01:37:44 GMT">
+    tests="1" time="22.78" timestamp="Mon, 28 Mar 2016 05:39:48 GMT">
   
-    <testcase name="Checking for page load" time="6.048" assertions="2">
+    <testcase name="Checking for page load" time="22.78" assertions="2">
 
     
 
     
     </testcase>
+      <system-err>
+         ERROR: Unable to locate element: &quot;#test&quot; using: css selector
+      </system-err>
   
   
   </testsuite>
