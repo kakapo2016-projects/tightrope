@@ -64,7 +64,7 @@ export default React.createClass({
           />
           <ButtonInput
             type="submit"
-            value="Sign In"
+            value="Sign Up"
           />
         </form>
       </div>
