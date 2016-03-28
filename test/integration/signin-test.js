@@ -7,8 +7,8 @@ module.exports = {
       .setValue('input[type=email]', 'nightwatch@nighttime')
       .setValue('input[type=password]', 'a')
       .click('input[type=submit]')
-      .assert.img('Tightrope')
-      .assert.elementPresent('input[value="Sign In"]')
+      .pause(1000)
+      .assert.containsText('#test', 'test')
       .end()
   }
 }
