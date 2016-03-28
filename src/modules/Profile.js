@@ -24,7 +24,7 @@ export default React.createClass({
   },
 
   componentDidMount: function () {
-    get('http://localhost:3000/api/v1/users/' + cookie.load('userId') + '/photos', '', function (err, res) {
+    get('http://localhost:3000/api/v2/users/' + cookie.load('userId') + '/photos', '', function (err, res) {
       if (err) console.log('Error:', err)
       this.setState({photos: res})
     }.bind(this))

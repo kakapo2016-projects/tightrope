@@ -12,7 +12,7 @@ export default React.createClass({
   },
 
   loadPhotosFromServer: function () {
-    get('http://localhost:3000/api/v1/photos/', '', function (err, res) {
+    get('http://localhost:3000/api/v2/photos/', '', function (err, res) {
       if (err) console.log('Error:', err)
       this.setState({photos: res})
     // setInterval(this.loadPhotosFromServer, 2000)

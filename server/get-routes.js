@@ -60,6 +60,25 @@ module.exports = function (app, cors, corsOptions) {
     })
   })
 
+  app.get('/api/v2/users/:id/photos', function (req, res) { // a request for all photos of one user
+    console.log('GET received on /api/v1/users/:id/photos')
+    console.log('req.params is: ', req.params)
+    // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
+    knex.select()
+        .table('photos')
+        .where({ user_id: req.params.id })
+        .orderBy('created_at', 'desc')
+        .then(function (photo) {
+          console.log('photo is: ', photo)
+          res.json(photo) // returns the record for many photos - sorted
+        })
+    // db.findMany('photos', { user_id: req.params.id }, function (err, photo) {
+    //   if (err) { throw err }
+    //   console.log(photo)
+    //   res.json(photo) // returns the record for many photo
+    // })
+  })
+
   app.get('/api/v1/photos', function (req, res) { // a request for all photos from all users
     console.log('GET received on /api/v1/photos')
     // console.log('req.params is: ', req.params)
@@ -71,12 +90,25 @@ module.exports = function (app, cors, corsOptions) {
     })
   })
 
+  app.get('/api/v2/photos', function (req, res) { // a request for all photos from all users
+    console.log('GET received on /api/v1/photos')
+    // console.log('req.params is: ', req.params)
+    // use knex to do 'SELECT * FROM photos ORDER BY created_at DESC' to postgreSQL DB
+    knex.select()
+        .table('photos')
+        .orderBy('created_at', 'desc')
+        .then(function (photoSet) {
+          console.log('photoSet is: ', photoSet)
+          res.json(photoSet) // returns the record for many photos
+        })
+  })
+
   app.get('/api/v1/slack', function (req, res) {
     console.log('req.query is: ', req.query.user_id)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     db.findOne('users', { user_id: req.query.user_id }, function (err, resp) {
       if (err) { console.log("Error in slack request: ", err) }
-      console.log('Sever slack response: ', resp)
+      console.log('Server slack response: ', resp)
       res.json(resp)
     })
   })
