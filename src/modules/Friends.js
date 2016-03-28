@@ -52,19 +52,19 @@ export default React.createClass({
       displayFriends = this.state.friends
     }
     return (
-    <div>
-      <p>
-        You currently have no friends ...except me.
-      </p>
-      <p>
-        But here are some pretty photos...
-      </p>
-      <FeedPhotos photos={displayPhotos} />
-      <p>
-        Your friends would go here, but you dont have any. You still have me though. Arent computers nicer than people?
-      </p>
-      <FriendsList friends={displayFriends} />
-    </div>
+      <div>
+        <p>
+          You currently have no friends ...except me.
+        </p>
+        <p>
+          But here are some pretty photos...
+        </p>
+        <FeedPhotos photos={displayPhotos} />
+        <p>
+          Your friends would go here, but you dont have any. You still have me though. Arent computers nicer than people?
+        </p>
+        <FriendsList friends={displayFriends} />
+      </div>
     )
   }
 })
