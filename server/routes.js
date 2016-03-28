@@ -144,7 +144,7 @@ module.exports = function (app, cors, corsOptions) {
       if (err) { throw err }
       console.log('friend is: ', friend)
       res.json(friend) // returns the record for many friend
-    }).then(console.log('jkl;hh'))
+    })
   })
 
   // ----- POST routes ----- //
