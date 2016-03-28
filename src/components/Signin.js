@@ -41,16 +41,19 @@ export default React.createClass({
             label='Email Address'
             placeholder='Enter email'
             value={this.state.email}
-            onChange={this.handleEmailChange} />
+            onChange={this.handleEmailChange}
+            />
           <Input
-            type='password' 
+            type='password'
             label='Password'
             placeholder='Enter password'
             value={this.state.password}
-            onChange={this.handlePassChange} />
+            onChange={this.handlePassChange}
+            />
           <ButtonInput
             type='submit'
-            value='Sign In' />
+            value='Sign In'
+            />
         </form>
       </div>
     )

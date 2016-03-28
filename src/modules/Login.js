@@ -7,6 +7,8 @@ import cookie from 'react-cookie'
 import { Col, Row } from 'react-bootstrap'
 import Signup from '../components/Signup'
 import Signin from '../components/Signin'
+import slack from '../components/slack-delete'
+
 
 export default React.createClass({
   getInitialState: function () {
@@ -29,9 +31,11 @@ export default React.createClass({
       if (err) console.log('Error: ', err)
       if (res === null) { alert('No response from server') }
       if (res.login === true) {
-        console.log('sucessfully logged in!')
-        this.setLoginCookie(res.userId)
-        browserHistory.push('/')
+        slack(res.userId, function () {
+          console.log('sucessfully logged in!')
+          this.setLoginCookie(res.userId)
+          browserHistory.push('/')
+        }.bind(this))
       } else {
         console.log('incorrect password!')
       }
