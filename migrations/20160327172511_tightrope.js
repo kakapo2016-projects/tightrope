@@ -8,7 +8,8 @@ exports.up = function (knex, Promise) {
       table.string('profile_pic')
       table.integer('credits')
       table.integer('active_streak')
-      table.timestamp('created_at').defaultTo(knex.fn.now())
+      table.timestamp('doa')
+      table.timestamps()
     }),
 
     knex.schema.createTable('photos', function (table) {
@@ -20,7 +21,7 @@ exports.up = function (knex, Promise) {
       table.string('photo_url')
       table.string('caption')
       table.integer('comments')
-      table.timestamp('created_at').defaultTo(knex.fn.now())
+      table.timestamps()
     }),
 
     knex.schema.createTable('fans', function (table) {
@@ -28,7 +29,7 @@ exports.up = function (knex, Promise) {
       table.integer('user_id_a')
       table.integer('user_id_b')
       table.string('comment')
-      table.timestamp('created_at').defaultTo(knex.fn.now())
+      table.timestamps()
     }),
 
     knex.schema.createTable('comments', function (table) {
@@ -36,14 +37,14 @@ exports.up = function (knex, Promise) {
       table.integer('photo_id')
       table.integer('user_id')
       table.string('comment')
-      table.timestamp('created_at').defaultTo(knex.fn.now())
+      table.timestamps()
     }),
 
     knex.schema.createTable('badges', function (table) {
       table.increments('badge_id').primary()
       table.integer('user_id')
       table.string('badge')
-      table.timestamp('created_at').defaultTo(knex.fn.now())
+      table.timestamps()
     })
   ])
 }

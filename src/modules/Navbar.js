@@ -34,8 +34,6 @@ export default React.createClass({
             photo_url: result[0].url,
             caption: 'This is a test'
           }
-          post('http://localhost:3000/api/v1/photos', userUpload, function (resp) {
-          })
         }
       }
     )

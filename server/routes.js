@@ -3,6 +3,7 @@ module.exports = function (app, cors, corsOptions) {
   var path = require('path')
   var body_parser = require('body-parser')
   var bcrypt = require('bcrypt')
+  var moment = require('moment')
 
   app.use(body_parser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
   app.use(body_parser.json()) // parse application/json
@@ -281,7 +282,10 @@ module.exports = function (app, cors, corsOptions) {
         knex('users').insert({ // puts it in the DB
           email: req.body.username.email,
           username: req.body.username.username,
-          hashed_password: hash
+          hashed_password: hash,
+          doa: moment().add(1, 'days'),
+          created_at: new Date(),
+          updated_at: new Date()
         }).then(function (resp) {
           console.log(typeof resp)
           // respData = resp
