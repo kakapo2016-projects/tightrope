@@ -5,16 +5,20 @@
 
   <testsuite name="home-test"
     errors="0" failures="0" hostname="" id="" package="home-test" skipped="0"
-    tests="1" time="22.78" timestamp="Mon, 28 Mar 2016 05:39:48 GMT">
+    tests="1" time="6.392" timestamp="Mon, 28 Mar 2016 20:05:45 GMT">
   
-    <testcase name="Checking for page load" time="22.78" assertions="2">
+    <testcase name="Checking for page load" time="6.392" assertions="2">
 
     
 
     
     </testcase>
       <system-err>
-         ERROR: Unable to locate element: &quot;#test&quot; using: css selector
+         ERROR: Unable to locate element: &quot;input[type=&quot;email&quot;]&quot; using: css selector
+ ERROR: Unable to locate element: &quot;input[type=&quot;password&quot;]&quot; using: css selector
+ ERROR: Unable to locate element: &quot;input[value=&quot;Sign In&quot;]&quot; using: css selector
+ ERROR: Unable to locate element: &quot;containsText(&quot;#main&quot;, &quot;friends&quot;)&quot; using: css selector
+ ERROR: Unable to locate element: &quot;#test&quot; using: css selector
       </system-err>
   
   

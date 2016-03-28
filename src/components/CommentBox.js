@@ -1,5 +1,7 @@
 import React from 'react'
 import request from 'superagent'
+// import CommentList from 'CommentList'
+// import CommentForm from 'CommentForm'
 
 export default React.createClass({
 
@@ -8,8 +10,9 @@ export default React.createClass({
       .get('http://localhost:3000/api/v1/comments/', '', function (err, res) {
         if (err) console.log('Error:', err)
       }.bind(this))
-      console.log(res)
+      // console.log(res)
   },
+  //make a route for api/v1/comments
 
   componentWillMount: function () {
     this.loadCommentsFromServer()

@@ -92,5 +92,13 @@ module.exports = function (app, cors, corsOptions) {
       res.json(resp.rows) // returns the record for many friend
     })
   })
-
+  app.get('/api/v1/photos/:id/comments', function (req, res) {
+    //gets comments for photos by id
+    knex.raw('comments')
+      .join('photos', 'photo_id', '=', 'comments.photo_id')
+      .join('users', 'user_id', '=', 'comments.user_id')
+      .select('photo_id', 'comments').then(function (resp) {
+        console.log('>>>>>>>>>', resp)
+      })
+  })
 }
