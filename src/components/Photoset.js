@@ -7,9 +7,11 @@ export default React.createClass({
     let photos = this.props.photoset
     return (
       <div className='photoset'>
-        {_.map(photos, function (photo, index) {
+        {
+          _.map(photos, function (photo, index) {
           return <Photo key={index} photo={photo}/>
-        })}
+          })
+        }
       </div>
     )
   }

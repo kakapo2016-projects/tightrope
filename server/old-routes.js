@@ -97,7 +97,7 @@ module.exports = function (app, cors, corsOptions) {
     console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM users WHERE user_id=2' to sqlite DB
     db.findOne('users', { user_id: req.params.id }, function (err, user) {
-      if (err) { throw err }
+      if (err) { console.log('Error: ', err); return }
       console.log(user)
       res.json(user) // returns the record for one user
     })
@@ -108,7 +108,7 @@ module.exports = function (app, cors, corsOptions) {
     console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     db.findOne('photos', { photo_id: req.params.id }, function (err, photo) {
-      if (err) { throw err }
+      if (err) { console.log('Error: ', err); return }
       console.log(photo)
       res.json(photo) // returns the record for one photo
     })
@@ -119,7 +119,7 @@ module.exports = function (app, cors, corsOptions) {
     console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     db.findMany('photos', { user_id: req.params.id }, function (err, photo) {
-      if (err) { throw err }
+      if (err) { console.log('Error: ', err); return }
       console.log(photo)
       res.json(photo) // returns the record for many photo
     })
@@ -130,7 +130,7 @@ module.exports = function (app, cors, corsOptions) {
     // console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     db.getAll('photos', function (err, photoSet) {
-      if (err) { throw err }
+      if (err) { console.log('Error: ', err); return }
       console.log('photoSet is: ', photoSet)
       res.json(photoSet) // returns the record for many photos
     })
@@ -140,7 +140,7 @@ module.exports = function (app, cors, corsOptions) {
     console.log('req.query is: ', req.query.user_id)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     db.findOne('users', { user_id: req.query.user_id }, function (err, resp) {
-      if (err) { console.log("Error in slack request: ", err) }
+      if (err) { console.log('Error: ', err); return }
       console.log('Sever slack response: ', resp)
       res.json(resp)
     })
@@ -195,7 +195,7 @@ module.exports = function (app, cors, corsOptions) {
     console.log('req.body is: ', req.body)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     db.add('tests', { username: req.body.username, password: req.body.password }, function (err, test_row) {
-      if (err) { throw err }
+      if (err) { console.log('Error: ', err); return }
       console.log('The newly added row has id: ', test_row)
       res.json(test_row) // returns the record for one photo
     })
@@ -229,7 +229,7 @@ module.exports = function (app, cors, corsOptions) {
       photo_url: req.body.photo_url, // essential
       caption: req.body.caption // optional
     }, function (err, resp) {
-      if (err) { console.log('Error: ', err) }
+      if (err) { console.log('Error: ', err); return }
       console.log('The newly added row has id: ', resp)
       res.json(resp) // returns the id of the newly added photo record
       db.update('users', {user_id: req.body.user_id}, {
@@ -237,7 +237,7 @@ module.exports = function (app, cors, corsOptions) {
         updated_at: moment()
       }, function (err, resp) {
         console.log('Updating user')
-        if (err) { throw err }
+        if (err) { console.log('Error: ', err); return }
         console.log('Dates added: ', resp)
       })
     })
@@ -277,7 +277,7 @@ module.exports = function (app, cors, corsOptions) {
         } else {
           bcrypt.compare(req.query.password, resp[0].hashed_password, function (err, respo) {
             console.log('After bcrypt', respo)
-            if (err) console.log('Login error: ', err)
+            if (err) { console.log('Error: ', err); return }
             if (respo === true) {
               console.log('Password correct on server', resp)
               res.send({login: true, userId: resp[0].user_id})
@@ -294,9 +294,9 @@ module.exports = function (app, cors, corsOptions) {
     console.log('POST to /api/v1/signup')
     console.log('req.body is : ', req.body.username)
     bcrypt.genSalt(10, function (err, salt) {
-      if (err) { console.log('Error in genSalt: ', err) }
+      if (err) { console.log('Error: ', err); return }
       bcrypt.hash(req.body.username.password, salt, function (err, hash) {
-        if (err) { console.log('Error in sign up: ', err) }
+        if (err) { console.log('Error: ', err); return }
         console.log(hash)
         // var newId = uuid.v4()
         knex('users').insert({ // puts it in the DB

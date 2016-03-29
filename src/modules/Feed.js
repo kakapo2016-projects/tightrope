@@ -14,27 +14,27 @@ export default React.createClass({
 
   loadPhotosFromServer: function () {
     get('http://localhost:3000/api/v2/photos/recent', '', function (err, res) {
-      if (err) console.log('Error:', err)
+      if (err) {console.log('Error:', err); return }
       this.setState({photos: res})
     }.bind(this))
   },
 
   getSortRecent: function () {
     get('http://localhost:3000/api/v2/photos/recent', '', function (err, res) {
-      if (err) console.log('Error:', err)
+      if (err) {console.log('Error:', err); return }
       this.setState({photos: res})
     }.bind(this))
   },
   getSortHighwire: function () {
     get('http://localhost:3000/api/v2/photos/highwire', '', function (err, res) {
-      if (err) console.log('Error:', err)
+      if (err) {console.log('Error:', err); return }
       this.setState({photos: res})
     }.bind(this))
   },
 
   getSortPopular: function () {
     get('http://localhost:3000/api/v2/photos/popular', '', function (err, res) {
-      if (err) console.log('Error:', err)
+      if (err) {console.log('Error:', err); return }
       this.setState({photos: res})
     }.bind(this))
   },

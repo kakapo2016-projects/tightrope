@@ -18,7 +18,7 @@ export default React.createClass({
     /* this should use: '/api/v1/users/:id/friends'  - the :id should be replaced by a number */
     get('http://localhost:3000/api/v1/photos/', '*', function (err, res) {
       // getSimple('http://localhost:3000/api/v1/users/1/friends', function (err, res) {
-      if (err) console.log('Error:', err)
+      if (err) { console.log('Error:', err); return }
       this.setState({friends: res})
     // setInterval(this.loadPhotosFromServer, 2000)
     }.bind(this))
@@ -28,7 +28,7 @@ export default React.createClass({
     console.log('In Friends - loadFriendsFromServer')
     /* this should use: '/api/v1/users/:id/friends'  - the :id should be replaced by a number */
     getSimple('http://localhost:3000/api/v1/users/' + cookie.load('userId') + '/friends', function (err, res) {
-      if (err) console.log('Error:', err)
+      if (err) { console.log('Error:', err); return }
       console.log('My friends are: ', res)
       this.setState({friends: res})
       console.log('I SET IT', this.state)

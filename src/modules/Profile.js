@@ -25,14 +25,14 @@ export default React.createClass({
 
   getSortRecent: function () {
     get('http://localhost:3000/api/v2/users/' + cookie.load('userId') + '/photos/recent', '', function (err, res) {
-      if (err) console.log('Error:', err)
+      if (err) {console.log('Error:', err); return }
       this.setState({photos: res})
     }.bind(this))
   },
 
   getSortPopular: function () {
     get('http://localhost:3000/api/v2/users/' + cookie.load('userId') + '/photos/popular', '', function (err, res) {
-      if (err) console.log('Error:', err)
+      if (err) {console.log('Error:', err); return }
       this.setState({photos: res})
     }.bind(this))
   },
@@ -68,7 +68,7 @@ export default React.createClass({
     this.getSortRecent()
     this.addUploadButt()
     get('http://localhost:3000/api/v1/users/' + cookie.load('userId') + '/profile', '', function (err, resp) {
-      if (err) console.log('Error:', err)
+      if (err) {console.log('Error:', err); return }
       this.setState({profile: resp})
     }.bind(this))
   },

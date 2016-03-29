@@ -75,6 +75,7 @@ module.exports = function (knex) {
           callback(null, resp)
         })
     },
+
     // SELECT * FROM table with user created
     getCommentAuthors: function (params, callback) {
       knex.from('comments')
@@ -93,9 +94,6 @@ module.exports = function (knex) {
         .then(function (resp) {
           callback(null, resp[0])
         })
-    },
-
-
-
+    }
   }
 }
