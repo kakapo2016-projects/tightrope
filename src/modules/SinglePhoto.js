@@ -36,17 +36,16 @@ export default React.createClass({
 
   render: function () {
     return (
-
       <Row>
       <Col md={8} className='single-photo'>
         <img className='img-responsive' src={this.state ? this.state.photo_url : ''} />
       </Col>
       <Col md={4}>
-        <div className='userName' onClick={console.log(clicked)}>
+        <div className='userName' onClick={console.log('clicked')}>
           <img src={this.state.user.profile_pic}/>
           <h2>{this.state.user.username}</h2>
         </div>
-        <CommentBox />
+        <CommentBox photoid={this.props.params.photo_id}/>
       </Col>
       </Row>
     )
