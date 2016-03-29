@@ -39,17 +39,12 @@ export default React.createClass({
   render: function () {
     let routeID = '/user/' + this.state.user.user_id
     return (
-<<<<<<< HEAD
-
-=======
->>>>>>> e295dc0a7e1c2036bd44c49fce9c91eb6d954306
       <Row>
       <Col md={8} className='single-photo'>
         <img className='img-responsive' src={this.state ? this.state.photo_url : ''} />
       </Col>
       <Col md={4}>
-<<<<<<< HEAD
-=======
+
         <Link to={routeID}>
           <div className='userName'>
             <img src={this.state.user.profile_pic}/>
@@ -57,7 +52,6 @@ export default React.createClass({
           </div>
         </Link>
         <CommentBox photoid={this.props.params.photo_id}/>
->>>>>>> e295dc0a7e1c2036bd44c49fce9c91eb6d954306
       </Col>
       </Row>
     )

@@ -78,8 +78,9 @@ module.exports = function (app, cors, corsOptions) {
                     username: req.body.username.username,
                     hashed_password: hash,
                     doa: moment().add(1, 'days'),
-                    created_at: new Date(),
-                    updated_at: new Date()
+                    created_at: moment(),
+                    updated_at: moment(),
+                    profile_pic: 'http://sunfieldfarm.org/wp-content/uploads/2014/02/profile-placeholder.png'
                   }).then(function (respo) {
                     knex('users')
                       .where({ 'email': req.body.username.email })
