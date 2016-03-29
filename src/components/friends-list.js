@@ -7,10 +7,10 @@ export default React.createClass({
   render: function () {
     return (
     <div className='friends'>
-      {_.map(this.props.friends, function (photo) {
+      {_.map(this.props.friends, function (photo, index) {
         var diff = moment().diff(photo.created_at, 'days')
         return (
-           <div className='panel friendPanel'>
+           <div key={index} className='panel friendPanel'>
              <img src={photo.profile_pic} className='img-responsive' />
              <div className='friendInfo'>
                <h3 className='username'>{photo.username}</h3>
