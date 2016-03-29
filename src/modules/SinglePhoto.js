@@ -1,14 +1,9 @@
 require('../stylesheets/modules/single-photo.sass')
 import CommentBox from '../components/CommentBox'
-<<<<<<< HEAD
 import request from 'superagent'
 import get from '../get-request-simple'
 import cookie from 'react-cookie'
 import { Row, Col, Button } from 'react-bootstrap'
-=======
-import { Row, Col } from 'react-bootstrap'
-import get from '../get-request-simple'
->>>>>>> 0daf486a2df8a0d8880891ed68ae46b445295f92
 import { Link } from 'react-router'
 import request from 'superagent'
 import React from 'react'
@@ -44,7 +39,10 @@ export default React.createClass({
   },
 
   follow: function (e) {
-    post('http://localhost:3000/api/v1/' + cookie.load('userId') + '/follow', {liked_id: } )
+    post('http://localhost:3000/api/v1/' + cookie.load('userId') + '/follow', {liked_id: this.state.user.user_id}, function (err, res) {
+      if (err) { console.log('Error in follow request: ', err)}
+      alert('Following user')
+    } )
   },
 
   render: function () {
