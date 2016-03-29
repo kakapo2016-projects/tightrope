@@ -63,20 +63,28 @@ module.exports = function (app, cors, corsOptions) {
           console.log(hash)
           // var newId = uuid.v4()
           knex('users')
-            .insert({ // puts it in the DB
-              email: req.body.username.email,
-              username: req.body.username.username,
-              hashed_password: hash,
-              doa: moment().add(1, 'days'),
-              created_at: new Date(),
-              updated_at: new Date()
-            }).then(function (resp) {
-              knex('users')
-                .where({ 'email': req.body.username.email })
-                .select('hashed_password', 'user_id')
-                .then(function (respo) {
-                  res.send({ login: true, userId: respo[0].user_id })
-                })
+            .select('email', 'username')
+            .then(function (resp) {
+              if (resp[0].email === req.body.username.email || resp[0].username === req.body.username.username) {
+                res.send({ signup: true })
+              } else {
+                knex('users')
+                  .insert({ // puts it in the DB
+                    email: req.body.username.email,
+                    username: req.body.username.username,
+                    hashed_password: hash,
+                    doa: moment().add(1, 'days'),
+                    created_at: new Date(),
+                    updated_at: new Date()
+                  }).then(function (respo) {
+                    knex('users')
+                      .where({ 'email': req.body.username.email })
+                      .select('hashed_password', 'user_id')
+                      .then(function (respon) {
+                        res.send({ login: true, userId: respon[0].user_id })
+                      })
+                  })
+              }
             })
         })
       })
