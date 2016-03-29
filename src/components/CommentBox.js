@@ -10,9 +10,10 @@ export default React.createClass({
   loadCommentsFromServer: function () {
     get('http://localhost:3000/api/v1/photo/' + this.props.photoid + '/comment', function (err, res) {
       if (err) { console.log(err) }
+      console.log('loading comments', res)
       let commentArray = []
       for (var i = 0; i < res.length; i++) {
-        commentArray.push({comment: res[i].comment, user_id: res[i].user_id})
+        commentArray.push({comment: res[i].comment, username: res[i].username})
       }
       this.setState({comments: commentArray})
     }.bind(this))
@@ -32,7 +33,7 @@ export default React.createClass({
           console.log('Error: ', err)
           this.setState({comments: comments})
         } else {
-          console.log('handlecommentsubmit', res)
+          // console.log('handlecommentsubmit', res)
         }
       })
   },
@@ -44,7 +45,8 @@ export default React.createClass({
   render: function () {
     return (
       <div className='comment-box'>
-        <CommentList comments={this.state ? this.state.comments : ''} username={this.props.username}/>
+        <CommentList
+          comments={this.state ? this.state.comments : ''}/>
         <CommentForm onCommentSubmit={this.handleCommentSubmit}/>
       </div>
     )

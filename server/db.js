@@ -75,6 +75,15 @@ module.exports = function (knex) {
           callback(null, resp)
         })
     },
+    // SELECT * FROM table with user created
+    getCommentAuthors: function (params, callback) {
+      knex.from('comments')
+        .where(params)
+        .innerJoin('users', 'users.user_id', 'comments.user_id')
+        .then(function (resp) {
+          callback(null, resp)
+        })
+    },
 
     // DELETE FROM table WHERE some_column=some_value
     deleteTwo: function (table, params, callback) { // params should be an object
