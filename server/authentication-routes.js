@@ -65,12 +65,24 @@ module.exports = function (app, cors, corsOptions) {
           knex('users')
             .select('email', 'username')
             .then(function (resp) {
-              if (resp[0].email === req.body.username.email) {
-                res.send({ err_email: true })
-              } else if (resp[0].username === req.body.username.username) {
-                res.send({ err_username: true })
-              } else if (resp[0].email === req.body.username.email && resp[0].username === req.body.username.username) {
+              var check_email = []
+              for (var i = 0; i < resp.length; i++) {
+                if (resp[i].email === req.body.username.email) {
+                  check_email = resp[i].email
+                }
+              }
+              var check_username = []
+              for (var i = 0; i < resp.length; i++) {
+                if (resp[i].username === req.body.username.username) {
+                  check_username = resp[i].username
+                }
+              }
+              if (check_email === req.body.username.email && check_username === req.body.username.username) {
                 res.send({ err_email_username: true })
+              } else if (check_email === req.body.username.email) {
+                res.send({ err_email: true })
+              } else if (check_username === req.body.username.username) {
+                res.send({ err_username: true })
               } else {
                 knex('users')
                   .insert({ // puts it in the DB

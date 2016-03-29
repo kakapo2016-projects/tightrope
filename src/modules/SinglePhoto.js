@@ -3,9 +3,10 @@ import CommentBox from '../components/CommentBox'
 import request from 'superagent'
 import get from '../get-request-simple'
 import cookie from 'react-cookie'
-import { Row, Col, Button } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router'
 import React from 'react'
+import get from '../get-request'
 import post from '../post-request'
 
 export default React.createClass({
@@ -20,12 +21,12 @@ export default React.createClass({
   },
 
   loadPhotosFromServer: function () {
-    request
-      .get('http://localhost:3000/api/v1/photos/' + this.props.params.photo_id, '', function (err, res) {
-        if (err) console.log('Error:', err)
-        this.setState({photo_url: res.body.photo_url})
-        this.getUserInfo(res.body.user_id)
-      }.bind(this))
+    get('http://localhost:3000/api/v1/photos/' + this.props.params.photo_id, '', function (err, res) {
+      if (err) console.log('Error:', err)
+      console.log('load photos from server', res)
+      this.setState({photo_url: res.photo_url})
+      this.getUserInfo(res.user_id)
+    }.bind(this))
   },
 
   getUserInfo: function (userId) {
