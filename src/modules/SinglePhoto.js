@@ -27,7 +27,7 @@ export default React.createClass({
   getUserInfo: function (userId) {
     get('http://localhost:3000/api/v1/users/' + userId + '/profile', function (err, res) {
       console.log('GOT FROM SERVER: ', res)
-      if (err) {console.log('Error getting profile: ', err)}
+      if (err) { console.log('Error getting profile: ', err) }
       this.setState({user: res})
     }.bind(this))
   },

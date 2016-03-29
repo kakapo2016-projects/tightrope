@@ -2,6 +2,8 @@ import React from 'react'
 import CommentList from './CommentList'
 import CommentForm from './CommentForm'
 import get from '../get-request-simple'
+import cookie from 'react-cookie
+import request from 'superagent'
 
 export default React.createClass({
 
@@ -16,6 +18,16 @@ export default React.createClass({
     }.bind(this))
   },
 
+  handleCommentSubmit: function (comment) {
+    // submit to the server and refresh the list
+    requests
+      .post('http://localhost:3000/api/v1/photo/' + this.props.photoid + '/comment')
+      .send(comment)
+
+
+
+  },
+
   componentDidMount: function () {
     this.loadCommentsFromServer()
   },
@@ -24,7 +36,7 @@ export default React.createClass({
     return (
       <div className='comment-box'>
         <CommentList comments={this.state ? this.state.comments : ''} username={this.props.username}/>
-        <CommentForm />
+        <CommentForm onCommentSubmit={this.handleCommentSubmit}/>
       </div>
     )
   }
