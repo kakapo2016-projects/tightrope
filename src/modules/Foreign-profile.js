@@ -24,11 +24,11 @@ export default React.createClass({
 
   componentDidMount: function () {
     get('http://localhost:3000/api/v1/users/' + this.props.params.user_id + '/photos', '', function (err, res) {
-      if (err) console.log('Error:', err)
+      if (err) {console.log('Error:', err); return }
       this.setState({photos: res})
     }.bind(this))
     get('http://localhost:3000/api/v1/users/' + this.props.params.user_id + '/profile', '', function (err, resp) {
-      if (err) console.log('Error:', err)
+      if (err) {console.log('Error:', err); return }
       this.setState({profile: resp})
     }.bind(this))
   },

@@ -7,7 +7,8 @@ export default React.createClass({
   render: function () {
     return (
     <div className='friends'>
-      {_.map(this.props.friends, function (photo, index) {
+      {
+        _.map(this.props.friends, function (photo, index) {
         var diff = moment().diff(photo.created_at, 'days')
         return (
            <div key={index} className='panel friendPanel'>
@@ -19,7 +20,8 @@ export default React.createClass({
              </div>
            </div>
          )
-      })}
+        })
+      }
     </div>
     )
   }
