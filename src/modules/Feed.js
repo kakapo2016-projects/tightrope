@@ -16,7 +16,6 @@ export default React.createClass({
     get('http://localhost:3000/api/v2/photos/recent', '', function (err, res) {
       if (err) console.log('Error:', err)
       this.setState({photos: res})
-    // setInterval(this.loadPhotosFromServer, 2000)
     }.bind(this))
   },
 
