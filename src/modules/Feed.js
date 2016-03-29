@@ -1,6 +1,7 @@
 import React from 'react'
 import FeedPhotos from '../components/Feed-photos'
 import get from '../get-request'
+import { Button } from 'react-bootstrap'
 require('../stylesheets/modules/feed.sass')
 
 export default React.createClass({
@@ -30,6 +31,11 @@ export default React.createClass({
     }
     return (
       <div>
+        <div className='sort-buttons'>
+          <Button bsStyle='link' onClick={ console.log('You clicked Recent')}>Recent</Button>
+          <Button bsStyle='link' onClick={ console.log('You clicked Highwire')}>Highwire</Button>
+          <Button bsStyle='link' onClick={ console.log('You clicked Popular')}>Popular</Button>
+        </div>
         <FeedPhotos photos={displayPhotos} />
       </div>
     )

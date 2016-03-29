@@ -60,14 +60,33 @@ module.exports = function (app, cors, corsOptions) {
     })
   })
 
-  app.get('/api/v2/users/:id/photos', function (req, res) { // a request for all photos of one user
-    console.log('GET received on /api/v1/users/:id/photos')
+  app.get('/api/v2/users/:id/photos/recent', function (req, res) { // a request for all photos of one user
+    console.log('GET received on /api/v1/users/:id/photos/recent')
     console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     knex.select()
         .table('photos')
         .where({ user_id: req.params.id })
         .orderBy('created_at', 'desc')
+        .then(function (photo) {
+          console.log('photo is: ', photo)
+          res.json(photo) // returns the record for many photos - sorted
+        })
+    // db.findMany('photos', { user_id: req.params.id }, function (err, photo) {
+    //   if (err) { throw err }
+    //   console.log(photo)
+    //   res.json(photo) // returns the record for many photo
+    // })
+  })
+
+  app.get('/api/v2/users/:id/photos/popular', function (req, res) { // a request for all photos of one user
+    console.log('GET received on /api/v1/users/:id/photos/popular')
+    console.log('req.params is: ', req.params)
+    // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
+    knex.select()
+        .table('photos')
+        .where({ user_id: req.params.id })
+        .orderBy('likes', 'desc')
         .then(function (photo) {
           console.log('photo is: ', photo)
           res.json(photo) // returns the record for many photos - sorted

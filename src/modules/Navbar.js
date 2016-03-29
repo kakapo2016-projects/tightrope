@@ -72,9 +72,9 @@ export default React.createClass({
         </Navbar>
         <div className='subNav'>
           <Nav className='subSubNav'>
-            <li>Popular</li>
+            {/*<li>Popular</li>
             <li>High rope</li>
-            <li>Newest</li>
+            <li>Newest</li>*/}
           </Nav>
         </div>
       </div>
