@@ -1,12 +1,11 @@
-import { expect } from 'chai'
-import { shallow, render, mount } from 'enzyme'
-import React from 'react'
-
 import Feed from '../../src/modules/Feed.js'
+import { shallow, render, mount } from 'enzyme'
+import { expect } from 'chai'
+import React from 'react'
 
 describe('Feed', () => {
 
-  xit('Should render the photo feed if state has photos', () => {
+  it('Should render the photo feed if state has photos', () => {
     let state = []
     const wrapper = shallow(<Feed />)
     expect(wrapper.find('FeedPhotos')).to.have.length(1)

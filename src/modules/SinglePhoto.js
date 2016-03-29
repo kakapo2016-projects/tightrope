@@ -1,10 +1,10 @@
-import React from 'react'
-import CommentBox from '../components/CommentBox'
-import request from 'superagent'
-import get from '../get-request-simple'
-import { Row, Col } from 'react-bootstrap'
-import { Link } from 'react-router'
 require('../stylesheets/modules/single-photo.sass')
+import CommentBox from '../components/CommentBox'
+import { Row, Col } from 'react-bootstrap'
+import get from '../get-request-simple'
+import { Link } from 'react-router'
+import request from 'superagent'
+import React from 'react'
 
 export default React.createClass({
   getInitialState: function () {
@@ -27,7 +27,7 @@ export default React.createClass({
   getUserInfo: function (userId) {
     get('http://localhost:3000/api/v1/users/' + userId + '/profile', function (err, res) {
       console.log('GOT FROM SERVER: ', res)
-      if (err) {console.log('Error getting profile: ', err)}
+      if (err) { console.log('Error getting profile: ', err) }
       this.setState({user: res})
     }.bind(this))
   },
@@ -44,6 +44,7 @@ export default React.createClass({
         <img className='img-responsive' src={this.state ? this.state.photo_url : ''} />
       </Col>
       <Col md={4}>
+
         <Link to={routeID}>
           <div className='userName'>
             <img src={this.state.user.profile_pic}/>

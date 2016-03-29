@@ -1,8 +1,7 @@
-import { expect } from 'chai'
-import { shallow, render, mount } from 'enzyme'
-import React from 'react'
-
 import Profile from '../../src/modules/Profile'
+import { shallow, render, mount } from 'enzyme'
+import { expect } from 'chai'
+import React from 'react'
 
 describe('Profile', () => {
   it('should render a profile picture', () => {

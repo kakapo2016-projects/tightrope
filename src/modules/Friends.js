@@ -1,10 +1,9 @@
-import React from 'react'
-import FeedPhotos from '../components/Feed-photos'
 import FriendsList from '../components/friends-list'
-import get from '../get-request'
 import getSimple from '../get-request-simple'
-import cookie from 'react-cookie'
 require('../stylesheets/modules/feed.sass')
+import cookie from 'react-cookie'
+import get from '../get-request'
+import React from 'react'
 
 export default React.createClass({
   setInitialState: function () {
@@ -32,7 +31,7 @@ export default React.createClass({
       if (err) console.log('Error:', err)
       console.log('My friends are: ', res)
       this.setState({friends: res})
-      console.log("I SET IT", this.state)
+      console.log('I SET IT', this.state)
     // setInterval(this.loadPhotosFromServer, 2000)
     }.bind(this))
   },

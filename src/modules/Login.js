@@ -1,14 +1,12 @@
-import React from 'react'
+import slack from '../components/slack-delete'
 import { browserHistory } from 'react-router'
-import { ButtonInput } from 'react-bootstrap'
-import get from '../get-request'
-import post from '../post-request'
-import cookie from 'react-cookie'
 import { Col, Row } from 'react-bootstrap'
 import Signup from '../components/Signup'
 import Signin from '../components/Signin'
-import slack from '../components/slack-delete'
-
+import post from '../post-request'
+import cookie from 'react-cookie'
+import get from '../get-request'
+import React from 'react'
 
 export default React.createClass({
   getInitialState: function () {
@@ -17,16 +15,16 @@ export default React.createClass({
 
   signUpRequest: function (username, email, password) {
     console.log('Log in request')
-    post('http://localhost:3000/api/v1/signup', {email: email, username: username, password: password}, function (err, res) {
+    post('http://localhost:3000/api/v1/signup', { email: email, username: username, password: password }, function (err, res) {
       if (err) console.log('Error:', err)
       this.setState({user: res.body})
       console.log('resbod ---------> ', res.body)
-      if (res.body.err_email === true) {
+      if (res.body.err_email_username === true) {
+        window.alert('email and username already taken')
+      } else if (res.body.err_email === true) {
         window.alert('email already taken')
       } else if (res.body.err_username === true) {
         window.alert('username already taken')
-      } else if (res.body.err_email_username === true) {
-        window.alert('email and username already taken')
       }
       if (res.body.login === true) {
         console.log('sucessfully logged in!')
@@ -68,7 +66,7 @@ export default React.createClass({
         <Signin loginRequest={this.loginRequest} />
       </Col>
       <Col sm={5} smOffset={2}>
-        <Signup signUpRequest={this.signUpRequest} />
+        <Signup loginRequest={this.loginRequest} signUpRequest={this.signUpRequest} />
       </Col>
     </Row>
     )
