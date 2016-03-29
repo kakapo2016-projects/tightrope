@@ -65,6 +65,15 @@ module.exports = function (knex) {
         .then(function (resp) {
           callback(null, resp[0])
         })
+    },
+
+    // SELECT * FROM table with user created
+    getPhotoStreak: function (callback) {
+      knex.from('photos')
+        .innerJoin('users', 'users.user_id', 'photos.user_id')
+        .then(function (resp) {
+          callback(null, resp)
+        })
     }
   }
 }

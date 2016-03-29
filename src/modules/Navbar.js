@@ -12,6 +12,10 @@ export default React.createClass({
     return {loggedin: true}
   },
 
+  reRunPhoto: function () {
+    this.componentDidMount()
+  },
+
   componentDidMount: function () {
     $('#upload').cloudinary_upload_widget(
       {
@@ -59,8 +63,8 @@ export default React.createClass({
           <Navbar.Collapse className='navbar-collapse'>
             <Nav pullRight>
               <li><Link to='/' activeClassName='active' onlyActiveOnIndex>feed</Link></li>
-              <li><NavLink to='/profile'>profile</NavLink></li>
-              <li><NavLink to='/friends'>friends</NavLink></li>
+              { cookie.load('loggedIn') ? <li><NavLink to='/profile'>profile</NavLink></li> : <li></li> }
+              { cookie.load('loggedIn') ? <li><NavLink to='/friends'>friends</NavLink></li> : <li></li> }
               { cookie.load('loggedIn') ? <li><NavLink onClick={this.logout} to='/login'>logout</NavLink></li> : <li><NavLink to='/login'>login</NavLink></li> }
               <li id='upload'></li>
             </Nav>
@@ -68,9 +72,9 @@ export default React.createClass({
         </Navbar>
         <div className='subNav'>
           <Nav className='subSubNav'>
-            <li>Popular</li>
+            {/*<li>Popular</li>
             <li>High rope</li>
-            <li>Newest</li>
+            <li>Newest</li>*/}
           </Nav>
         </div>
       </div>

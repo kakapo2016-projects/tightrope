@@ -21,15 +21,28 @@ export default React.createClass({
       if (err) console.log('Error:', err)
       this.setState({user: res.body})
       console.log('resbod ---------> ', res.body)
+      if (res.body.err_email === true) {
+        window.alert('email already taken')
+      } else if (res.body.err_username === true) {
+        window.alert('username already taken')
+      } else if (res.body.err_email_username === true) {
+        window.alert('email and username already taken')
+      }
+      if (res.body.login === true) {
+        console.log('sucessfully logged in!')
+        this.setLoginCookie(res.body.userId)
+        browserHistory.push('/')
+      }
     }.bind(this))
   },
 
   loginRequest: function (useremail, password) {
     console.log('Login attempting')
-    get('http://localhost:3000/api/v1/login', {email: useremail, password: password}, (err, res) => {
+    get('http://localhost:3000/api/v1/login', { email: useremail, password: password }, (err, res) => {
       console.log('Server resp ', res)
       if (err) console.log('Error: ', err)
-      if (res === null) { alert('No response from server') }
+      if (res === null) { window.alert('No response from server') }
+      if (res.nomatch === true) { browserHistory.push('/404') }
       if (res.login === true) {
         slack(res.userId, function () {
           console.log('sucessfully logged in!')
