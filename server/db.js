@@ -74,6 +74,19 @@ module.exports = function (knex) {
         .then(function (resp) {
           callback(null, resp)
         })
-    }
+    },
+
+    // DELETE FROM table WHERE some_column=some_value
+    deleteTwo: function (table, params, callback) { // params should be an object
+      knex(table)
+        .where(params)
+        .del()
+        .then(function (resp) {
+          callback(null, resp[0])
+        })
+    },
+
+
+
   }
 }

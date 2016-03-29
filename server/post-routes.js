@@ -82,6 +82,34 @@ module.exports = function (app, cors, corsOptions) {
     })
   })
 
+  app.post('/api/v1/:id/follow', function (req, res) { // receives a photo url as a string
+    console.log('POST received on /api/v1/:id/follow/')
+    console.log('req.body is: ', req.body, req.params.id)
+    // use knex to do 'INSERT INTO photos (fields) VALUES (values)
+    db.add('fans', {
+      liker_id: req.params.id, // essential - but coming from where?
+      liked_id: req.body.liked_id // essential
+    }, function (err, resp) {
+      if (err) { console.log('Error: ', err) }
+      console.log('The newly added row has id: ', resp)
+      res.json(resp) // returns the id of the newly added photo record
+    })
+  })
+
+  app.post('/api/v1/:id/unfollow', function (req, res) { // receives a photo url as a string
+    console.log('POST received on /api/v1/:id/unfollow/')
+    console.log('req.body is: ', req.body.liked_id, req.params.id)
+    // use knex to do 'INSERT INTO photos (fields) VALUES (values)
+    db.delete('fans', {
+      liker_id: req.params.id, // essential - but coming from where?
+      liked_id: req.body.liked_id // essential
+    }, function (err, resp) {
+      if (err) { console.log('Error: ', err) }
+      console.log('The newly added row has id: ', resp)
+      res.json(resp) // returns the id of the newly added photo record
+    })
+  })
+
   app.post('/api/v1/photo/:id/comment', function (req, res) {
     // adds new comments to the database and displays
     knex('comments').insert({
