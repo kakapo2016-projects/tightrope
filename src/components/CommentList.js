@@ -9,10 +9,13 @@ export default React.createClass({
     return (
       <div className='comment-list'>
         {_.map(comments, function (comment) {
-          return <Comment comment={comment.comment}
-            user_id={comment.user_id}/>
+          return <Comment
+            comment={comment.comment}
+            user_id={comment.user_id}
+            />
         })}
       </div>
     )
   }
 })
+// username={this.props.username}

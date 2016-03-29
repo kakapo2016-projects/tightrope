@@ -57,10 +57,10 @@ module.exports = function (app, cors, corsOptions) {
     // use knex to do 'INSERT INTO photos (fields) VALUES (values)
     db.update('users', {user_id: req.params.id}, {
       profile_pic: req.body.profile_pic // essential
-      }, function (err, resp) {
-        if (err) { console.log('Error: ', err) }
-        console.log('The newly added row has id: ', resp)
-      }
+    }, function (err, resp) {
+      if (err) { console.log('Error: ', err) }
+      console.log('The newly added row has id: ', resp)
+    }
     )
   })
 
@@ -82,4 +82,14 @@ module.exports = function (app, cors, corsOptions) {
     })
   })
 
+  app.post('/api/v1/photo/:id/comment', function (req, res) {
+    // adds new comments to the database and displays
+    knex('comments').insert({
+      photo_id: req.params.id,
+      user_id: req.body.userId,
+      comment: req.body.comment.comment
+    }).then(function (resp) {
+      res.send('Posted data to comments table. The response from the DB was: ' + resp)
+    })
+  })
 }
