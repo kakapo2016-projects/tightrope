@@ -1,6 +1,5 @@
 import React from 'react'
 import CommentBox from '../components/CommentBox'
-import request from 'superagent'
 import get from '../get-request-simple'
 import { Row, Col } from 'react-bootstrap'
 require('../stylesheets/modules/single-photo.sass')
@@ -14,12 +13,11 @@ export default React.createClass({
     }
   },
   loadPhotosFromServer: function () {
-    request
-      .get('http://localhost:3000/api/v1/photos/' + this.props.params.photo_id, '', function (err, res) {
-        if (err) console.log('Error:', err)
-        this.setState({photo_url: res.body.photo_url})
-        this.getUserInfo(res.body.user_id)
-      }.bind(this))
+    get('http://localhost:3000/api/v1/photos/' + this.props.params.photo_id, '', function (err, res) {
+      if (err) console.log('Error:', err)
+      this.setState({photo_url: res.body.photo_url})
+      this.getUserInfo(res.body.user_id)
+    }.bind(this))
   },
 
   getUserInfo: function (userId) {
@@ -45,9 +43,10 @@ export default React.createClass({
           <img src={this.state.user.profile_pic}/>
           <h2>{this.state.user.username}</h2>
         </div>
-        <CommentBox photoid={this.props.params.photo_id}/>
+        <CommentBox photoid={this.props.params.photo_id} username={this.state.user.username}/>
       </Col>
       </Row>
     )
   }
 })
+// getUserInfo={this.getUserInfo}
