@@ -14,7 +14,7 @@ export default React.createClass({
         <div className='badges'>
         {
           _.map(badges, function (badge) {
-          return <span>{badge} </span>
+            return <span>{badge} </span>
           })
         }
         </div>

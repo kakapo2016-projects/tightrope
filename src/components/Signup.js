@@ -2,7 +2,7 @@ import React from 'react'
 import { Input, ButtonInput } from 'react-bootstrap'
 
 export default React.createClass({
-    getInitialState: function () { return { username: '', password: '', email: '' } },
+  getInitialState: function () { return { username: '', password: '', email: '' } },
 
   handlePassword (e) {
     console.log('handleSignupPassChange')
@@ -42,29 +42,29 @@ export default React.createClass({
         <h2>Sign up</h2>
         <form onSubmit={this.handleSubmit}>
           <Input
-            type="email"
-            label="Email Address"
-            placeholder="Enter email"
+            type='email'
+            label='Email Address'
+            placeholder='Enter email'
             value={this.state.email}
             onChange={this.handleEmail}
           />
           <Input
-            type="text"
-            label="Username"
-            placeholder="User Name"
+            type='text'
+            label='Username'
+            placeholder='User Name'
             value={this.state.username}
             onChange={this.handleUsername}
           />
           <Input
-            type="password"
-            label="Password"
-            placeholder="Enter password"
+            type='password'
+            label='Password'
+            placeholder='Enter password'
             value={this.state.password}
             onChange={this.handlePassword}
           />
           <ButtonInput
-            type="submit"
-            value="Sign Up"
+            type='submit'
+            value='Sign Up'
           />
         </form>
       </div>

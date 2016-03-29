@@ -7,14 +7,14 @@ export default React.createClass({
     return (
     <div className='friendset'>
       {_.map(this.props.friends, function (friend) {
-         return (
+        return (
          <div>
            <div className='username'>
              {friend.username}
            </div>
          </div>
          )
-       })}
+      })}
     </div>
     )
   }

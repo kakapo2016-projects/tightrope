@@ -1,16 +1,16 @@
-import React from 'react'
-import { render } from 'react-dom'
 import { Router, Route, browserHistory, IndexRoute } from 'react-router'
-import App from './modules/App'
-import Feed from './modules/Feed'
+import ForeignProfile from './modules/Foreign-profile'
+require('./stylesheets/modules/main.sass')
+import SinglePhoto from './modules/SinglePhoto'
+import NoMatch from './modules/NoMatch'
 import Friends from './modules/Friends'
-import Login from './modules/Login'
 import Profile from './modules/Profile'
 import Upload from './modules/Upload'
-import SinglePhoto from './modules/SinglePhoto'
-import ForeignProfile from './modules/Foreign-profile'
-import NoMatch from './modules/NoMatch'
-require('./stylesheets/modules/main.sass')
+import Login from './modules/Login'
+import { render } from 'react-dom'
+import Feed from './modules/Feed'
+import App from './modules/App'
+import React from 'react'
 
 render((
   <Router history={browserHistory}>

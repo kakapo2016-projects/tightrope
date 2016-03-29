@@ -1,10 +1,10 @@
-import React from 'react'
-import { Link } from 'react-router'
-import NavLink from './NavLink'
+require('../stylesheets/modules/upload.sass')
 import { Navbar, Nav } from 'react-bootstrap'
+import { Link } from 'react-router'
 import post from '../post-request'
 import cookie from 'react-cookie'
-require('../stylesheets/modules/upload.sass')
+import NavLink from './NavLink'
+import React from 'react'
 
 export default React.createClass({
 

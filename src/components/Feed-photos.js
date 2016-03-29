@@ -1,11 +1,9 @@
+import { Link } from 'react-router'
+import moment from 'moment'
 import React from 'react'
 import _ from 'lodash'
-import { Link } from 'react-router'
-import get from '../get-request-simple'
-import moment from 'moment'
 
 export default React.createClass({
-
 
   render: function () {
     return (
