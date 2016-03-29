@@ -165,6 +165,14 @@ module.exports = function (app, cors, corsOptions) {
     })
   })
 
+  app.get('/api/v1/fans/:id', function (req, res) {
+    db.findMany('fans', { liker_id: req.params.id }, function (err, resp) {
+      if (err) { console.log('Error in fans get request', err); return }
+      console.log('resp from server:', resp)
+      res.json(resp)
+    })
+  })
+
   app.get('/api/v1/users/:id/friends', function (req, res) { // a request for all friends of one user
     //- if user_1 is a fan of user_2 then in the fans table then this is represented as:
     // 'user_id_a=1, user_id_b=2'
