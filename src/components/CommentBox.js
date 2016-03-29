@@ -19,13 +19,18 @@ export default React.createClass({
   },
 
   handleCommentSubmit: function (comment) {
-    // submit to the server and refresh the list
+    let comments = this.state.comments
+    comment.id = Date.now()
+    let newComments = comments.concat([comment])
+    this.setState({comments: newComments})
+
     request
       .post('http://localhost:3000/api/v1/photo/' + this.props.photoid + '/comment')
       .send({comment: comment, userId: cookie.load('userId')})
       .end(function (err, res) {
         if (err) {
           console.log('Error: ', err)
+          this.setState({comments: comments})
         } else {
           console.log('handlecommentsubmit', res)
         }
