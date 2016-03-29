@@ -7,12 +7,12 @@ const FeedPhoto = ({ photos }) => {
   return (
     <div className='photoset'>
       {
-        _.map(photos, function (photo) {
+        _.map(photos, function (photo, index) {
           let { created_at, photo_id, photo_url, likes, comments, username } = photo
           var diff = moment().diff(created_at, 'days')
           let routeID = '/photos/' + photo_id
           return (
-            <div>
+            <div key={index}>
               <Link to={routeID}>
                 <div className='panel feedPhoto'>
                   <img src={photo_url} className='img-responsive'/>
