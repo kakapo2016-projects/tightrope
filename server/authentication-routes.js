@@ -1,17 +1,10 @@
-import moment from 'moment'
-
 module.exports = function (app, cors, corsOptions) {
-  var path = require('path')
   var body_parser = require('body-parser')
   var bcrypt = require('bcrypt')
   var moment = require('moment')
 
-  app.use(body_parser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
-  app.use(body_parser.json()) // parse application/json
-
-  // ----- global var ----- //
-
-  var respData = ''
+  app.use(body_parser.urlencoded({ extended: false }))
+  app.use(body_parser.json())
 
   // ----- db setup ----- //
 
@@ -28,24 +21,18 @@ module.exports = function (app, cors, corsOptions) {
   // ----- authentication requests ----- //
 
   app.get('/api/v1/login', function (req, res) {
-    console.log('req', req.query)
     knex('users')
       .where({ 'email': req.query.email })
       .select('hashed_password', 'user_id')
       .then(function (resp) {
-        console.log('Fucker fucker', resp)
         if (resp.length <= 0) {
-          console.log('Database cannot find user')
           res.send({ nomatch: true })
         } else {
           bcrypt.compare(req.query.password, resp[0].hashed_password, function (err, respo) {
-            console.log('After bcrypt', respo)
-            if (err) console.log('Login error: ', err)
+            if (err) { console.log('Login error: ', err); return }
             if (respo === true) {
-              console.log('Password correct on server', resp)
               res.send({ login: true, userId: resp[0].user_id })
             } else {
-              console.log('Password incorrect on server')
               res.send({ login: false })
             }
           })
@@ -54,14 +41,10 @@ module.exports = function (app, cors, corsOptions) {
   })
 
   app.post('/api/v1/signup', function (req, res) {
-    console.log('POST to /api/v1/signup')
-    console.log('req.body is : ', req.body.username)
     bcrypt.genSalt(10, function (err, salt) {
-      if (err) { console.log('Error in genSalt: ', err) }
+      if (err) { console.log('Error in genSalt: ', err); return }
       bcrypt.hash(req.body.username.password, salt, function (err, hash) {
-        if (err) { console.log('Error in sign up: ', err) }
-        console.log(hash)
-        // var newId = uuid.v4()
+        if (err) { console.log('Error in sign up: ', err); return }
         knex('users')
           .select('email', 'username')
           .then(function (resp) {
@@ -73,8 +56,8 @@ module.exports = function (app, cors, corsOptions) {
             }
             var check_username = []
             for (var j = 0; j < resp.length; j++) {
-              if (resp[i].username === req.body.username.username) {
-                check_username = resp[i].username
+              if (resp[j].username === req.body.username.username) {
+                check_username = resp[j].username
               }
             }
             if (check_email === req.body.username.email && check_username === req.body.username.username) {
@@ -85,7 +68,7 @@ module.exports = function (app, cors, corsOptions) {
               res.send({ err_username: true })
             } else {
               knex('users')
-                .insert({ // puts it in the DB
+                .insert({
                   email: req.body.username.email,
                   username: req.body.username.username,
                   hashed_password: hash,

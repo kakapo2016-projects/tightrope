@@ -16,7 +16,7 @@ export default React.createClass({
   signUpRequest: function (username, email, password) {
     console.log('Log in request')
     post('http://localhost:3000/api/v1/signup', { email: email, username: username, password: password }, function (err, res) {
-      if (err) console.log('Error:', err)
+      if (err) { console.log('Error:', err); return }
       this.setState({user: res.body})
       console.log('resbod ---------> ', res.body)
       if (res.body.err_email_username === true) {
@@ -38,7 +38,7 @@ export default React.createClass({
     console.log('Login attempting')
     get('http://localhost:3000/api/v1/login', { email: useremail, password: password }, (err, res) => {
       console.log('Server resp ', res)
-      if (err) console.log('Error: ', err)
+      if (err) { console.log('Error: ', err); return }
       if (res === null) { window.alert('No response from server') }
       if (res.nomatch === true) { browserHistory.push('/404') }
       if (res.login === true) {
