@@ -3,6 +3,7 @@ import { Navbar, Nav } from 'react-bootstrap'
 import { Link } from 'react-router'
 import post from '../post-request'
 import cookie from 'react-cookie'
+import moment from 'moment'
 import NavLink from './NavLink'
 import React from 'react'
 
@@ -28,17 +29,17 @@ export default React.createClass({
         cropping_aspect_ratio: 1,
         callback: '/profile'
       },
-      function (error, result) {
+      (error, result) => {
         if (error) {
           console.log('Error: ', error)
         } else {
           let userUpload = {
             external_photo_id: result[0].signature,
             user_id: cookie.load('userId'),
-            photo_url: result[0].url,
-            caption: 'This is a test'
+            photo_url: result[0].url
           }
-          post('http://localhost:3000/api/v1/photos', userUpload, function (resp) {
+          post('http://localhost:3000/api/v1/photos', userUpload, (resp) => {
+            this.props.sortFeed()
           })
         }
       }
