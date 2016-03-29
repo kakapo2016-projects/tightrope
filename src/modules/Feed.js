@@ -55,10 +55,10 @@ export default React.createClass({
     }
     return (
       <div>
-        <div className='sort-buttons'>
-          <Button bsStyle='link' onClick={ this.getSortRecent }>Recent</Button>
-          <Button bsStyle='link' onClick={ this.getSortHighwire }>Highwire</Button>
-          <Button bsStyle='link' onClick={ this.getSortPopular }>Popular</Button>
+        <div className="sort-buttons">
+          <Button bsStyle="link" onClick={this.getSortRecent}>Recent</Button>
+          <Button bsStyle="link" onClick={this.getSortHighwire}>Highwire</Button>
+          <Button bsStyle="link" onClick={this.getSortPopular}>Popular</Button>
         </div>
         <FeedPhotos photos={displayPhotos} />
       </div>

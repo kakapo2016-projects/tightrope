@@ -10,7 +10,7 @@ export default React.createClass({
       <div>
         <Navbar />
         <Grid className='fluid-container'>
-          {React.cloneElement(this.props.children) || <Feed/>}
+          {React.cloneElement(this.props.children) || <Feed />}
         </Grid>
       </div>
     )

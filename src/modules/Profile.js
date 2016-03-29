@@ -69,7 +69,7 @@ export default React.createClass({
     this.addUploadButt()
     get('http://localhost:3000/api/v1/users/' + cookie.load('userId') + '/profile', '', function (err, resp) {
       if (err) console.log('Error:', err)
-      this.setState({profile: resp})
+      this.setState({ profile: resp })
     }.bind(this))
   },
 
@@ -82,17 +82,17 @@ export default React.createClass({
       <div>
         <Row>
           <Col sm={4} className='profile panel'>
-            <ProfilePic profilePic={profile_pic}/>
-            <span className='changeProfilePic'/>
+            <ProfilePic profilePic={profile_pic} />
+            <span className='changeProfilePic' />
             <h2 className='username'>{username}</h2>
-            <Accolades accolades={accolades}/>
+            <Accolades accolades={accolades} />
           </Col>
           <Col sm={8} className='feed centered' className='container-fluid'>
             <div className='sort-buttons'>
               <Button bsStyle='link' onClick={ this.getSortRecent }>Recent</Button>
               <Button bsStyle='link' onClick={ this.getSortPopular }>Popular</Button>
             </div>
-            <Photoset photoset={photos || []}/>
+            <Photoset photoset={photos || []} />
           </Col>
         </Row>
       </div>
