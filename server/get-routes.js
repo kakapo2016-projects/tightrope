@@ -62,14 +62,14 @@ module.exports = function (app, cors, corsOptions) {
 
   app.get('/api/v2/users/:id/photos/recent', function (req, res) { // a request for all photos of one user
     console.log('GET received on /api/v1/users/:id/photos/recent')
-    console.log('req.params is: ', req.params)
+    // console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     knex.select()
         .table('photos')
         .where({ user_id: req.params.id })
         .orderBy('created_at', 'desc')
         .then(function (photo) {
-          console.log('photo is: ', photo)
+          // console.log('photo is: ', photo)
           res.json(photo) // returns the record for many photos - sorted
         })
     // db.findMany('photos', { user_id: req.params.id }, function (err, photo) {
@@ -81,14 +81,14 @@ module.exports = function (app, cors, corsOptions) {
 
   app.get('/api/v2/users/:id/photos/popular', function (req, res) { // a request for all photos of one user
     console.log('GET received on /api/v1/users/:id/photos/popular')
-    console.log('req.params is: ', req.params)
+    // console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     knex.select()
         .table('photos')
         .where({ user_id: req.params.id })
         .orderBy('likes', 'desc')
         .then(function (photo) {
-          console.log('photo is: ', photo)
+          // console.log('photo is: ', photo)
           res.json(photo) // returns the record for many photos - sorted
         })
     // db.findMany('photos', { user_id: req.params.id }, function (err, photo) {
@@ -98,12 +98,12 @@ module.exports = function (app, cors, corsOptions) {
     })
 
   app.get('/api/v1/photo/:id/comment', function (req, res) { // a request for all comments of one photo
-    console.log('GET received on /api/v1/photo/:id/comment', req.params.id)
+    // console.log('GET received on /api/v1/photo/:id/comment', req.params.id)
     // console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     db.findMany('comments', { photo_id: req.params.id }, function (err, comments) {
       if (err) { console.log('ERROR in comments', err) }
-      console.log(comments)
+      // console.log(comments)
       res.json(comments) // returns the record for many photo
     })
   })
@@ -127,7 +127,7 @@ module.exports = function (app, cors, corsOptions) {
         .table('photos')
         .orderBy('created_at', 'desc')
         .then(function (photoSet) {
-          console.log('photoSet is: ', photoSet)
+          // console.log('photoSet is: ', photoSet)
           res.json(photoSet) // returns the record for many photos
         })
   })
@@ -140,7 +140,7 @@ module.exports = function (app, cors, corsOptions) {
         .table('photos')
         .orderBy('likes', 'desc')
         .then(function (photoSet) {
-          console.log('photoSet is: ', photoSet)
+          // console.log('photoSet is: ', photoSet)
           res.json(photoSet) // returns the record for many photos
         })
   })

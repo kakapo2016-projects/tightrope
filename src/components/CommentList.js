@@ -12,9 +12,10 @@ export default React.createClass({
           return <Comment
             comment={comment.comment}
             user_id={comment.user_id}
-            username={this.props.username}/>
+            />
         })}
       </div>
     )
   }
 })
+// username={this.props.username}
