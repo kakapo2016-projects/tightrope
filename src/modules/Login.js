@@ -21,8 +21,12 @@ export default React.createClass({
       if (err) console.log('Error:', err)
       this.setState({user: res.body})
       console.log('resbod ---------> ', res.body)
-      if (res.body.signup === true) {
-        window.alert('email or username already taken')
+      if (res.body.err_email === true) {
+        window.alert('email already taken')
+      } else if (res.body.err_username === true) {
+        window.alert('username already taken')
+      } else if (res.body.err_email_username === true) {
+        window.alert('email and username already taken')
       }
       if (res.body.login === true) {
         console.log('sucessfully logged in!')
