@@ -35,7 +35,11 @@ module.exports = function (app, cors, corsOptions) {
       external_photo_id: req.body.external_photo_id, // essential
       user_id: req.body.user_id, // essential - but coming from where?
       photo_url: req.body.photo_url, // essential
-      caption: req.body.caption // optional
+      caption: ' ', // optional
+      created_at: moment(),
+      updated_at: moment(),
+      likes: 0,
+      comments: 0,
     }, function (err, resp) {
       if (err) { console.log('Error: ', err) }
       console.log('The newly added row has id: ', resp)

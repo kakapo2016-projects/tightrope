@@ -121,14 +121,15 @@ module.exports = function (app, cors, corsOptions) {
 
   app.get('/api/v2/photos/recent', function (req, res) { // a request for all photos from all users
     console.log('GET received on /api/v2/photos/recent')
+    knex.raw('SELECT users.username,photos.* FROM photos JOIN users ON users.user_id=photos.user_id ORDER BY photos.created_at DESC;')
     // console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM photos ORDER BY created_at DESC' to postgreSQL DB
-    knex.from('photos')
-        .innerJoin('users', 'users.user_id', 'photos.user_id')
+    // knex.from('photos')
+    //     .innerJoin('users', 'users.user_id', 'photos.user_id')
         // .orderBy('created_at', 'desc')
         .then(function (photoSet) {
           // console.log('photoSet is: ', photoSet)
-          res.json(photoSet) // returns the record for many photos
+          res.json(photoSet.rows) // returns the record for many photos
         })
   })
 
