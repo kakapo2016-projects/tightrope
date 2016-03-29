@@ -1,7 +1,7 @@
-import React from 'react'
 import CommentList from './CommentList'
 import CommentForm from './CommentForm'
 import get from '../get-request-simple'
+import React from 'react'
 
 export default React.createClass({
 

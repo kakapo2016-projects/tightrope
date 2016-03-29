@@ -1,11 +1,17 @@
-import React from 'react'
+require('../stylesheets/modules/single-photo.sass')
 import CommentBox from '../components/CommentBox'
+<<<<<<< HEAD
 import request from 'superagent'
 import get from '../get-request-simple'
 import cookie from 'react-cookie'
 import { Row, Col, Button } from 'react-bootstrap'
+=======
+import { Row, Col } from 'react-bootstrap'
+import get from '../get-request-simple'
+>>>>>>> 0daf486a2df8a0d8880891ed68ae46b445295f92
 import { Link } from 'react-router'
-require('../stylesheets/modules/single-photo.sass')
+import request from 'superagent'
+import React from 'react'
 
 export default React.createClass({
   getInitialState: function () {
@@ -28,7 +34,7 @@ export default React.createClass({
   getUserInfo: function (userId) {
     get('http://localhost:3000/api/v1/users/' + userId + '/profile', function (err, res) {
       console.log('GOT FROM SERVER: ', res)
-      if (err) {console.log('Error getting profile: ', err)}
+      if (err) { console.log('Error getting profile: ', err) }
       this.setState({user: res})
     }.bind(this))
   },
@@ -57,8 +63,8 @@ export default React.createClass({
             </div>
           </Link>
           <div className='followButton'>
-          <Button onClick={this.follow}>Follow</Button>
-        </div>
+            <Button onClick={this.follow}>Follow</Button>
+          </div>
         </div>
         <CommentBox photoid={this.props.params.photo_id}/>
       </Col>

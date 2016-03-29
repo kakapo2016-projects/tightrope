@@ -1,9 +1,8 @@
 
-import { expect } from 'chai'
-import { shallow, render, mount } from 'enzyme'
-import React from 'react'
-
 import Signup from '../../src/components/Signup'
+import { shallow, render, mount } from 'enzyme'
+import { expect } from 'chai'
+import React from 'react'
 
 describe('Signup', () => {
   it('should have a div with class of sign-up', () => {

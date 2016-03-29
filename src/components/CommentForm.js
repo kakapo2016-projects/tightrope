@@ -1,5 +1,5 @@
-import React from 'react'
 import {ButtonInput, Input} from 'react-bootstrap'
+import React from 'react'
 
 export default React.createClass({
 
