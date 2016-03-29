@@ -17,7 +17,6 @@ export default React.createClass({
     if (!comment) {
       return
     }
-    // send request to server
     this.props.onCommentSubmit({ comment: comment });
     this.setState({comment: ''})
   },

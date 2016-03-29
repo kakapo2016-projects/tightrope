@@ -1,11 +1,11 @@
 require('../stylesheets/modules/single-photo.sass')
 import CommentBox from '../components/CommentBox'
+import get from '../get-request'
 import request from 'superagent'
 import cookie from 'react-cookie'
 import { Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router'
 import React from 'react'
-import get from '../get-request'
 import post from '../post-request'
 
 export default React.createClass({
@@ -22,15 +22,14 @@ export default React.createClass({
   loadPhotosFromServer: function () {
     get('http://localhost:3000/api/v1/photos/' + this.props.params.photo_id, '', function (err, res) {
       if (err) console.log('Error:', err)
-      console.log('load photos from server', res)
       this.setState({photo_url: res.photo_url})
       this.getUserInfo(res.user_id)
     }.bind(this))
   },
 
   getUserInfo: function (userId) {
-    get('http://localhost:3000/api/v1/users/' + userId + '/profile', '',function (err, res) {
-      console.log('GOT FROM SERVER: ', res)
+    get('http://localhost:3000/api/v1/users/' + userId + '/profile', '', function (err, res) {
+      // console.log('GOT FROM SERVER: ', res)
       if (err) { console.log('Error getting profile: ', err) }
       this.setState({user: res})
       this.handleFollow()
@@ -67,9 +66,9 @@ export default React.createClass({
     get('http://localhost:3000/api/v1/fans/' + cookie.load('userId'), '',function (err, res) {
       if (err) { console.log('ERROR retriving fans'); return }
       let foundUser = false
-      console.log('THIS THING', res)
+      // console.log('THIS THING', res)
       res.forEach((user) => {
-        console.log('looking', _this.state.user, user.liked_id)
+        // console.log('looking', _this.state.user, user.liked_id)
         if (this.state.user.user_id === user.liked_id) {
           console.log('Running')
           foundUser = true
