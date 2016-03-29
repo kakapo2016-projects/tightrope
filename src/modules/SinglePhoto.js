@@ -3,7 +3,6 @@ import CommentBox from '../components/CommentBox'
 import get from '../get-request'
 import { Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router'
-import request from 'superagent'
 import React from 'react'
 
 export default React.createClass({
@@ -19,7 +18,6 @@ export default React.createClass({
   loadPhotosFromServer: function () {
     get('http://localhost:3000/api/v1/photos/' + this.props.params.photo_id, '', function (err, res) {
       if (err) console.log('Error:', err)
-      console.log('load photos from server', res)
       this.setState({photo_url: res.photo_url})
       this.getUserInfo(res.user_id)
     }.bind(this))

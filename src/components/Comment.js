@@ -11,4 +11,3 @@ export default React.createClass({
     )
   }
 })
-{/*<h3>{this.props.username}</h3>*/}

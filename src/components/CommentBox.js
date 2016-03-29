@@ -44,9 +44,11 @@ export default React.createClass({
   render: function () {
     return (
       <div className='comment-box'>
-        <CommentList comments={this.state ? this.state.comments : ''} username={this.props.username}/>
+        <CommentList
+          comments={this.state ? this.state.comments : ''}/>
         <CommentForm onCommentSubmit={this.handleCommentSubmit}/>
       </div>
     )
   }
 })
+// username={this.props.username}
