@@ -60,6 +60,43 @@ module.exports = function (app, cors, corsOptions) {
     })
   })
 
+  app.get('/api/v2/users/:id/photos/recent', function (req, res) { // a request for all photos of one user
+    console.log('GET received on /api/v1/users/:id/photos/recent')
+    console.log('req.params is: ', req.params)
+    // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
+    knex.select()
+        .table('photos')
+        .where({ user_id: req.params.id })
+        .orderBy('created_at', 'desc')
+        .then(function (photo) {
+          console.log('photo is: ', photo)
+          res.json(photo) // returns the record for many photos - sorted
+        })
+    // db.findMany('photos', { user_id: req.params.id }, function (err, photo) {
+    //   if (err) { throw err }
+    //   console.log(photo)
+    //   res.json(photo) // returns the record for many photo
+    // })
+  })
+
+  app.get('/api/v2/users/:id/photos/popular', function (req, res) { // a request for all photos of one user
+    console.log('GET received on /api/v1/users/:id/photos/popular')
+    console.log('req.params is: ', req.params)
+    // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
+    knex.select()
+        .table('photos')
+        .where({ user_id: req.params.id })
+        .orderBy('likes', 'desc')
+        .then(function (photo) {
+          console.log('photo is: ', photo)
+          res.json(photo) // returns the record for many photos - sorted
+        })
+    // db.findMany('photos', { user_id: req.params.id }, function (err, photo) {
+    //   if (err) { throw err }
+    //   console.log(photo)
+    //   res.json(photo) // returns the record for many photo
+    })
+
   app.get('/api/v1/photo/:id/comment', function (req, res) { // a request for all comments of one photo
     console.log('GET received on /api/v1/photo/:id/comment', req.params.id)
     // console.log('req.params is: ', req.params)
@@ -80,6 +117,32 @@ module.exports = function (app, cors, corsOptions) {
       // console.log('photoSet is: ', photoSet)
       res.json(photoSet) // returns the record for many photos
     })
+  })
+
+  app.get('/api/v2/photos/recent', function (req, res) { // a request for all photos from all users
+    console.log('GET received on /api/v2/photos/recent')
+    // console.log('req.params is: ', req.params)
+    // use knex to do 'SELECT * FROM photos ORDER BY created_at DESC' to postgreSQL DB
+    knex.from('photos')
+        .innerJoin('users', 'users.user_id', 'photos.user_id')
+        // .orderBy('created_at', 'desc')
+        .then(function (photoSet) {
+          console.log('photoSet is: ', photoSet)
+          res.json(photoSet) // returns the record for many photos
+        })
+  })
+
+  app.get('/api/v2/photos/popular', function (req, res) { // a request for all photos from all users
+    console.log('GET received on /api/v2/photos/popular')
+    // console.log('req.params is: ', req.params)
+    // use knex to do 'SELECT * FROM photos ORDER BY created_at DESC' to postgreSQL DB
+    knex.from('photos')
+        .innerJoin('users', 'users.user_id', 'photos.user_id')
+        // .orderBy('likes', 'desc')
+        .then(function (photoSet) {
+          console.log('photoSet is: ', photoSet)
+          res.json(photoSet) // returns the record for many photos
+        })
   })
 
   app.get('/api/v2/photos', function (req, res) { // a request for all photos from all users
@@ -107,10 +170,12 @@ module.exports = function (app, cors, corsOptions) {
     // 'user_id_a=1, user_id_b=2'
     console.log('GET received on /api/v1/users/:id/friends')
     // console.log('req.params is: ', req.params.id)
-    knex.raw('SELECT likers.username AS liker, likeds.* AS liked FROM users AS likers LEFT JOIN fans ON likers.user_id = fans.liker_id LEFT JOIN users AS likeds ON fans.liked_id = likeds.user_id WHERE likers.user_id =' + req.params.id + ';').then(function (resp) {
+    knex.raw('SELECT likers.username AS liker, likeds.* AS liked FROM users AS likers LEFT JOIN fans ON likers.user_id = fans.liker_id LEFT JOIN users AS likeds ON fans.liked_id = likeds.user_id WHERE likers.user_id =' + req.params.id + ';')
+      .then(function (resp) {
       // if (err) { console.log('Error', err)}
       console.log('friend is: ', resp)
       res.json(resp.rows) // returns the record for many friend
     })
   })
+
 }
