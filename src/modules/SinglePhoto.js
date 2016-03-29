@@ -34,6 +34,8 @@ export default React.createClass({
     this.loadPhotosFromServer()
   },
 
+  
+
   render: function () {
     return (
 
@@ -42,7 +44,7 @@ export default React.createClass({
         <img className='img-responsive' src={this.state ? this.state.photo_url : ''} />
       </Col>
       <Col md={4}>
-        <div className='userName' onClick={console.log(clicked)}>
+        <div className='userName'>
           <img src={this.state.user.profile_pic}/>
           <h2>{this.state.user.username}</h2>
         </div>
