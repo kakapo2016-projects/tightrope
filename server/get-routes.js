@@ -26,6 +26,9 @@ module.exports = function (app, cors, corsOptions) {
   var db = require('./db.js')(knex)
 
   // ----- get requests ----- //
+  app.get('/', function (req, res) {
+    res.send('elon musk was here on /')
+  })
 
   app.get('/api/v1/users/:id/profile', function (req, res) { // a request for one users info
     console.log('GET received on /api/v1/users/:id/profile')
