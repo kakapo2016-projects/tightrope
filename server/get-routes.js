@@ -101,7 +101,7 @@ module.exports = function (app, cors, corsOptions) {
     // console.log('GET received on /api/v1/photo/:id/comment', req.params.id)
     // console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
-    db.findMany('comments', { photo_id: req.params.id }, function (err, comments) {
+    db.getCommentAuthors({ photo_id: req.params.id }, function (err, comments) {
       if (err) { console.log('ERROR in comments', err) }
       // console.log(comments)
       res.json(comments) // returns the record for many photo
@@ -166,6 +166,14 @@ module.exports = function (app, cors, corsOptions) {
     db.findOne('users', { user_id: req.query.user_id }, function (err, resp) {
       if (err) { console.log('Error in slack request: ', err) }
       console.log('Server slack response: ', resp)
+      res.json(resp)
+    })
+  })
+
+  app.get('/api/v1/fans/:id', function (req, res) {
+    db.findMany('fans', { liker_id: req.params.id }, function (err, resp) {
+      if (err) { console.log('Error in fans get request', err); return }
+      console.log('resp from server:', resp)
       res.json(resp)
     })
   })
