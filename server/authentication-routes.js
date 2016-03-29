@@ -30,7 +30,7 @@ module.exports = function (app, cors, corsOptions) {
     app.get('/api/v1/login', function (req, res) {
       console.log('req', req.query)
       knex('users')
-        .where({'email': req.query.email})
+        .where({ 'email': req.query.email })
         .select('hashed_password', 'user_id')
         .then(function (resp) {
           console.log('Fucker fucker', resp)
@@ -62,21 +62,23 @@ module.exports = function (app, cors, corsOptions) {
           if (err) { console.log('Error in sign up: ', err) }
           console.log(hash)
           // var newId = uuid.v4()
-          knex('users').insert({ // puts it in the DB
-            email: req.body.username.email,
-            username: req.body.username.username,
-            hashed_password: hash,
-            doa: moment().add(1, 'days'),
-            created_at: new Date(),
-            updated_at: new Date()
-          }).then(function (resp) {
-            console.log(typeof resp)
-            // respData = resp
-            // res.redirect('/test_pass')
-            res.send('The response from the DB was: ' + resp) // returns the number from the DB of the newly added record
-          })
+          knex('users')
+            .insert({ // puts it in the DB
+              email: req.body.username.email,
+              username: req.body.username.username,
+              hashed_password: hash,
+              doa: moment().add(1, 'days'),
+              created_at: new Date(),
+              updated_at: new Date()
+            }).then(function (resp) {
+              knex('users')
+                .where({ 'email': req.body.username.email })
+                .select('hashed_password', 'user_id')
+                .then(function (respo) {
+                  res.send({ login: true, userId: respo[0].user_id })
+                })
+            })
         })
       })
     })
-
 }

@@ -21,6 +21,11 @@ export default React.createClass({
       if (err) console.log('Error:', err)
       this.setState({user: res.body})
       console.log('resbod ---------> ', res.body)
+      if (res.body.login === true) {
+        console.log('sucessfully logged in!')
+        this.setLoginCookie(res.body.userId)
+        browserHistory.push('/')
+      }
     }.bind(this))
   },
 
