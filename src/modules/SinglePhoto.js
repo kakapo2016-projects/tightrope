@@ -20,13 +20,13 @@ export default React.createClass({
 
   render: function () {
     return (
-      
+
       <Row>
       <Col md={8} className='single-photo'>
         <img className='img-responsive' src={this.state ? this.state.photo_url : ''} />
       </Col>
       <Col md={4}>
-        <CommentBox />
+        <CommentBox photoid={this.props.params.photo_id}/>
       </Col>
       </Row>
     )

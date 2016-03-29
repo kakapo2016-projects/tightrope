@@ -3,16 +3,19 @@ import cookie from 'react-cookie'
 import CommentList from './CommentList'
 import CommentForm from './CommentForm'
 import get from '../get-request-simple'
+import _ from 'lodash'
 
 export default React.createClass({
 
   loadCommentsFromServer: function () {
-    console.log('sending request')
-    get('http://localhost:3000/api/v1/photo/1/comment', function (err, res) {
+    get('http://localhost:3000/api/v1/photo/' + this.props.photoid + '/comment', function (err, res) {
       if (err) { console.log(err) }
-      console.log('res comments', res.comment)
-
-      this.setState({comments: res[1].comment})
+      let commentArray = []
+      for (var i = 0; i < res.length; i++) {
+        commentArray.push({comment: res[i].comment, user_id: res[i].user_id})
+      }
+      console.log('commentarray', commentArray)
+      this.setState({comments: commentArray})
     }.bind(this))
   },
 
@@ -21,14 +24,14 @@ export default React.createClass({
   },
 
   render: function () {
-    console.log('this', this.state.comments)
+    console.log('commentbox', this.state)
     return (
       <div className='comment-box'>
-        <CommentList comments={this.state.comments}/>
+        <CommentList comments={this.state ? this.state.comments : ''}
+          />
         <CommentForm />
       </div>
     )
   }
 })
-
 // <CommentForm onCommentSubmit={this.handleCommentSubmit} />

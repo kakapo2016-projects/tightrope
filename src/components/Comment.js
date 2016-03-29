@@ -5,8 +5,8 @@ export default React.createClass({
   render: function () {
     return (
       <div className='comment'>
-        <h3>Anna: </h3>
-        <p>This is the best photo I have ever seen</p>
+        <h3>{this.props.user_id}</h3>
+        <p>{this.props.comment}</p>
       </div>
     )
   }
