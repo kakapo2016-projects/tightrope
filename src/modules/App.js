@@ -1,8 +1,10 @@
 import { Grid } from 'react-bootstrap'
 import Navbar from './Navbar'
+import Profile from './Profile'
 import React, { Component, PropTypes } from 'react'
 import Feed from './Feed'
 import get from '../get-request'
+import cookie from 'react-cookie'
 
 class App extends Component {
 
@@ -14,16 +16,26 @@ class App extends Component {
     }
   }
 
+  sortProfile (sortType) {
+    console.log(`calling sortProfile with ${sortType}`)
+    get(`http://localhost:3000/api/v2/users/${cookie.load('userId')}/photos/${sortType}`, '', function (err, res) {
+      if (err) { console.log('Error:', err); return }
+      this.setState({photos: res})
+    }.bind(this))
+  }
+
+
   sortFeed (sortType) {
     console.log(`calling sortFeed with ${sortType}`)
     get(`http://localhost:3000/api/v2/photos/${sortType}`, '', function (err, res) {
-      if (err) console.log('Error:', err)
+      if (err) { console.log('Error:', err); return }
       this.setState({photos: res})
     }.bind(this))
   }
 
   componentDidMount () {
     this.sortFeed('recent')
+    this.sortProfile('recent')
   }
 
   render () {
@@ -32,7 +44,9 @@ class App extends Component {
       <Grid className='fluid-container'>{
         this.props.children.type.name === 'Feed'
           ? <Feed photos={this.state.photos} sorter={this.sortFeed.bind(this)} />
-          : this.props.children
+          : this.props.children.type.name === 'Profile'
+          ? <Profile photos={this.state.photos} sorter={this.sortProfile.bind(this)} />
+        : this.props.children
       }</Grid>
     </div>
   }

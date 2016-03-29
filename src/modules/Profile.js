@@ -6,14 +6,15 @@ import Photoset from '../components/Photoset'
 import post from '../post-request'
 import cookie from 'react-cookie'
 import get from '../get-request'
-import React from 'react'
+import React, { Component, PropTypes} from 'react'
 import $ from 'jquery'
 
-export default React.createClass({
+class Profile extends Component {
 
-  getInitialState: function () {
-    return {
-      photos: [],
+  constructor (props) {
+    super(props)
+
+    this.state = {
       profile: {
         profile_pic: '',
         username: '',
@@ -22,23 +23,9 @@ export default React.createClass({
         active_streak: 0
       }
     }
-  },
+  }
 
-  getSortRecent: function () {
-    get('http://localhost:3000/api/v2/users/' + cookie.load('userId') + '/photos/recent', '', function (err, res) {
-      if (err) { console.log('Error:', err); return }
-      this.setState({photos: res})
-    }.bind(this))
-  },
-
-  getSortPopular: function () {
-    get('http://localhost:3000/api/v2/users/' + cookie.load('userId') + '/photos/popular', '', function (err, res) {
-      if (err) { console.log('Error:', err); return }
-      this.setState({photos: res})
-    }.bind(this))
-  },
-
-  addUploadButt: function () {
+  addUploadButt () {
     $('.changeProfilePic').cloudinary_upload_widget(
       {
         cloud_name: 'dvzbt8kfq',
@@ -57,45 +44,51 @@ export default React.createClass({
           let profilePic = {
             profile_pic: result[0].url
           }
-          post('http://localhost:3000/api/v1/profile/' + cookie.load('userId'), profilePic, function (resp) {
+          post(`http://localhost:3000/api/v1/profile/${cookie.load('userId')}`, profilePic, function (resp) {
           })
         }
       }
     )
-  },
+  }
 
-  componentDidMount: function () {
-    this.getSortRecent()
-    this.addUploadButt()
+  componentDidMount () {
     get('http://localhost:3000/api/v1/users/' + cookie.load('userId') + '/profile', '', function (err, resp) {
       if (err) { console.log('Error:', err); return }
       this.setState({profile: resp})
     }.bind(this))
-  },
+  }
 
-  render: function () {
+
+  render () {
+
+    let sorter = this.props.sorter
+    let photos = this.props.photos
     let { profile_pic, username } = this.state.profile
-    let { photos } = this.state
     let accolades = this.state.profile
 
-    return (
-      <div>
-        <Row>
-          <Col sm={4} className='profile panel'>
-            <ProfilePic profilePic={profile_pic}/>
-            <span className='changeProfilePic'/>
-            <h2 className='username'>{username}</h2>
-            <Accolades accolades={accolades}/>
-          </Col>
-          <Col sm={8} className='feed centered' className='container-fluid'>
-            <div className='sort-buttons'>
-              <Button bsStyle='link' onClick={ this.getSortRecent }>Recent</Button>
-              <Button bsStyle='link' onClick={ this.getSortPopular }>Popular</Button>
-            </div>
-            <Photoset photoset={photos || []}/>
-          </Col>
-        </Row>
-      </div>
-    )
+    return <div>
+      <Row>
+        <Col sm={4} className='profile panel'>
+          <ProfilePic profilePic={profile_pic}/>
+          <span className='changeProfilePic'/>
+          <h2 className='username'>{username}</h2>
+          <Accolades accolades={accolades}/>
+        </Col>
+        <Col sm={8} className='feed centered' className='container-fluid'>
+          <div className='sort-buttons'>
+            <Button bsStyle='link' onClick={ () => sorter('recent') }>Recent</Button>
+            <Button bsStyle='link' onClick={ () => sorter('popular') }>Popular</Button>
+          </div>
+          <Photoset photoset={ photos || [] }/>
+        </Col>
+      </Row>
+    </div>
   }
-})
+}
+
+Profile.propTypes = {
+  sorter: PropTypes.func,
+  photos: PropTypes.array
+}
+
+export default Profile

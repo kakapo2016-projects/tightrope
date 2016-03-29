@@ -16,7 +16,7 @@ const Feed = ({ sorter, photos }) => {
 }
 
 Feed.propTypes = {
-  sorter: PropTypes.func.isRequired,
+  sorter: PropTypes.func,
   photos: PropTypes.array
 }
 
