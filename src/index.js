@@ -8,6 +8,7 @@ import Login from './modules/Login'
 import Profile from './modules/Profile'
 import Upload from './modules/Upload'
 import SinglePhoto from './modules/SinglePhoto'
+import ForeignProfile from './modules/Foreign-profile'
 import NoMatch from './modules/NoMatch'
 require('./stylesheets/modules/main.sass')
 
@@ -20,6 +21,7 @@ render((
       <Route path='/profile' component={Profile}/>
       <Route path='/upload' component={Upload}/>
       <Route path='/photos/:photo_id' component={SinglePhoto}/>
+      <Route path='/user/:user_id' component={ForeignProfile}/>
       <Route path='*' component={NoMatch}/>
     </Route>
   </Router>
