@@ -51,6 +51,19 @@ module.exports = function (app, cors, corsOptions) {
     })
   })
 
+  app.post('/api/v1/profile/:id', function (req, res) { // receives a photo url as a string
+    console.log('POST received on /api/v1/profile/:id')
+    console.log('req.body is: ', req.body, req.params.id)
+    // use knex to do 'INSERT INTO photos (fields) VALUES (values)
+    db.update('users', {user_id: req.params.id}, {
+      profile_pic: req.body.profile_pic // essential
+      }, function (err, resp) {
+        if (err) { console.log('Error: ', err) }
+        console.log('The newly added row has id: ', resp)
+      }
+    )
+  })
+
   app.post('/api/v1/login', function (req, res) { // receives a JSON obj containing email, username , and password
     console.log('POST to /api/v1/login')
     console.log('req.body.email is: ', req.body.email)
@@ -59,7 +72,8 @@ module.exports = function (app, cors, corsOptions) {
     knex('users').insert({
       email: req.body.email,
       username: req.body.username,
-      hashed_password: req.body.password
+      hashed_password: req.body.password,
+      profile_pic: 'http://sunfieldfarm.org/wp-content/uploads/2014/02/profile-placeholder.png'
     }).then(function (resp) {
       console.log(typeof resp)
       // respData = resp
