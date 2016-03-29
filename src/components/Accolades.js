@@ -1,11 +1,12 @@
 import React from 'react'
 import _ from 'lodash'
+import moment from 'moment'
 
 export default React.createClass({
 
   render: function () {
     let credits = this.props.accolades.credits
-    let activeStreak = this.props.accolades.active_streak
+    let activeStreak = moment().diff(this.props.accolades.created_at, 'days')
     let badges = this.props.accolades.badges
 
     return (
