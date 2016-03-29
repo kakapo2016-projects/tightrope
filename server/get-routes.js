@@ -32,8 +32,7 @@ module.exports = function (app, cors, corsOptions) {
     // console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM users WHERE user_id=2' to sqlite DB
     db.findOne('users', { user_id: req.params.id }, function (err, user) {
-      if (err) { throw err }
-      // console.log(user)
+      if (err) { console.log('Error: ', err); return }
       res.json(user) // returns the record for one user
     })
   })
@@ -43,7 +42,7 @@ module.exports = function (app, cors, corsOptions) {
     // console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     db.findOne('photos', { photo_id: req.params.id }, function (err, photo) {
-      if (err) { throw err }
+      if (err) { console.log('Error: ', err); return }
       // console.log(photo)
       res.json(photo) // returns the record for one photo
     })
@@ -54,7 +53,7 @@ module.exports = function (app, cors, corsOptions) {
     // console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     db.findMany('photos', { user_id: req.params.id }, function (err, photo) {
-      if (err) { throw err }
+      if (err) { console.log('Error: ', err); return }
       // console.log(photo)
       res.json(photo) // returns the record for many photo
     })
@@ -102,7 +101,7 @@ module.exports = function (app, cors, corsOptions) {
     // console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     db.getCommentAuthors({ photo_id: req.params.id }, function (err, comments) {
-      if (err) { console.log('ERROR in comments', err) }
+      if (err) { console.log('Error: ', err); return }
       // console.log(comments)
       res.json(comments) // returns the record for many photo
     })
@@ -113,7 +112,7 @@ module.exports = function (app, cors, corsOptions) {
     // console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     db.getAll('photos', function (err, photoSet) {
-      if (err) { throw err }
+      if (err) { console.log('Error: ', err); return }
       // console.log('photoSet is: ', photoSet)
       res.json(photoSet) // returns the record for many photos
     })
@@ -156,7 +155,7 @@ module.exports = function (app, cors, corsOptions) {
     // console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     db.getPhotoStreak(function (err, resp) {
-      if (err) { throw err }
+      if (err) { console.log('Error: ', err); return }
       res.json(resp) // returns the record for many photos
     })
   })
@@ -165,7 +164,7 @@ module.exports = function (app, cors, corsOptions) {
     // console.log('req.query is: ', req.query.user_id)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     db.findOne('users', { user_id: req.query.user_id }, function (err, resp) {
-      if (err) { console.log('Error in slack request: ', err) }
+      if (err) { console.log('Error: ', err); return }
       console.log('Server slack response: ', resp)
       res.json(resp)
     })
@@ -173,7 +172,7 @@ module.exports = function (app, cors, corsOptions) {
 
   app.get('/api/v1/fans/:id', function (req, res) {
     db.findMany('fans', { liker_id: req.params.id }, function (err, resp) {
-      if (err) { console.log('Error in fans get request', err); return }
+      if (err) { console.log('Error: ', err); return }
       console.log('resp from server:', resp)
       res.json(resp)
     })
