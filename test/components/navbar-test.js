@@ -1,8 +1,7 @@
-import { expect } from 'chai'
 import { shallow, render, mount } from 'enzyme'
-import React from 'react'
-
 import Navbar from '../../src/modules/Navbar'
+import { expect } from 'chai'
+import React from 'react'
 
 describe('Navbar', () => {
   it('should have wrapper div with class of navWrap', () => {

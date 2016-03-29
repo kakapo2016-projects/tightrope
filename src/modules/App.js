@@ -1,7 +1,7 @@
+import { Grid } from 'react-bootstrap'
+import Navbar from './Navbar'
 import React from 'react'
 import Feed from './Feed'
-import Navbar from './Navbar'
-import { Grid } from 'react-bootstrap'
 
 export default React.createClass({
 
