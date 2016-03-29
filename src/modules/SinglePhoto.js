@@ -29,7 +29,7 @@ export default React.createClass({
 
   getUserInfo: function (userId) {
     get('http://localhost:3000/api/v1/users/' + userId + '/profile', '', function (err, res) {
-      console.log('GOT FROM SERVER: ', res)
+      // console.log('GOT FROM SERVER: ', res)
       if (err) { console.log('Error getting profile: ', err) }
       this.setState({user: res})
       this.handleFollow()
@@ -66,9 +66,9 @@ export default React.createClass({
     get('http://localhost:3000/api/v1/fans/' + cookie.load('userId'), '',function (err, res) {
       if (err) { console.log('ERROR retriving fans'); return }
       let foundUser = false
-      console.log('THIS THING', res)
+      // console.log('THIS THING', res)
       res.forEach((user) => {
-        console.log('looking', _this.state.user, user.liked_id)
+        // console.log('looking', _this.state.user, user.liked_id)
         if (this.state.user.user_id === user.liked_id) {
           console.log('Running')
           foundUser = true
