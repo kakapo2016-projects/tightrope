@@ -68,14 +68,10 @@ export default React.createClass({
   componentDidMount: function () {
     this.getSortRecent()
     this.addUploadButt()
-    // get('http://localhost:3000/api/v2/users/' + cookie.load('userId') + '/photos/', '', function (err, res) {
-    //   if (err) console.log('Error:', err)
-    //   this.setState({photos: res})
-    // }.bind(this))
-    // get('http://localhost:3000/api/v1/users/' + cookie.load('userId') + '/profile', '', function (err, resp) {
-    //   if (err) console.log('Error:', err)
-    //   this.setState({profile: resp})
-    // }.bind(this))
+    get('http://localhost:3000/api/v1/users/' + cookie.load('userId') + '/profile', '', function (err, resp) {
+      if (err) console.log('Error:', err)
+      this.setState({profile: resp})
+    }.bind(this))
   },
 
   render: function () {
@@ -85,10 +81,6 @@ export default React.createClass({
 
     return (
       <div>
-        <div className='sort-buttons'>
-          <Button bsStyle='link' onClick={ this.getSortRecent }>Recent</Button>
-          <Button bsStyle='link' onClick={ this.getSortPopular }>Popular</Button>
-        </div>
         <Row>
           <Col sm={4} className='profile panel'>
             <ProfilePic profilePic={profile_pic}/>
@@ -97,6 +89,10 @@ export default React.createClass({
             <Accolades accolades={accolades}/>
           </Col>
           <Col sm={8} className='feed centered' className='container-fluid'>
+            <div className='sort-buttons'>
+              <Button bsStyle='link' onClick={ this.getSortRecent }>Recent</Button>
+              <Button bsStyle='link' onClick={ this.getSortPopular }>Popular</Button>
+            </div>
             <Photoset photoset={photos || []}/>
           </Col>
         </Row>
