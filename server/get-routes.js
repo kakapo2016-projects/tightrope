@@ -120,12 +120,12 @@ module.exports = function (app, cors, corsOptions) {
   })
 
   app.get('/api/v2/photos/recent', function (req, res) { // a request for all photos from all users
-    console.log('GET received on /api/v1/photos')
+    console.log('GET received on /api/v2/photos/recent')
     // console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM photos ORDER BY created_at DESC' to postgreSQL DB
-    knex.select()
-        .table('photos')
-        .orderBy('created_at', 'desc')
+    knex.from('photos')
+        .innerJoin('users', 'users.user_id', 'photos.user_id')
+        // .orderBy('created_at', 'desc')
         .then(function (photoSet) {
           // console.log('photoSet is: ', photoSet)
           res.json(photoSet) // returns the record for many photos
@@ -133,12 +133,12 @@ module.exports = function (app, cors, corsOptions) {
   })
 
   app.get('/api/v2/photos/popular', function (req, res) { // a request for all photos from all users
-    console.log('GET received on /api/v1/photos')
+    console.log('GET received on /api/v2/photos/popular')
     // console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM photos ORDER BY created_at DESC' to postgreSQL DB
-    knex.select()
-        .table('photos')
-        .orderBy('likes', 'desc')
+    knex.from('photos')
+        .innerJoin('users', 'users.user_id', 'photos.user_id')
+        // .orderBy('likes', 'desc')
         .then(function (photoSet) {
           // console.log('photoSet is: ', photoSet)
           res.json(photoSet) // returns the record for many photos

@@ -13,6 +13,7 @@ export default React.createClass({
         {_.map(this.props.photos, function (photo) {
           var diff = moment().diff(photo.created_at, 'days')
           let routeID = '/photos/' + photo.photo_id
+          console.log('USER', photo)
           return (
             <div>
               <Link to={routeID}>
