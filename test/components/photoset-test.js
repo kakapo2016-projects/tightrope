@@ -1,8 +1,7 @@
-import { expect } from 'chai'
-import { render } from 'enzyme'
-import React from 'react'
-
 import Photoset from '../../src/components/Photoset'
+import { render } from 'enzyme'
+import { expect } from 'chai'
+import React from 'react'
 
 describe('Photoset', () => {
   const testphotoset = [

@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router'
 import get from '../get-request-simple'
+import { Link } from 'react-router'
+import React from 'react'
 
 export default React.createClass({
 

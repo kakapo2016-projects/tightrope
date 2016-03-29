@@ -1,13 +1,12 @@
-import React from 'react'
-import request from 'superagent'
-import cookie from 'react-cookie'
-import ProfilePic from '../components/ProfilePic'
-import Photoset from '../components/Photoset'
-import Accolades from '../components/Accolades'
 import { Col, Row, Button } from 'react-bootstrap'
-import get from '../get-request'
-import post from '../post-request'
+import ProfilePic from '../components/ProfilePic'
+import Accolades from '../components/Accolades'
 require('../stylesheets/modules/profile.sass')
+import Photoset from '../components/Photoset'
+import post from '../post-request'
+import cookie from 'react-cookie'
+import get from '../get-request'
+import React from 'react'
 
 export default React.createClass({
 

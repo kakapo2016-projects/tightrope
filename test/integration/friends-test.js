@@ -12,5 +12,5 @@ module.exports = {
     browser
         .waitForElementVisible('body', 1000)
         .click('containsText("#main", "friends")')
-    }
+  }
 }

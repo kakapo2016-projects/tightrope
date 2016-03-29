@@ -1,8 +1,7 @@
-import { expect } from 'chai'
-import { shallow, render, mount } from 'enzyme'
-import React from 'react'
-
 import Photo from '../../src/components/Photo'
+import { shallow, render, mount } from 'enzyme'
+import { expect } from 'chai'
+import React from 'react'
 
 describe('Photo', () => {
   xit('should render an image', () => {

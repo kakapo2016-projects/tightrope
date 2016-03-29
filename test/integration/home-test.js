@@ -6,6 +6,6 @@ module.exports = {
       .click('input[value="Sign In"]')
       .pause(1000)
       .assert.containsText('div', 'login')
-      .end();
+      .end()
   }
-};
+}

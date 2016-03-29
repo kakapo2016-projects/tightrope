@@ -1,14 +1,12 @@
-import React from 'react'
+import slack from '../components/slack-delete'
 import { browserHistory } from 'react-router'
-import { ButtonInput } from 'react-bootstrap'
-import get from '../get-request'
-import post from '../post-request'
-import cookie from 'react-cookie'
 import { Col, Row } from 'react-bootstrap'
 import Signup from '../components/Signup'
 import Signin from '../components/Signin'
-import slack from '../components/slack-delete'
-
+import post from '../post-request'
+import cookie from 'react-cookie'
+import get from '../get-request'
+import React from 'react'
 
 export default React.createClass({
   getInitialState: function () {
