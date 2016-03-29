@@ -1,9 +1,14 @@
-import React from 'react'
-import CommentBox from '../components/CommentBox'
-import get from '../get-request'
-import { Row, Col } from 'react-bootstrap'
-import { Link } from 'react-router'
 require('../stylesheets/modules/single-photo.sass')
+import CommentBox from '../components/CommentBox'
+<<<<<<< HEAD
+import get from '../get-request'
+=======
+>>>>>>> 0daf486a2df8a0d8880891ed68ae46b445295f92
+import { Row, Col } from 'react-bootstrap'
+import get from '../get-request-simple'
+import { Link } from 'react-router'
+import request from 'superagent'
+import React from 'react'
 
 export default React.createClass({
   getInitialState: function () {
@@ -44,6 +49,7 @@ export default React.createClass({
         <img className='img-responsive' src={this.state ? this.state.photo_url : ''} />
       </Col>
       <Col md={4}>
+
         <Link to={routeID}>
           <div className='userName'>
             <img src={this.state.user.profile_pic}/>

@@ -1,9 +1,8 @@
 
-import { expect } from 'chai'
 import { shallow, render, mount } from 'enzyme'
-import React from 'react'
-
 import Login from '../../src/modules/Login'
+import { expect } from 'chai'
+import React from 'react'
 
 describe('Login', () => {
   it('should render sign-in component', () => {

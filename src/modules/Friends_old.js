@@ -1,7 +1,7 @@
-import React from 'react'
 import FeedFriends from '../components/Feed-friends'
-import get from '../get-request'
 require('../stylesheets/modules/feed.sass')
+import get from '../get-request'
+import React from 'react'
 
 export default React.createClass({
   setInitialState: function () {

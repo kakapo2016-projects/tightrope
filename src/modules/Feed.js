@@ -1,9 +1,8 @@
-import React from 'react'
 import FeedPhotos from '../components/Feed-photos'
-import get from '../get-request'
-import { Button } from 'react-bootstrap'
-import _ from 'lodash'
 require('../stylesheets/modules/feed.sass')
+import { Button } from 'react-bootstrap'
+import get from '../get-request'
+import React from 'react'
 
 export default React.createClass({
 
