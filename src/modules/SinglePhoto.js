@@ -1,9 +1,8 @@
 require('../stylesheets/modules/single-photo.sass')
 import CommentBox from '../components/CommentBox'
 import request from 'superagent'
-import get from '../get-request-simple'
 import cookie from 'react-cookie'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router'
 import React from 'react'
 import get from '../get-request'
@@ -30,7 +29,7 @@ export default React.createClass({
   },
 
   getUserInfo: function (userId) {
-    get('http://localhost:3000/api/v1/users/' + userId + '/profile', function (err, res) {
+    get('http://localhost:3000/api/v1/users/' + userId + '/profile', '',function (err, res) {
       console.log('GOT FROM SERVER: ', res)
       if (err) { console.log('Error getting profile: ', err) }
       this.setState({user: res})
@@ -65,7 +64,7 @@ export default React.createClass({
   handleFollow: function (e) {
     console.log('init handle follow')
     let _this = this
-    get('http://localhost:3000/api/v1/fans/' + cookie.load('userId'), function (err, res) {
+    get('http://localhost:3000/api/v1/fans/' + cookie.load('userId'), '',function (err, res) {
       if (err) { console.log('ERROR retriving fans'); return }
       let foundUser = false
       console.log('THIS THING', res)
