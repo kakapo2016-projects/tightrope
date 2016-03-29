@@ -2,7 +2,8 @@ import React from 'react'
 import CommentBox from '../components/CommentBox'
 import request from 'superagent'
 import get from '../get-request-simple'
-import { Row, Col } from 'react-bootstrap'
+import cookie from 'react-cookie'
+import { Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router'
 require('../stylesheets/modules/single-photo.sass')
 
@@ -36,6 +37,10 @@ export default React.createClass({
     this.loadPhotosFromServer()
   },
 
+  follow: function (e) {
+    post('http://localhost:3000/api/v1/' + cookie.load('userId') + '/follow', {liked_id: } )
+  },
+
   render: function () {
     let routeID = '/user/' + this.state.user.user_id
     return (
@@ -44,12 +49,17 @@ export default React.createClass({
         <img className='img-responsive' src={this.state ? this.state.photo_url : ''} />
       </Col>
       <Col md={4}>
-        <Link to={routeID}>
-          <div className='userName'>
-            <img src={this.state.user.profile_pic}/>
-            <h2>{this.state.user.username}</h2>
-          </div>
-        </Link>
+        <div className='userName'>
+          <Link to={routeID}>
+            <div className='userPhoto'>
+              <img src={this.state.user.profile_pic}/>
+              <h2>{this.state.user.username}</h2>
+            </div>
+          </Link>
+          <div className='followButton'>
+          <Button onClick={this.follow}>Follow</Button>
+        </div>
+        </div>
         <CommentBox photoid={this.props.params.photo_id}/>
       </Col>
       </Row>

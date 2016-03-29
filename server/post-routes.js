@@ -82,4 +82,19 @@ module.exports = function (app, cors, corsOptions) {
     })
   })
 
+  app.post('/api/v1/:id/follow', function (req, res) { // receives a photo url as a string
+    console.log('POST received on /api/v1/:id/follow/')
+    console.log('req.body is: ', req.body)
+    // use knex to do 'INSERT INTO photos (fields) VALUES (values)
+    db.add('fans', {
+      liker_id: req.params.id, // essential - but coming from where?
+      liked_id: req.body.liker_id, // essential
+    }, function (err, resp) {
+      if (err) { console.log('Error: ', err) }
+      console.log('The newly added row has id: ', resp)
+      res.json(resp) // returns the id of the newly added photo record
+    })
+  })
+
+
 }
