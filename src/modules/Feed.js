@@ -26,6 +26,12 @@ export default React.createClass({
       this.setState({photos: res})
     }.bind(this))
   },
+  getSortHighwire: function () {
+    get('http://localhost:3000/api/v2/photos/highwire', '', function (err, res) {
+      if (err) console.log('Error:', err)
+      this.setState({photos: res})
+    }.bind(this))
+  },
 
   getSortPopular: function () {
     get('http://localhost:3000/api/v2/photos/popular', '', function (err, res) {
@@ -51,7 +57,7 @@ export default React.createClass({
       <div>
         <div className='sort-buttons'>
           <Button bsStyle='link' onClick={ this.getSortRecent }>Recent</Button>
-          <Button bsStyle='link'>Highwire</Button>
+          <Button bsStyle='link' onClick={ this.getSortHighwire }>Highwire</Button>
           <Button bsStyle='link' onClick={ this.getSortPopular }>Popular</Button>
         </div>
         <FeedPhotos photos={displayPhotos} />
