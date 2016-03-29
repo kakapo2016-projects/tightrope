@@ -101,7 +101,7 @@ module.exports = function (app, cors, corsOptions) {
     // console.log('GET received on /api/v1/photo/:id/comment', req.params.id)
     // console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
-    db.findMany('comments', { photo_id: req.params.id }, function (err, comments) {
+    db.getCommentAuthors({ photo_id: req.params.id }, function (err, comments) {
       if (err) { console.log('ERROR in comments', err) }
       // console.log(comments)
       res.json(comments) // returns the record for many photo
