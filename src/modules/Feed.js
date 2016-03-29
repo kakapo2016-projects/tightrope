@@ -13,15 +13,33 @@ export default React.createClass({
   },
 
   loadPhotosFromServer: function () {
-    get('http://localhost:3000/api/v2/photos/', '', function (err, res) {
+    get('http://localhost:3000/api/v2/photos/recent', '', function (err, res) {
       if (err) console.log('Error:', err)
       this.setState({photos: res})
     // setInterval(this.loadPhotosFromServer, 2000)
     }.bind(this))
   },
 
+  getSortRecent: function () {
+    get('http://localhost:3000/api/v2/photos/recent', '', function (err, res) {
+      if (err) console.log('Error:', err)
+      this.setState({photos: res})
+    }.bind(this))
+  },
+
+  getSortPopular: function () {
+    get('http://localhost:3000/api/v2/photos/popular', '', function (err, res) {
+      if (err) console.log('Error:', err)
+      this.setState({photos: res})
+    }.bind(this))
+  },
+
   componentWillMount: function () {
     this.loadPhotosFromServer()
+  },
+
+  componentDidMount: function () {
+    this.getSortRecent()
   },
 
   render: function () {
@@ -32,9 +50,9 @@ export default React.createClass({
     return (
       <div>
         <div className='sort-buttons'>
-          <Button bsStyle='link' onClick={ console.log('You clicked Recent')}>Recent</Button>
-          <Button bsStyle='link' onClick={ console.log('You clicked Highwire')}>Highwire</Button>
-          <Button bsStyle='link' onClick={ console.log('You clicked Popular')}>Popular</Button>
+          <Button bsStyle='link' onClick={ this.getSortRecent }>Recent</Button>
+          <Button bsStyle='link'>Highwire</Button>
+          <Button bsStyle='link' onClick={ this.getSortPopular }>Popular</Button>
         </div>
         <FeedPhotos photos={displayPhotos} />
       </div>

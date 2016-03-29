@@ -109,13 +109,26 @@ module.exports = function (app, cors, corsOptions) {
     })
   })
 
-  app.get('/api/v2/photos', function (req, res) { // a request for all photos from all users
+  app.get('/api/v2/photos/recent', function (req, res) { // a request for all photos from all users
     console.log('GET received on /api/v1/photos')
     // console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM photos ORDER BY created_at DESC' to postgreSQL DB
     knex.select()
         .table('photos')
         .orderBy('created_at', 'desc')
+        .then(function (photoSet) {
+          console.log('photoSet is: ', photoSet)
+          res.json(photoSet) // returns the record for many photos
+        })
+  })
+
+  app.get('/api/v2/photos/popular', function (req, res) { // a request for all photos from all users
+    console.log('GET received on /api/v1/photos')
+    // console.log('req.params is: ', req.params)
+    // use knex to do 'SELECT * FROM photos ORDER BY created_at DESC' to postgreSQL DB
+    knex.select()
+        .table('photos')
+        .orderBy('likes', 'desc')
         .then(function (photoSet) {
           console.log('photoSet is: ', photoSet)
           res.json(photoSet) // returns the record for many photos
