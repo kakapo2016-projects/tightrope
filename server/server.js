@@ -44,7 +44,6 @@ cloudinary.config({
 
 app.post('/photos', cors(corsOptions), function (req, res) {
   cloudinary.uploader.upload(Object.keys(req.body)[0], function (result) {
-    // console.log('result', result)
   })
 })
 

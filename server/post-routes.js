@@ -1,17 +1,9 @@
-import moment from 'moment'
-
 module.exports = function (app, cors, corsOptions) {
-  var path = require('path')
   var body_parser = require('body-parser')
-  var bcrypt = require('bcrypt')
   var moment = require('moment')
 
-  app.use(body_parser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
-  app.use(body_parser.json()) // parse application/json
-
-  // ----- global var ----- //
-
-  var respData = ''
+  app.use(body_parser.urlencoded({ extended: false }))
+  app.use(body_parser.json())
 
   // ----- db setup ----- //
 
@@ -33,7 +25,7 @@ module.exports = function (app, cors, corsOptions) {
     // use knex to do 'INSERT INTO photos (fields) VALUES (values)
     db.add('photos', {
       external_photo_id: req.body.external_photo_id, // essential
-      user_id: req.body.user_id, // essential - but coming from where?
+      user_id: req.body.user_id, // essential
       photo_url: req.body.photo_url, // essential
       caption: req.body.caption // optional
     }, function (err, resp) {
@@ -76,8 +68,6 @@ module.exports = function (app, cors, corsOptions) {
       profile_pic: 'http://sunfieldfarm.org/wp-content/uploads/2014/02/profile-placeholder.png'
     }).then(function (resp) {
       console.log(typeof resp)
-      // respData = resp
-      // res.redirect('/test_pass')
       res.send('Posted data to users table. The response from the DB was: ' + resp)
     })
   })
@@ -87,7 +77,7 @@ module.exports = function (app, cors, corsOptions) {
     console.log('req.body is: ', req.body, req.params.id)
     // use knex to do 'INSERT INTO photos (fields) VALUES (values)
     db.add('fans', {
-      liker_id: req.params.id, // essential - but coming from where?
+      liker_id: req.params.id, // essential
       liked_id: req.body.liked_id // essential
     }, function (err, resp) {
       if (err) { console.log('Error: ', err); return }
@@ -101,7 +91,7 @@ module.exports = function (app, cors, corsOptions) {
     console.log('req.body is: ', req.body.liked_id, req.params.id)
     // use knex to do 'INSERT INTO photos (fields) VALUES (values)
     db.delete('fans', {
-      liker_id: req.params.id, // essential - but coming from where?
+      liker_id: req.params.id, // essential
       liked_id: req.body.liked_id // essential
     }, function (err, resp) {
       if (err) { console.log('Error: ', err); return }
