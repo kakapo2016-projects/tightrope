@@ -23,7 +23,7 @@ export default React.createClass({
         cloud_name: 'dvzbt8kfq',
         upload_preset: 'rwy3xr9i',
         cropping: 'server',
-        'folder': 'user_photos',
+        folder: 'user_photos',
         theme: 'minimal',
         button_caption: '<i class="fa fa-camera-retro fa-1x"></i>',
         cropping_aspect_ratio: 1,

@@ -15,7 +15,6 @@ class App extends Component {
   }
 
   sortFeed (sortType) {
-    console.log(`calling sortFeed with ${sortType}`)
     get(`http://localhost:3000/api/v2/photos/${sortType}`, '', function (err, res) {
       if (err) console.log('Error:', err)
       this.setState({photos: res})

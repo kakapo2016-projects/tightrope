@@ -7,7 +7,6 @@ import post from '../post-request'
 import cookie from 'react-cookie'
 import get from '../get-request'
 import React from 'react'
-import $ from 'jquery'
 
 export default React.createClass({
 
