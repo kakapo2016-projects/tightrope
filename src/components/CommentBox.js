@@ -7,19 +7,21 @@ import get from '../get-request-simple'
 export default React.createClass({
 
   loadCommentsFromServer: function () {
-    get('/api/v1/photo/' + cookie.load('userId') + '/comment', function (err, res) {
+    console.log('sending request')
+    get('http://localhost:3000/api/v1/photo/1/comment', function (err, res) {
       if (err) { console.log(err) }
-      console.log('res', res.body.comments)
-      this.setState({comments: res.body.comments})
+      console.log('res comments', res.comment)
+
+      this.setState({comments: res[1].comment})
     }.bind(this))
   },
 
-  componentWillMount: function () {
+  componentDidMount: function () {
     this.loadCommentsFromServer()
   },
 
   render: function () {
-    console.log('this', this)
+    console.log('this', this.state.comments)
     return (
       <div className='comment-box'>
         <CommentList comments={this.state.comments}/>
@@ -29,5 +31,4 @@ export default React.createClass({
   }
 })
 
-// <CommentList data={this.state.data} />
 // <CommentForm onCommentSubmit={this.handleCommentSubmit} />

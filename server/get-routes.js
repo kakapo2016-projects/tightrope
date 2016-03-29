@@ -39,7 +39,7 @@ module.exports = function (app, cors, corsOptions) {
   })
 
   app.get('/api/v1/photos/:id', function (req, res) { // a request for one photo
-    console.log('GET received on /api/v1/photos/:id', req)
+    console.log('GET received on /api/v1/photos/:id')
     // console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     db.findOne('photos', { photo_id: req.params.id }, function (err, photo) {
@@ -61,7 +61,7 @@ module.exports = function (app, cors, corsOptions) {
   })
 
   app.get('/api/v1/photo/:id/comment', function (req, res) { // a request for all comments of one photo
-    console.log('GET received on /api/v1/photo/:id/comment')
+    console.log('GET received on /api/v1/photo/:id/comment', req.params.id)
     // console.log('req.params is: ', req.params)
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     db.findMany('comments', { photo_id: req.params.id }, function (err, comments) {
@@ -88,7 +88,6 @@ module.exports = function (app, cors, corsOptions) {
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     db.getPhotoStreak(function (err, resp) {
       if (err) { throw err }
-      console.log(' is: ', resp)
       res.json(resp) // returns the record for many photos
     })
   })
