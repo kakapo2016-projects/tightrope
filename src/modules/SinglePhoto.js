@@ -34,11 +34,10 @@ export default React.createClass({
     this.loadPhotosFromServer()
   },
 
-  
+
 
   render: function () {
     return (
-
       <Row>
       <Col md={8} className='single-photo'>
         <img className='img-responsive' src={this.state ? this.state.photo_url : ''} />
@@ -48,7 +47,7 @@ export default React.createClass({
           <img src={this.state.user.profile_pic}/>
           <h2>{this.state.user.username}</h2>
         </div>
-        <CommentBox />
+        <CommentBox photoid={this.props.params.photo_id}/>
       </Col>
       </Row>
     )
