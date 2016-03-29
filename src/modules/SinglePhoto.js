@@ -1,11 +1,7 @@
 require('../stylesheets/modules/single-photo.sass')
 import CommentBox from '../components/CommentBox'
-<<<<<<< HEAD
 import get from '../get-request'
-=======
->>>>>>> 0daf486a2df8a0d8880891ed68ae46b445295f92
 import { Row, Col } from 'react-bootstrap'
-import get from '../get-request-simple'
 import { Link } from 'react-router'
 import request from 'superagent'
 import React from 'react'

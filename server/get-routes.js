@@ -134,14 +134,19 @@ module.exports = function (app, cors, corsOptions) {
 
   app.get('/api/v2/photos/popular', function (req, res) { // a request for all photos from all users
     console.log('GET received on /api/v2/photos/popular')
-    // console.log('req.params is: ', req.params)
-    // use knex to do 'SELECT * FROM photos ORDER BY created_at DESC' to postgreSQL DB
-    knex.from('photos')
-        .innerJoin('users', 'users.user_id', 'photos.user_id')
-        // .orderBy('likes', 'desc')
+    knex.raw('SELECT users.username,photos.* FROM photos JOIN users ON users.user_id=photos.user_id ORDER BY photos.likes DESC;')
         .then(function (photoSet) {
-          // console.log('photoSet is: ', photoSet)
-          res.json(photoSet) // returns the record for many photos
+          console.log('photoSet is: ', photoSet)
+          res.json(photoSet.rows) // returns the record for many photos
+        })
+  })
+
+  app.get('/api/v2/photos/highwire', function (req, res) { // a request for all photos from all users
+    console.log('GET received on /api/v2/photos/highwire')
+    knex.raw('SELECT users.username,users.active_streak,photos.* FROM photos JOIN users ON users.user_id=photos.user_id ORDER BY users.active_streak DESC;')
+        .then(function (photoSet) {
+          console.log('photoSet is: ', photoSet)
+          res.json(photoSet.rows) // returns the record for many photos
         })
   })
 
@@ -166,7 +171,7 @@ module.exports = function (app, cors, corsOptions) {
   })
 
   app.get('/api/v1/users/:id/friends', function (req, res) { // a request for all friends of one user
-    //- if user_1 is a fan of user_2 then in the fans table then this is represented as:
+    // - if user_1 is a fan of user_2 then in the fans table then this is represented as:
     // 'user_id_a=1, user_id_b=2'
     console.log('GET received on /api/v1/users/:id/friends')
     // console.log('req.params is: ', req.params.id)
@@ -175,7 +180,6 @@ module.exports = function (app, cors, corsOptions) {
       // if (err) { console.log('Error', err)}
       console.log('friend is: ', resp)
       res.json(resp.rows) // returns the record for many friend
-    })
+      })
   })
-
 }

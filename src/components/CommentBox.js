@@ -1,10 +1,9 @@
 import CommentList from './CommentList'
 import CommentForm from './CommentForm'
 import get from '../get-request-simple'
-// import cookie from 'react-cookie
+import cookie from 'react-cookie'
 import request from 'superagent'
 import React from 'react'
-
 
 export default React.createClass({
 
@@ -21,12 +20,16 @@ export default React.createClass({
 
   handleCommentSubmit: function (comment) {
     // submit to the server and refresh the list
-    requests
+    request
       .post('http://localhost:3000/api/v1/photo/' + this.props.photoid + '/comment')
-      .send(comment)
-
-
-
+      .send({comment: comment, userId: cookie.load('userId')})
+      .end(function (err, res) {
+        if (err) {
+          console.log('Error: ', err)
+        } else {
+          console.log('handlecommentsubmit', res)
+        }
+      })
   },
 
   componentDidMount: function () {
@@ -42,4 +45,3 @@ export default React.createClass({
     )
   }
 })
-// <CommentForm onCommentSubmit={this.handleCommentSubmit} />

@@ -17,13 +17,12 @@ export default React.createClass({
     if (!comment) {
       return
     }
-    //send request to server
+    // send request to server
     this.props.onCommentSubmit({ comment: comment });
     this.setState({comment: ''})
   },
 
   render: function () {
-    console.log('commentform', this.props)
     return (
       <div>
         <form className='comment-form' onSubmit={this.handleSubmit}>
