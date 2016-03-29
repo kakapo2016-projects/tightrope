@@ -17,11 +17,13 @@ export default React.createClass({
 
   signUpRequest: function (username, email, password) {
     console.log('Log in request')
-    post('http://localhost:3000/api/v1/signup', {email: email, username: username, password: password}, function (err, res) {
+    post('http://localhost:3000/api/v1/signup', { email: email, username: username, password: password }, function (err, res) {
       if (err) console.log('Error:', err)
       this.setState({user: res.body})
       console.log('resbod ---------> ', res.body)
-      if (res.body.err_email === true) {
+      if (res.body.err_email_username === true) {
+        window.alert('email and username already taken')
+      } else if (res.body.err_email === true) {
         window.alert('email already taken')
       } else if (res.body.err_username === true) {
         window.alert('username already taken')
