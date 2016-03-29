@@ -1,9 +1,10 @@
-import get from '../get-request-simple'
 import { Link } from 'react-router'
 import React from 'react'
 
 export default React.createClass({
-
+  propTypes: {
+    photo: React.PropTypes.object
+  },
   render: function () {
     let routeID = '/photos/' + this.props.photo.photo_id
     return (
