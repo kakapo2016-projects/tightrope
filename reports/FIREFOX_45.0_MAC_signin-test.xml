@@ -5,9 +5,9 @@
 
   <testsuite name="signin-test"
     errors="2" failures="1" hostname="" id="" package="signin-test" skipped="0"
-    tests="1" time="18.98" timestamp="Mon, 28 Mar 2016 20:05:51 GMT">
+    tests="1" time="21.66" timestamp="Wed, 30 Mar 2016 03:13:25 GMT">
   
-    <testcase name="Checking for login redirect" time="18.98" assertions="3">
+    <testcase name="Checking for login redirect" time="21.66" assertions="3">
 
     
 

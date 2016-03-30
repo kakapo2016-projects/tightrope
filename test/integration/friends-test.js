@@ -1,16 +1,19 @@
 module.exports = {
-  'Log in': function (browser, url) {
+  'friends test': function (browser) {
     browser
-        .url(url)
-        .waitForElementVisible('body', 1000)
-        .setValue('input[type="email"]', 'nightwatch@nighttime.com')
-        .setValue('input[type="password"]', 'a')
-        .click('input[value="Sign In"]')
+      .url('http://localhost:8080/login')
+      .waitForElementVisible('body', 1000)
+      .setValue('input[type="email"]', 'nightwatch@nighttime.com')
+      .setValue('input[type="password"]', 'a')
+      .click('input[value="Sign In"]')
   },
 
-  'navagate from feed to friends': function (browser) {
+  'navagate to friends': function (browser) {
     browser
-        .waitForElementVisible('body', 1000)
-        .click('containsText("#main", "friends")')
+      .waitForElementVisible('a#friends-link', 1000)
+      .click('a#friends-link')
+      .pause(1000)
+      .assert.urlContains('friends')
+      .end()
   }
 }

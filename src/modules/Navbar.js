@@ -64,8 +64,8 @@ export default React.createClass({
           <Navbar.Collapse className='navbar-collapse'>
             <Nav pullRight>
               <li><Link to='/' activeClassName='active' onlyActiveOnIndex>feed</Link></li>
-              { cookie.load('loggedIn') ? <li><NavLink to='/profile'>profile</NavLink></li> : <li></li> }
-              { cookie.load('loggedIn') ? <li><NavLink to='/friends'>friends</NavLink></li> : <li></li> }
+              { cookie.load('loggedIn') ? <li><NavLink id="profile-link"to='/profile'>profile</NavLink></li> : <li></li> }
+              { cookie.load('loggedIn') ? <li><NavLink id="friends-link" to='/friends'>friends</NavLink></li> : <li></li> }
               { cookie.load('loggedIn') ? <li><NavLink onClick={this.logout} to='/login'>logout</NavLink></li> : <li><NavLink to='/login'>login</NavLink></li> }
               <li id='upload'></li>
             </Nav>
