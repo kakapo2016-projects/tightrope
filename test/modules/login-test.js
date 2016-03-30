@@ -9,7 +9,7 @@ describe('Login', () => {
     const wrapper = shallow(<Login />)
     expect(wrapper.find('Signin').length).to.equal(1)
   })
-  it('should hrender sign-up component', () => {
+  it('should render sign-up component', () => {
     const wrapper = shallow(<Login />)
     expect(wrapper.find('Signup').length).to.equal(1)
   })

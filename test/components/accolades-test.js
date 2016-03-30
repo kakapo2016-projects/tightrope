@@ -17,11 +17,12 @@ describe('Accolades', () => {
     }
   }
 
-  it('should render a div with class of accolades', () => {
+  xit('should render a div with class of accolades', () => {
     const wrapper = shallow(<Accolades />)
     expect(wrapper.find('.accolades')).to.have.length(1)
   })
-  it('should render 3 spans (badges)', () => {
+
+  xit('should render 3 spans (badges)', () => {
     console.log(props.accolades.badges)
     console.log(props.accolades.credits)
     const wrapper = mount(<Accolades badges={props.accolades.badges} />)
