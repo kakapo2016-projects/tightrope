@@ -21,6 +21,7 @@ describe('Accolades', () => {
     const wrapper = shallow(<Accolades />)
     expect(wrapper.find('.accolades')).to.have.length(1)
   })
+
   xit('should render 3 spans (badges)', () => {
     console.log(props.accolades.badges)
     console.log(props.accolades.credits)
