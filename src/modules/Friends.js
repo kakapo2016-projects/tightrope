@@ -14,21 +14,16 @@ export default React.createClass({
   },
 
   loadPhotosFromServer: function () {
-    /* this should use: '/api/v1/users/:id/friends'  - the :id should be replaced by a number */
     get(url + '/api/v1/photos/', '*', function (err, res) {
-      // getSimple(url + '/api/v1/users/1/friends', function (err, res) {
       if (err) { console.log('Error:', err); return }
       this.setState({friends: res})
-    // setInterval(this.loadPhotosFromServer, 2000)
     }.bind(this))
   },
 
   loadFriendsFromServer: function () {
-    /* this should use: '/api/v1/users/:id/friends'  - the :id should be replaced by a number */
     getSimple(url + '/api/v1/users/' + cookie.load('userId') + '/friends', function (err, res) {
       if (err) { console.log('Error:', err); return }
       this.setState({friends: res})
-    // setInterval(this.loadPhotosFromServer, 2000)
     }.bind(this))
   },
 
