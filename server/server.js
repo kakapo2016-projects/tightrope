@@ -28,9 +28,9 @@ app.use(knex({
   connection: {
     host     : process.env.DBHOST,
     port     : '5432',
-    database : process.env.DBNAME,
-    user:     process.env.DBUSER,
-    password: process.env.DBPASSWORD
+    database : process.env.NAME,
+    user:     process.env.USER,
+    password: process.env.PASSWORD
   },
   searchPath: 'public'
 }))

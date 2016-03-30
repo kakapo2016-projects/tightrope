@@ -37,8 +37,8 @@ module.exports =  {
       url: process.env.DATABASE_URL,
       host: process.env.DBHOST,
       database: process.env.DBNAME,
-      user:     process.env.DBUSER,
-      password: process.env.DBPASSWORD
+      user:     process.env.USER,
+      password: process.env.PASSWORD
     },
     seeds: {
       directory: './seeds'
