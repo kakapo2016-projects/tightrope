@@ -1,5 +1,4 @@
 module.exports = {
-  '@disabled': true,
   'Checking for login redirect': function (browser) {
     browser
       .url('http://localhost:8080/login')
@@ -9,7 +8,8 @@ module.exports = {
       .setValue('input[type=password]', 'a')
       .click('input[type=submit]')
       .pause(1000)
-      .assert.containsText('#test', 'test')
+      .waitForElementVisible('body', 10000)
       .end()
   }
 }
+// '@disabled': true,
