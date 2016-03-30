@@ -8,10 +8,6 @@ describe('Profile', () => {
     const wrapper = render(<Profile />)
     expect(wrapper.find('.profilephoto').length).to.equal(1)
   })
-  it('should have a heading of Simon', () => {
-    const wrapper = mount(<Profile username='Simon'/>)
-    expect (wrapper.props().username).to.equal('Simon')
-  })
   it('should render accolades', () => {
     const wrapper = shallow(<Profile />)
     expect(wrapper.find('Accolades').length).to.equal(1)

@@ -51,7 +51,6 @@ export default React.createClass({
   unfollow: function (e) {
     post('http://localhost:3000/api/v1/' + cookie.load('userId') + '/unfollow', {liked_id: this.state.user.user_id}, function (err, res) {
       if (err) { console.log('Error in follow request: ', err); return }
-      // alert('Following user')
     } )
   },
 
@@ -60,9 +59,7 @@ export default React.createClass({
     get('http://localhost:3000/api/v1/fans/' + cookie.load('userId'), '',function (err, res) {
       if (err) { console.log('ERROR retriving fans'); return }
       let foundUser = false
-      // console.log('THIS THING', res)
       res.forEach((user) => {
-        // console.log('looking', _this.state.user, user.liked_id)
         if (this.state.user.user_id === user.liked_id) {
           foundUser = true
         } else {
@@ -79,26 +76,28 @@ export default React.createClass({
   render: function () {
     let routeID = '/user/' + this.state.user.user_id
     return (
-      <Row>
-      <Col md={8} className='single-photo'>
-        <img className='img-responsive' src={this.state ? this.state.photo_url : ''} />
-      </Col>
-      <Col md={4}>
-        <div className='userName'>
-          <Link to={routeID}>
-            <div className='userPhoto'>
-              <img src={this.state.user.profile_pic}/>
-              <h2>{this.state.user.username}</h2>
+      <div className='single-photo-page'>
+        <Row>
+        <Col md={8} className='single-photo'>
+          <img className='img-responsive' src={this.state ? this.state.photo_url : ''} />
+        </Col>
+        <Col md={4}>
+          <div className='userName'>
+            <Link to={routeID}>
+              <div className='userPhoto'>
+                <img src={this.state.user.profile_pic}/>
+                <h2>{this.state.user.username}</h2>
+              </div>
+            </Link>
+            <div className='followButton'>
+              { this.state.followed ? <Button onClick={this.unfollow}>Unfollow</Button> : <Button onClick={this.follow}>Follow</Button>
+              }
             </div>
-          </Link>
-          <div className='followButton'>
-            { this.state.followed ? <Button onClick={this.unfollow}>Unfollow</Button> : <Button onClick={this.follow}>Follow</Button>
-            }
           </div>
-        </div>
-        <CommentBox photoid={this.props.params.photo_id}/>
-      </Col>
-      </Row>
+          <CommentBox photoid={this.props.params.photo_id}/>
+        </Col>
+        </Row>
+      </div>
     )
   }
 })

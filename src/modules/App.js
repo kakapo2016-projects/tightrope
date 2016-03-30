@@ -23,7 +23,6 @@ class App extends Component {
     }.bind(this))
   }
 
-
   sortFeed (sortType) {
     get(`http://localhost:3000/api/v2/photos/${sortType}`, '', function (err, res) {
       if (err) { console.log('Error:', err); return }
@@ -37,7 +36,8 @@ class App extends Component {
   }
 
   render () {
-    return <div>
+    return (
+    <div>
       <Navbar sortFeed={this.sortFeed.bind(this, 'recent')} />
       <Grid className='fluid-container'>{
         this.props.children.type.name === 'Feed'
@@ -47,6 +47,7 @@ class App extends Component {
         : this.props.children
       }</Grid>
     </div>
+    )
   }
 }
 
