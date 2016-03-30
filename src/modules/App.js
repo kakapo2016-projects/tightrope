@@ -17,7 +17,6 @@ class App extends Component {
   }
 
   sortProfile (sortType) {
-    console.log(`calling sortProfile with ${sortType}`)
     get(`http://localhost:3000/api/v2/users/${cookie.load('userId')}/photos/${sortType}`, '', function (err, res) {
       if (err) { console.log('Error:', err); return }
       this.setState({photos: res})
