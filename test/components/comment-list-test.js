@@ -13,8 +13,7 @@ describe('CommentList', () => {
 
   xit('should render 4 comments', () => {
     const wrapper = render(<CommentList
-      comment={props.comment}
-      username={props.username}/>)
-    expect(wrapper.find('.comment')).to.have.length(4)
+      {...props}/>)
+    expect(wrapper.find('.comment').length).to.equal(4)
   })
 })

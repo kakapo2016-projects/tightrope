@@ -4,7 +4,7 @@ import { shallow, render, mount } from 'enzyme'
 import React from 'react'
 
 describe('Comment', () => {
-  const testComment = {
+  const props = {
     comment: 'This is the best photo I have ever seen',
     username: 'Simon'
   }
@@ -13,12 +13,11 @@ describe('Comment', () => {
     expect(wrapper.find('.comment')).to.have.length(1)
   })
   it('should have a username of Simon', () => {
-    const wrapper = mount(<Comment username={testComment.username}/>)
+    const wrapper = mount(<Comment {...props}/>)
     expect(wrapper.props().username).to.equal('Simon')
   })
-  // failing
-  xit('should display the correct comment', () => {
-    const wrapper = mount(<Comment username={testComment.comment}/>)
+  it('should display the correct comment', () => {
+    const wrapper = mount(<Comment {...props}/>)
     expect(wrapper.props().comment).to.equal('This is the best photo I have ever seen')
   })
 })
