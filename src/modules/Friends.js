@@ -1,4 +1,4 @@
-var FriendsList = require('../components/Friends-list')
+var FriendsList = require('../components/friends-list')
 // import FriendsList from '../components/Friends-list'
 import getSimple from '../get-request-simple'
 import cookie from 'react-cookie'
