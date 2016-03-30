@@ -3,6 +3,7 @@ import { Navbar, Nav } from 'react-bootstrap'
 import { Link } from 'react-router'
 import post from '../post-request'
 import cookie from 'react-cookie'
+import moment from 'moment'
 import NavLink from './NavLink'
 import React from 'react'
 
@@ -22,23 +23,23 @@ export default React.createClass({
         cloud_name: 'dvzbt8kfq',
         upload_preset: 'rwy3xr9i',
         cropping: 'server',
-        'folder': 'user_photos',
+        folder: 'user_photos',
         theme: 'minimal',
         button_caption: '<i class="fa fa-camera-retro fa-1x"></i>',
         cropping_aspect_ratio: 1,
         callback: '/profile'
       },
-      function (error, result) {
+      (error, result) => {
         if (error) {
           console.log('Error: ', error)
         } else {
           let userUpload = {
             external_photo_id: result[0].signature,
             user_id: cookie.load('userId'),
-            photo_url: result[0].url,
-            caption: 'This is a test'
+            photo_url: result[0].url
           }
-          post('http://localhost:3000/api/v1/photos', userUpload, function (resp) {
+          post('http://localhost:3000/api/v1/photos', userUpload, (resp) => {
+            this.props.sortFeed()
           })
         }
       }

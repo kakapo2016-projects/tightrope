@@ -1,17 +1,9 @@
-import moment from 'moment'
-
 module.exports = function (app, cors, corsOptions) {
-  var path = require('path')
   var body_parser = require('body-parser')
-  var bcrypt = require('bcrypt')
   var moment = require('moment')
 
-  app.use(body_parser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
-  app.use(body_parser.json()) // parse application/json
-
-  // ----- global var ----- //
-
-  var respData = ''
+  app.use(body_parser.urlencoded({ extended: false }))
+  app.use(body_parser.json())
 
   // ----- db setup ----- //
 
@@ -33,11 +25,15 @@ module.exports = function (app, cors, corsOptions) {
     // use knex to do 'INSERT INTO photos (fields) VALUES (values)
     db.add('photos', {
       external_photo_id: req.body.external_photo_id, // essential
-      user_id: req.body.user_id, // essential - but coming from where?
+      user_id: req.body.user_id, // essential
       photo_url: req.body.photo_url, // essential
-      caption: req.body.caption // optional
+      caption: ' ', // optional
+      created_at: moment(),
+      updated_at: moment(),
+      likes: 0,
+      comments: 0
     }, function (err, resp) {
-      if (err) { console.log('Error: ', err) }
+      if (err) { console.log('Error: ', err); return }
       console.log('The newly added row has id: ', resp)
       res.json(resp) // returns the id of the newly added photo record
       db.update('users', {user_id: req.body.user_id}, {
@@ -45,7 +41,7 @@ module.exports = function (app, cors, corsOptions) {
         updated_at: moment()
       }, function (err, resp) {
         console.log('Updating user')
-        if (err) { throw err }
+        if (err) { console.log('Error: ', err); return }
         console.log('Dates added: ', resp)
       })
     })
@@ -58,7 +54,7 @@ module.exports = function (app, cors, corsOptions) {
     db.update('users', {user_id: req.params.id}, {
       profile_pic: req.body.profile_pic // essential
     }, function (err, resp) {
-      if (err) { console.log('Error: ', err) }
+      if (err) { console.log('Error: ', err); return }
       console.log('The newly added row has id: ', resp)
     }
     )
@@ -76,8 +72,6 @@ module.exports = function (app, cors, corsOptions) {
       profile_pic: 'http://sunfieldfarm.org/wp-content/uploads/2014/02/profile-placeholder.png'
     }).then(function (resp) {
       console.log(typeof resp)
-      // respData = resp
-      // res.redirect('/test_pass')
       res.send('Posted data to users table. The response from the DB was: ' + resp)
     })
   })
@@ -87,10 +81,10 @@ module.exports = function (app, cors, corsOptions) {
     console.log('req.body is: ', req.body, req.params.id)
     // use knex to do 'INSERT INTO photos (fields) VALUES (values)
     db.add('fans', {
-      liker_id: req.params.id, // essential - but coming from where?
+      liker_id: req.params.id, // essential
       liked_id: req.body.liked_id // essential
     }, function (err, resp) {
-      if (err) { console.log('Error: ', err) }
+      if (err) { console.log('Error: ', err); return }
       console.log('The newly added row has id: ', resp)
       res.json(resp) // returns the id of the newly added photo record
     })
@@ -101,10 +95,10 @@ module.exports = function (app, cors, corsOptions) {
     console.log('req.body is: ', req.body.liked_id, req.params.id)
     // use knex to do 'INSERT INTO photos (fields) VALUES (values)
     db.delete('fans', {
-      liker_id: req.params.id, // essential - but coming from where?
+      liker_id: req.params.id, // essential
       liked_id: req.body.liked_id // essential
     }, function (err, resp) {
-      if (err) { console.log('Error: ', err) }
+      if (err) { console.log('Error: ', err); return }
       console.log('The newly added row has id: ', resp)
       res.json(resp) // returns the id of the newly added photo record
     })

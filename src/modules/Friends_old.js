@@ -13,9 +13,8 @@ export default React.createClass({
 
   loadFriendsFromServer: function () {
     console.log('in Friends - loadFriendsFromServer')
-    // get('localhost:3000/api/v1/users/1/friends', '', function (err, res) {
     get('localhost:3000/api/v1/users/dummyid/friends', '', function (err, res) {
-      if (err) console.log('Error:', err)
+      if (err) { console.log('Error:', err); return }
       console.log('Friends res is :', res)
       this.setState({friends: res})
     }.bind(this))
