@@ -18,8 +18,8 @@ export default React.createClass({
         }
         </div>
         <div>
-          <h3>Credits: {credits}</h3>
-          <h3>Active streak: {activeStreak}</h3>
+          <h3 className='credits'>Credits: {credits}</h3>
+          <h3 className='active-streak'>Active streak: {activeStreak}</h3>
         </div>
       </div>
     )
