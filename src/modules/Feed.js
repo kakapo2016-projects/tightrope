@@ -4,7 +4,6 @@ import { Button } from 'react-bootstrap'
 import React, { PropTypes } from 'react'
 
 const Feed = ({ sorter, photos }) => {
-  console.log('sorter', sorter, 'photos', photos)
   return <div>
     <div className='sort-buttons'>
       <Button bsStyle='link' onClick={ () => sorter('recent') }>Recent</Button>
@@ -16,7 +15,7 @@ const Feed = ({ sorter, photos }) => {
 }
 
 Feed.propTypes = {
-  sorter: PropTypes.func.isRequired,
+  sorter: PropTypes.func,
   photos: PropTypes.array
 }
 

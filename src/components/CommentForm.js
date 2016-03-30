@@ -17,7 +17,7 @@ export default React.createClass({
     if (!comment) {
       return
     }
-    this.props.onCommentSubmit({ comment: comment });
+    this.props.onCommentSubmit({ comment: comment })
     this.setState({comment: ''})
   },
 
@@ -26,11 +26,13 @@ export default React.createClass({
       <div>
         <form className='comment-form' onSubmit={this.handleSubmit}>
           <Input
+            className='comment-input'
             type='textarea'
             placeholder='Add a comment'
             value={this.state.comment}
             onChange={this.handleCommentChange} />
           <ButtonInput
+            className='comment-submit'
             type='submit'
             value='Post' />
         </form>
