@@ -36,7 +36,7 @@ class App extends Component {
   }
 
   render () {
-    return
+    return (
     <div>
       <Navbar sortFeed={this.sortFeed.bind(this, 'recent')} />
       <Grid className='fluid-container'>{
@@ -47,6 +47,7 @@ class App extends Component {
         : this.props.children
       }</Grid>
     </div>
+    )
   }
 }
 
