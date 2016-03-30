@@ -5,6 +5,7 @@ var app = express()
 var cloudinary = require('cloudinary')
 var dotenv = require('dotenv')
 require('dotenv').config()
+var knex = require('knex')
 
 dotenv.load()
 cloudinary.cloudinary_js_config()
@@ -23,14 +24,17 @@ require('./authentication-routes')(app, cors, corsOptions)
   // ----- set up DB ----- //
 
 
-var knex = require('knex')({
+app.use(knex({
   client: 'pg',
   connection: {
-    filename: __dirname + '/../data/tightrope.sqlite',
-    ssl: true
+    host     : process.env.DBHOST,
+    port     : '5432',
+    database : process.env.DBNAME || database,
+    user:     process.env.DBUSER,
+    password: process.env.DBPASSWORD
   },
-  useNullAsDefault: true
-})
+  searchPath: 'public'
+}))
 
 var db = require('./db.js')(knex)
 
