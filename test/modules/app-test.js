@@ -5,9 +5,9 @@ import React from 'react'
 
 describe('App', () => {
 
-  xit('should render a Nav bar', () => {
+  xit('should render a Feed', () => {
     const wrapper = shallow(<App />)
-    expect(wrapper.find('Navbar')).to.have.length(1)
+    expect(wrapper.find('Feed')).to.have.length(1)
   })
   xit('should have a Grid', () => {
     const wrapper = mount(<App />)

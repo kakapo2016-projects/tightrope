@@ -1,10 +1,12 @@
+import SinglePhoto from '../../src/modules/SinglePhoto'
 import { expect } from 'chai'
 import { shallow, render, mount } from 'enzyme'
 import React from 'react'
 
-describe('App', () => {
-  xit('should have a div', () => {
-    const wrapper = shallow(<App />)
-    expect(wrapper.find('div')).to.have.length(1)
+describe('SinglePhoto', () => {
+
+  xit('should render comment box', () => {
+    const wrapper = shallow(<SinglePhoto />)
+    expect(wrapper.find('CommentBox').length).to.equal(1)
   })
 })

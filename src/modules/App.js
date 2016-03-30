@@ -23,7 +23,6 @@ class App extends Component {
     }.bind(this))
   }
 
-
   sortFeed (sortType) {
     get(`http://localhost:3000/api/v2/photos/${sortType}`, '', function (err, res) {
       if (err) { console.log('Error:', err); return }

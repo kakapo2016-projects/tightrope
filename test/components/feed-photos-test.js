@@ -1,10 +1,11 @@
+import FeedPhotos from '../../src/components/Feed-photos'
 import { expect } from 'chai'
 import { shallow, render, mount } from 'enzyme'
 import React from 'react'
 
-describe('App', () => {
-  xit('should have a div', () => {
-    const wrapper = shallow(<App />)
-    expect(wrapper.find('div')).to.have.length(1)
+describe('FeedPhotos', () => {
+  it('should render a photoset', () => {
+    const wrapper = shallow(<FeedPhotos />)
+    expect(wrapper.find('.photoset')).to.have.length(1)
   })
 })
