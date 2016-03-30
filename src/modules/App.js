@@ -38,7 +38,7 @@ class App extends Component {
   render () {
     return (
     <div>
-      <Navbar sortFeed={this.sortFeed.bind(this, 'recent')} />
+      <Navbar className='nav-bar' sortFeed={this.sortFeed.bind(this, 'recent')} />
       <Grid className='fluid-container'>{
         this.props.children.type.name === 'Feed'
           ? <Feed photos={this.state.photos} sorter={this.sortFeed.bind(this)} />

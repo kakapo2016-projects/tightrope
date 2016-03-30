@@ -18,8 +18,4 @@ describe('Feed', () => {
     const wrapper = shallow(<Feed />)
     expect(wrapper.find('FeedPhotos').length).to.equal(0)
   })
-  xit('Should render FeedPhotos', () => {
-    const wrapper = shallow(<Feed />)
-    expect(wrapper.find('FeedPhotos').length).to.equal(1)
-  })
 })
