@@ -21,10 +21,12 @@ require('./authentication-routes')(app, cors, corsOptions)
 
   // ----- set up DB ----- //
 
+
 var knex = require('knex')({
   client: 'pg',
   connection: {
-    filename: __dirname + '/../data/tightrope.sqlite'
+    filename: __dirname + '/../data/tightrope.sqlite',
+    ssl: true
   },
   useNullAsDefault: true
 })

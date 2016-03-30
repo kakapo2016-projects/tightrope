@@ -44,8 +44,8 @@ class App extends Component {
           ? <Feed photos={this.state.photos} sorter={this.sortFeed.bind(this)} />
           : this.props.children.type.name === 'Profile'
           ? <Profile photos={this.state.profilePhotos} sorter={this.sortProfile.bind(this)} />
-        : this.props.children
-      }</Grid>
+          : this.props.children }
+      </Grid>
     </div>
   }
 }
