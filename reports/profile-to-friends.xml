@@ -3,19 +3,19 @@
             failures="0"
             tests="2">
 
-  <testsuite name="friends-test"
-    errors="0" failures="0" hostname="" id="" package="friends-test" skipped="2"
+  <testsuite name="profile-to-friends"
+    errors="0" failures="0" hostname="" id="" package="profile-to-friends" skipped="2"
     tests="2" time="0.000" timestamp="Wed, 30 Mar 2016 08:54:38 GMT">
   
   
     
     <testcase
-      name="friend test 1">
+      name="Log in">
       <skipped />
     </testcase>
     
     <testcase
-      name="friend test 2">
+      name="to friends">
       <skipped />
     </testcase>
     

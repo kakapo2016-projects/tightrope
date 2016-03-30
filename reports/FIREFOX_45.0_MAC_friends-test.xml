@@ -5,14 +5,14 @@
 
   <testsuite name="friends-test"
     errors="0" failures="0" hostname="" id="" package="friends-test" skipped="0"
-    tests="2" time="66.82" timestamp="Wed, 30 Mar 2016 07:20:45 GMT">
+    tests="2" time="18.02" timestamp="Wed, 30 Mar 2016 09:04:48 GMT">
   
-    <testcase name="friend test 1" time="7.268" assertions="1">
+    <testcase name="friend test 1" time="5.240" assertions="1">
 
     
     </testcase>
   
-    <testcase name="friend test 2" time="59.55" assertions="2">
+    <testcase name="friend test 2" time="12.78" assertions="2">
 
     
 

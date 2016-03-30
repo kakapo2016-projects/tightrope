@@ -1,5 +1,4 @@
 module.exports = {
-  '@disabled': true,
   'friend test 1': function (browser) {
     browser
         .url('http://localhost:8080/login')
@@ -13,7 +12,7 @@ module.exports = {
     browser
         .waitForElementVisible('body', 1000)
         .waitForElementVisible('#friend-link', 1000)
-        .click('#friend-link')
+        .url('http://localhost:8080/friends')
         .end()
   }
 }

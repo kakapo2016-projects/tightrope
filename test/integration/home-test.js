@@ -1,6 +1,4 @@
 module.exports = {
-  '@disabled': true,
-  
     'Checking for page load': function (browser) {
     browser
       .url('http://localhost:8080/login')
@@ -9,5 +7,5 @@ module.exports = {
       .pause(1000)
       .assert.containsText('div', 'login')
       .end()
-  }
+    }
 }
