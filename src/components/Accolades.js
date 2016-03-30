@@ -3,7 +3,7 @@ import _ from 'lodash'
 import moment from 'moment'
 
 export default React.createClass({
-  
+
   render: function () {
     let credits = this.props.accolades.credits
     let activeStreak = moment().diff(this.props.accolades.created_at, 'days')
@@ -19,8 +19,8 @@ export default React.createClass({
         }
         </div>
         <div>
-          <h3>Credits: {credits}</h3>
-          <h3>Active streak: {activeStreak}</h3>
+          <h3 className='credits'>Credits: {credits}</h3>
+          <h3 className='active-streak'>Active streak: {activeStreak}</h3>
         </div>
       </div>
     )

@@ -5,7 +5,6 @@ import SinglePhoto from './modules/SinglePhoto'
 import NoMatch from './modules/NoMatch'
 import Friends from './modules/Friends'
 import Profile from './modules/Profile'
-import Upload from './modules/Upload'
 import Login from './modules/Login'
 import { render } from 'react-dom'
 import Feed from './modules/Feed'
@@ -19,7 +18,6 @@ render((
       <Route path='/friends' component={Friends}/>
       <Route path='/login' component={Login}/>
       <Route path='/profile' component={Profile}/>
-      <Route path='/upload' component={Upload}/>
       <Route path='/photos/:photo_id' component={SinglePhoto}/>
       <Route path='/user/:user_id' component={ForeignProfile}/>
       <Route path='*' component={NoMatch}/>

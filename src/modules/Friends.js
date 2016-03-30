@@ -1,4 +1,4 @@
-import FriendsList from '../components/friends-list'
+import FriendsList from '../components/Friends-list'
 import getSimple from '../get-request-simple'
 require('../stylesheets/modules/feed.sass')
 import cookie from 'react-cookie'

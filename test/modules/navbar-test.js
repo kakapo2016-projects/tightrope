@@ -6,14 +6,14 @@ import React from 'react'
 describe('Navbar', () => {
   it('should have wrapper div with class of navWrap', () => {
     const wrapper = shallow(<Navbar />)
-    expect(wrapper.find('.navWrap')).to.have.length(1)
+    expect(wrapper.find('.navWrap').length).to.equal(1)
   })
-  it('should have 8 list items in total', () => {
+  it('should have 5 list items in total', () => {
     const wrapper = shallow(<Navbar />)
-    expect(wrapper.find('li')).to.have.length(8)
+    expect(wrapper.find('li').length).to.equal(5)
   })
   it('should have a logo', () => {
     const wrapper = shallow(<Navbar />)
-    expect(wrapper.find('img')).to.have.length(1)
+    expect(wrapper.find('img').length).to.equal(1)
   })
 })

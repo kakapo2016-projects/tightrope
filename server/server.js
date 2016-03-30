@@ -21,6 +21,7 @@ require('./authentication-routes')(app, cors, corsOptions)
 
   // ----- set up DB ----- //
 
+
 var knex = require('knex')({
   client: 'pg',
   connection: {
