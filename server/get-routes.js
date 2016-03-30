@@ -48,9 +48,6 @@ module.exports = function (app, cors, corsOptions) {
         .table('photos')
         .where({ user_id: req.params.id })
         .orderBy('created_at', 'desc')
-        .catch(function(error) {
-          console.error('Error: ', error);
-        })
         .then(function (photo) {
           res.json(photo) // returns the record for many photos - sorted
         })
@@ -135,9 +132,6 @@ module.exports = function (app, cors, corsOptions) {
     // - if user_1 is a fan of user_2 then in the fans table then this is represented as:
     // 'user_id_a=1, user_id_b=2'
     knex.raw('SELECT likers.username AS liker, likeds.* AS liked FROM users AS likers LEFT JOIN fans ON likers.user_id = fans.liker_id LEFT JOIN users AS likeds ON fans.liked_id = likeds.user_id WHERE likers.user_id =' + req.params.id + ';')
-      .catch(function(error) {
-          console.error('Error: ', error);
-      })
       .then(function (resp) {
       // if (err) { console.log('Error', err)}
         res.json(resp.rows) // returns the record for many friends
