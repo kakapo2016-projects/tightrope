@@ -6,6 +6,7 @@ import { Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router'
 import React from 'react'
 import post from '../post-request'
+import url from '../../config.js'
 
 export default React.createClass({
   getInitialState: function () {
@@ -19,7 +20,7 @@ export default React.createClass({
   },
 
   loadPhotosFromServer: function () {
-    get('http://localhost:3000/api/v1/photos/' + this.props.params.photo_id, '', function (err, res) {
+    get(url + '/api/v1/photos/' + this.props.params.photo_id, '', function (err, res) {
       if (err) { console.log('Error:', err); return }
       this.setState({photo_url: res.photo_url})
       this.getUserInfo(res.user_id)
@@ -27,7 +28,7 @@ export default React.createClass({
   },
 
   getUserInfo: function (userId) {
-    get('http://localhost:3000/api/v1/users/' + userId + '/profile', '', function (err, res) {
+    get(url + '/api/v1/users/' + userId + '/profile', '', function (err, res) {
       if (err) { console.log('Error getting profile: ', err); return }
       this.setState({user: res})
       this.handleFollow()
@@ -40,7 +41,7 @@ export default React.createClass({
 
   follow: function (e) {
     let _this = this
-    post('http://localhost:3000/api/v1/' + cookie.load('userId') + '/follow',
+    post(url + '/api/v1/' + cookie.load('userId') + '/follow',
     {liked_id: this.state.user.user_id},
     function (err, res) {
       if (err) { console.log('Error in follow request: ', err); return }
@@ -49,14 +50,14 @@ export default React.createClass({
   },
 
   unfollow: function (e) {
-    post('http://localhost:3000/api/v1/' + cookie.load('userId') + '/unfollow', {liked_id: this.state.user.user_id}, function (err, res) {
+    post(url + '/api/v1/' + cookie.load('userId') + '/unfollow', {liked_id: this.state.user.user_id}, function (err, res) {
       if (err) { console.log('Error in follow request: ', err); return }
     } )
   },
 
   handleFollow: function (e) {
     let _this = this
-    get('http://localhost:3000/api/v1/fans/' + cookie.load('userId'), '',function (err, res) {
+    get(url + '/api/v1/fans/' + cookie.load('userId'), '',function (err, res) {
       if (err) { console.log('ERROR retriving fans'); return }
       let foundUser = false
       res.forEach((user) => {

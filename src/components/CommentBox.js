@@ -4,11 +4,12 @@ import get from '../get-request-simple'
 import cookie from 'react-cookie'
 import request from 'superagent'
 import React from 'react'
+import url from '../../config.js'
 
 export default React.createClass({
 
   loadCommentsFromServer: function () {
-    get('http://localhost:3000/api/v1/photo/' + this.props.photoid + '/comment', function (err, res) {
+    get(url + '/api/v1/photo/' + this.props.photoid + '/comment', function (err, res) {
       if (err) { console.log(err); return }
       let commentArray = []
       for (var i = 0; i < res.length; i++) {
@@ -25,7 +26,7 @@ export default React.createClass({
     this.setState({comments: newComments})
 
     request
-      .post('http://localhost:3000/api/v1/photo/' + this.props.photoid + '/comment')
+      .post(url + '/api/v1/photo/' + this.props.photoid + '/comment')
       .send({comment: comment, userId: cookie.load('userId')})
       .end(function (err, res) {
         if (err) {

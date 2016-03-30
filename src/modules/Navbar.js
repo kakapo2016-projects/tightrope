@@ -6,6 +6,7 @@ import cookie from 'react-cookie'
 import moment from 'moment'
 import NavLink from './NavLink'
 import React from 'react'
+import url from '../../config.js'
 
 export default React.createClass({
 
@@ -38,7 +39,7 @@ export default React.createClass({
             user_id: cookie.load('userId'),
             photo_url: result[0].url
           }
-          post('http://localhost:3000/api/v1/photos', userUpload, (resp) => {
+          post(url + '/api/v1/photos', userUpload, (resp) => {
             this.props.sortFeed()
             this.props.sortProfile()
           })

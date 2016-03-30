@@ -4,6 +4,7 @@ require('../stylesheets/modules/feed.sass')
 import cookie from 'react-cookie'
 import get from '../get-request'
 import React from 'react'
+import url from '../../config.js'
 
 export default React.createClass({
   setInitialState: function () {
@@ -14,8 +15,8 @@ export default React.createClass({
 
   loadPhotosFromServer: function () {
     /* this should use: '/api/v1/users/:id/friends'  - the :id should be replaced by a number */
-    get('http://localhost:3000/api/v1/photos/', '*', function (err, res) {
-      // getSimple('http://localhost:3000/api/v1/users/1/friends', function (err, res) {
+    get(url + '/api/v1/photos/', '*', function (err, res) {
+      // getSimple(url + '/api/v1/users/1/friends', function (err, res) {
       if (err) { console.log('Error:', err); return }
       this.setState({friends: res})
     // setInterval(this.loadPhotosFromServer, 2000)
@@ -24,7 +25,7 @@ export default React.createClass({
 
   loadFriendsFromServer: function () {
     /* this should use: '/api/v1/users/:id/friends'  - the :id should be replaced by a number */
-    getSimple('http://localhost:3000/api/v1/users/' + cookie.load('userId') + '/friends', function (err, res) {
+    getSimple(url + '/api/v1/users/' + cookie.load('userId') + '/friends', function (err, res) {
       if (err) { console.log('Error:', err); return }
       this.setState({friends: res})
     // setInterval(this.loadPhotosFromServer, 2000)

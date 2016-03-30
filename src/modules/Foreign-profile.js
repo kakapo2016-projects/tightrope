@@ -5,6 +5,7 @@ import Photoset from '../components/Photoset'
 import { Col, Row } from 'react-bootstrap'
 import get from '../get-request'
 import React from 'react'
+import url from '../../config.js'
 
 export default React.createClass({
 
@@ -23,11 +24,11 @@ export default React.createClass({
   },
 
   componentDidMount: function () {
-    get('http://localhost:3000/api/v1/users/' + this.props.params.user_id + '/photos', '', function (err, res) {
+    get(url + '/api/v1/users/' + this.props.params.user_id + '/photos', '', function (err, res) {
       if (err) {console.log('Error:', err); return }
       this.setState({photos: res})
     }.bind(this))
-    get('http://localhost:3000/api/v1/users/' + this.props.params.user_id + '/profile', '', function (err, resp) {
+    get(url + '/api/v1/users/' + this.props.params.user_id + '/profile', '', function (err, resp) {
       if (err) {console.log('Error:', err); return }
       this.setState({profile: resp})
     }.bind(this))

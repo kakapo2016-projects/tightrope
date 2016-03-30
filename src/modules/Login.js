@@ -7,6 +7,7 @@ import post from '../post-request'
 import cookie from 'react-cookie'
 import get from '../get-request'
 import React from 'react'
+import url from '../../config.js'
 
 export default React.createClass({
   getInitialState: function () {
@@ -14,7 +15,7 @@ export default React.createClass({
   },
 
   signUpRequest: function (username, email, password) {
-    post('http://localhost:3000/api/v1/signup', { email: email, username: username, password: password }, function (err, res) {
+    post(url + '/api/v1/signup', { email: email, username: username, password: password }, function (err, res) {
       if (err) { console.log('Error:', err); return }
       this.setState({user: res.body})
       if (res.body.err_email_username === true) {
@@ -32,12 +33,12 @@ export default React.createClass({
   },
 
   loginRequest: function (useremail, password) {
-    get('http://localhost:3000/api/v1/login', { email: useremail, password: password }, (err, res) => {
+    get(url + '/api/v1/login', { email: useremail, password: password }, (err, res) => {
       if (err) { console.log('Error: ', err); return }
       if (res === null) { window.alert('No response from server') }
       if (res.nomatch === true) { browserHistory.push('/404') }
       if (res.login === true) {
-        slack(res.userId, function (res) {
+        slack(res.userId, function (resp) {
           this.setLoginCookie(res.userId)
           browserHistory.push('/')
         }.bind(this))

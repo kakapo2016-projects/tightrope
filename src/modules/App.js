@@ -5,6 +5,8 @@ import React, { Component, PropTypes } from 'react'
 import Feed from './Feed'
 import get from '../get-request'
 import cookie from 'react-cookie'
+import url from '../../config.js'
+
 
 class App extends Component {
 
@@ -18,14 +20,14 @@ class App extends Component {
   }
 
   sortProfile (sortType) {
-    get(`http://localhost:3000/api/v2/users/${cookie.load('userId')}/photos/${sortType}`, '', function (err, res) {
+    get(url + `/api/v2/users/${cookie.load('userId')}/photos/${sortType}`, '', function (err, res) {
       if (err) { console.log('Error:', err); return }
       this.setState({profilePhotos: res})
     }.bind(this))
   }
 
   sortFeed (sortType) {
-    get(`http://localhost:3000/api/v2/photos/${sortType}`, '', function (err, res) {
+    get(url + `/api/v2/photos/${sortType}`, '', function (err, res) {
       if (err) { console.log('Error:', err); return }
       this.setState({photos: res})
     }.bind(this))

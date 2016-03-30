@@ -7,6 +7,7 @@ import post from '../post-request'
 import cookie from 'react-cookie'
 import get from '../get-request'
 import React, { Component, PropTypes} from 'react'
+import url from '../../config.js'
 
 class Profile extends Component {
 
@@ -43,7 +44,7 @@ class Profile extends Component {
           let profilePic = {
             profile_pic: result[0].url
           }
-          post(`http://localhost:3000/api/v1/profile/${cookie.load('userId')}`, profilePic, function (resp) {
+          post(`${url}/api/v1/profile/${cookie.load('userId')}`, profilePic, function (resp) {
             this.getProfile()
           }.bind(this))
         }
@@ -52,7 +53,7 @@ class Profile extends Component {
   }
 
   getProfile () {
-    get('http://localhost:3000/api/v1/users/' + cookie.load('userId') + '/profile', '', function (err, resp) {
+    get(url + '/api/v1/users/' + cookie.load('userId') + '/profile', '', function (err, resp) {
       if (err) { console.log('Error:', err); return }
       this.setState({profile: resp})
     }.bind(this))
