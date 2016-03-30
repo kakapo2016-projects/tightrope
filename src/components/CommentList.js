@@ -9,7 +9,7 @@ export default React.createClass({
     return (
       <div className='comment-list'>
         {_.map(comments, function (comment, index) {
-          return <Comment
+          return<Comment
             key={index}
             comment={comment.comment}
             username={comment.username}

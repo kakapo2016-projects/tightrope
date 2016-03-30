@@ -43,7 +43,7 @@ export default React.createClass({
 
   render: function () {
     return (
-      <div className='comment-box'>
+      <div className='comment-box panel'>
         <CommentList
           comments={this.state ? this.state.comments : ''}/>
         <CommentForm onCommentSubmit={this.handleCommentSubmit}/>
