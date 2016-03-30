@@ -10,7 +10,8 @@ module.exports = function (app, cors, corsOptions) {
     client: 'pg',
     connection: {
       host: '127.0.0.1',
-      database: 'tightrope_dev'
+      database: 'tightrope_dev',
+      ssl: true
     }
   })
 
