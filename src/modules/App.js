@@ -37,16 +37,18 @@ class App extends Component {
   }
 
   render () {
-    return <div>
-      <Navbar sortFeed={this.sortFeed.bind(this, 'recent')} sortProfile={this.sortProfile.bind(this, 'recent')} />
-      <Grid className='fluid-container'>{
-        this.props.children.type.name === 'Feed'
-          ? <Feed photos={this.state.photos} sorter={this.sortFeed.bind(this)} />
-          : this.props.children.type.name === 'Profile'
-          ? <Profile photos={this.state.profilePhotos} sorter={this.sortProfile.bind(this)} />
-          : this.props.children }
-      </Grid>
-    </div>
+    return (
+      <div>
+        <Navbar className='nav-bar' sortFeed={this.sortFeed.bind(this, 'recent')} sortProfile={this.sortProfile.bind(this, 'recent')} />
+        <Grid className='fluid-container'>{
+          this.props.children.type.name === 'Feed'
+            ? <Feed photos={this.state.photos} sorter={this.sortFeed.bind(this)} />
+            : this.props.children.type.name === 'Profile'
+            ? <Profile photos={this.state.profilePhotos} sorter={this.sortProfile.bind(this)} />
+            : this.props.children }
+        </Grid>
+      </div>
+    )
   }
 }
 
