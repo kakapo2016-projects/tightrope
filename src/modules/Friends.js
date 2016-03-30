@@ -1,10 +1,11 @@
-import FriendsList from '../components/Friends-list'
+var FriendsList = require('../components/Friends-list')
+// import FriendsList from '../components/Friends-list'
 import getSimple from '../get-request-simple'
-require('../stylesheets/modules/feed.sass')
 import cookie from 'react-cookie'
 import get from '../get-request'
 import React from 'react'
 import url from '../../config.js'
+require('../stylesheets/modules/feed.sass')
 
 export default React.createClass({
   setInitialState: function () {
