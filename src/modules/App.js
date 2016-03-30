@@ -33,7 +33,6 @@ class App extends Component {
 
   componentDidMount () {
     this.sortFeed('recent')
-    this.sortProfile('recent')
   }
 
   render () {
