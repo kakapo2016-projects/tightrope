@@ -47,7 +47,6 @@ class App extends Component {
         : this.props.children
       }</Grid>
     </div>
-    )
   }
 }
 
