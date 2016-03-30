@@ -20,9 +20,9 @@ describe('Post requests', (err, res) => {
       .post('/api/v1/photos')
       .expect(200)
       .end((err, res) => {
-        const actual_object = res.body[0].photo_url
+        const actual_object = res.body.photo_url
         expect(err).to.be.null
-        expect(actual_object).to.equal(expected_object.photo_url)
+        expect(actual_object).to.equal(expected_object)
         done()
       })
   })
