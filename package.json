@@ -85,6 +85,7 @@
     "nightwatch": "^0.8.18",
     "react-addons-test-utils": "^0.14.7",
     "standard": "^6.0.8",
+    "supertest": "^1.2.0",
     "webpack": "^1.12.13",
     "webpack-dev-server": "^1.14.1"
   }
