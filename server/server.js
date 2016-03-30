@@ -32,6 +32,10 @@ app.use(knex({
     user:     process.env.USER,
     password: process.env.PASSWORD
   },
+  pool: {
+    min: 0,
+    max: 7
+  },
   searchPath: 'public'
 }))
 
