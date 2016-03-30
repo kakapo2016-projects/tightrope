@@ -5,14 +5,21 @@ import React from 'react'
 
 describe('Feed', () => {
 
-  it('Should render the photo feed if state has photos', () => {
-    let state = []
+  it('Should render the sort buttons div', () => {
     const wrapper = shallow(<Feed />)
-    expect(wrapper.find('FeedPhotos')).to.have.length(1)
+    expect(wrapper.find('.sort-buttons').length).to.equal(1)
+  })
+  it('Should render 3 sort buttons', () => {
+    const wrapper = shallow(<Feed />)
+    expect(wrapper.find('Button').length).to.equal(3)
   })
   it('Should not render a photo feed if state is null', () => {
     let state = null
     const wrapper = shallow(<Feed />)
-    expect(wrapper.find('FeedPhotos')).to.have.length(0)
+    expect(wrapper.find('FeedPhotos').length).to.equal(0)
+  })
+  xit('Should render FeedPhotos', () => {
+    const wrapper = shallow(<Feed />)
+    expect(wrapper.find('FeedPhotos').length).to.equal(1)
   })
 })

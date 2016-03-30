@@ -8,9 +8,9 @@ describe('Navbar', () => {
     const wrapper = shallow(<Navbar />)
     expect(wrapper.find('.navWrap')).to.have.length(1)
   })
-  it('should have 8 list items in total', () => {
+  it('should have 5 list items in total', () => {
     const wrapper = shallow(<Navbar />)
-    expect(wrapper.find('li')).to.have.length(8)
+    expect(wrapper.find('li')).to.have.length(5)
   })
   it('should have a logo', () => {
     const wrapper = shallow(<Navbar />)
