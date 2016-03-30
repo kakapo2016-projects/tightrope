@@ -5,22 +5,18 @@ export default React.createClass({
   getInitialState: function () { return { username: '', password: '', email: '' } },
 
   handlePassword (e) {
-    console.log('handleSignupPassChange')
     this.setState({ password: e.target.value })
   },
 
   handleEmail (e) {
-    console.log('handleSignupEmailChange')
     this.setState({ email: e.target.value })
   },
 
   handleUsername (e) {
-    console.log('handleUsernameChange')
     this.setState({ username: e.target.value })
   },
 
   handleSubmit: function (e) {
-    console.log('Handling sign up submit')
     e.preventDefault()
     var email = this.state.email
     var password = this.state.password

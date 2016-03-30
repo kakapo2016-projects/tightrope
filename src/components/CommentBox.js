@@ -9,8 +9,7 @@ export default React.createClass({
 
   loadCommentsFromServer: function () {
     get('http://localhost:3000/api/v1/photo/' + this.props.photoid + '/comment', function (err, res) {
-      if (err) { console.log(err) }
-      console.log('loading comments', res)
+      if (err) { console.log(err); return }
       let commentArray = []
       for (var i = 0; i < res.length; i++) {
         commentArray.push({comment: res[i].comment, username: res[i].username})
