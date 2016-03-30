@@ -40,15 +40,11 @@ module.exports =  {
       user:     process.env.DBUSER,
       password: process.env.DBPASSWORD
     },
-    pool: {
-      min: 2,
-      max: 10
-    },
     seeds: {
       directory: './seeds'
     },
     migrations: {
-      tableName: 'migrations'
+      tableName: 'knex_migrations'
     }
   }
 }
