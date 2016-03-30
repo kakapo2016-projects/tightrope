@@ -139,16 +139,4 @@ describe('Get requests', () => {
         done()
       })
   })
-  it('should return comment by id', (done) => {
-    request(app)
-      .get('/api/v1/photo/4/comment')
-      .expect(200)
-      .end((err, res) => {
-        const expected_object = []
-        const actual_object = res.body[0]
-        expect(err).to.be.null
-        expect(actual_object).to.equal(expected_object.comment)
-        done()
-      })
-  })
 })
