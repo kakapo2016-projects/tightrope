@@ -48,6 +48,9 @@ module.exports = function (app, cors, corsOptions) {
         .table('photos')
         .where({ user_id: req.params.id })
         .orderBy('created_at', 'desc')
+        .catch(function(error) {
+          console.error('Error: ', error);
+        })
         .then(function (photo) {
           res.json(photo) // returns the record for many photos - sorted
         })
