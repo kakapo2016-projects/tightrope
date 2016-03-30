@@ -4,16 +4,14 @@
             tests="1">
 
   <testsuite name="login-preset"
-    errors="0" failures="0" hostname="" id="" package="login-preset" skipped="1"
-    tests="1" time="0.000" timestamp="Wed, 30 Mar 2016 03:50:28 GMT">
+    errors="0" failures="0" hostname="" id="" package="login-preset" skipped="0"
+    tests="1" time="4.254" timestamp="Wed, 30 Mar 2016 07:22:07 GMT">
   
-  
+    <testcase name="Log in" time="4.254" assertions="1">
+
     
-    <testcase
-      name="Log in">
-      <skipped />
     </testcase>
-    
+  
   
   </testsuite>
 </testsuites>

@@ -1,27 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites errors="2"
+<testsuites errors="0"
             failures="0"
             tests="2">
 
   <testsuite name="friends-test"
-    errors="2" failures="0" hostname="" id="" package="friends-test" skipped="0"
-    tests="2" time="5.785" timestamp="Wed, 30 Mar 2016 03:50:22 GMT">
+    errors="0" failures="0" hostname="" id="" package="friends-test" skipped="0"
+    tests="2" time="66.82" timestamp="Wed, 30 Mar 2016 07:20:45 GMT">
   
-    <testcase name="friend test 1" time="5.177" assertions="1">
+    <testcase name="friend test 1" time="7.268" assertions="1">
 
     
     </testcase>
-      <system-err>
-         ERROR: Unable to locate element: &quot;containsText(&quot;#main&quot;, &quot;friends&quot;)&quot; using: css selector
-      </system-err>
   
-    <testcase name="friend test 2" time="0.6080" assertions="1">
+    <testcase name="friend test 2" time="59.55" assertions="2">
+
+    
 
     
     </testcase>
-      <system-err>
-         ERROR: Unable to locate element: &quot;containsText(&quot;#main&quot;, &quot;friends&quot;)&quot; using: css selector
-      </system-err>
   
   
   </testsuite>

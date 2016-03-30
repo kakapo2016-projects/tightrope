@@ -4,16 +4,18 @@
             tests="1">
 
   <testsuite name="signin-test"
-    errors="0" failures="0" hostname="" id="" package="signin-test" skipped="1"
-    tests="1" time="0.000" timestamp="Wed, 30 Mar 2016 03:50:28 GMT">
+    errors="0" failures="0" hostname="" id="" package="signin-test" skipped="0"
+    tests="1" time="8.563" timestamp="Wed, 30 Mar 2016 07:22:11 GMT">
   
-  
+    <testcase name="Checking for login redirect" time="8.563" assertions="3">
+
     
-    <testcase
-      name="Checking for login redirect">
-      <skipped />
+
+    
+
+    
     </testcase>
-    
+  
   
   </testsuite>
 </testsuites>
