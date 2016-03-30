@@ -44,30 +44,6 @@ describe('Get requests', () => {
       })
   })
 
-  it('should return a photo by id', (done) => {
-    request(app)
-      .get('/api/v1/photos/4')
-      .expect(200)
-      .end((err, res) => {
-        const expected_object = {
-          "photo_id": 4,
-          "external_photo_id": "2",
-          "user_id": 4,
-          "likes": 3,
-          "photo": { "type": "Buffer", "data": [] },
-          "photo_url": "http://res.cloudinary.com/dvzbt8kfq/image/upload/v1459121323/user_photos/Screen_Shot_2016-03-28_at_12.27.11_PM_j5yeqn.png",
-          "caption": "cats",
-          "comments": 3,
-          "created_at": "2016-03-29T08:01:29.955Z",
-          "updated_at": "2016-03-29T08:01:29.955Z"
-        }
-        const actual_object = res.body.photo_url
-        expect(err).to.be.null
-        expect(actual_object).to.equal(expected_object.photo_url)
-        done()
-      })
-  })
-
   it('should return all the photo by id', (done) => {
     request(app)
       .get('/api/v1/users/4/photos')
