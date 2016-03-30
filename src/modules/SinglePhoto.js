@@ -44,14 +44,15 @@ export default React.createClass({
     {liked_id: this.state.user.user_id},
     function (err, res) {
       if (err) { console.log('Error in follow request: ', err); return }
-      // alert('Following user')
-    })
+      this.setState({followed: true})
+    }.bind(this))
   },
 
   unfollow: function (e) {
     post('http://localhost:3000/api/v1/' + cookie.load('userId') + '/unfollow', {liked_id: this.state.user.user_id}, function (err, res) {
       if (err) { console.log('Error in follow request: ', err); return }
-    } )
+      this.setState({followed: false})
+    }.bind(this))
   },
 
   handleFollow: function (e) {
