@@ -12,14 +12,15 @@ class App extends Component {
     super(props)
 
     this.state = {
-      photos: []
+      photos: [],
+      profilePhotos: []
     }
   }
 
   sortProfile (sortType) {
     get(`http://localhost:3000/api/v2/users/${cookie.load('userId')}/photos/${sortType}`, '', function (err, res) {
       if (err) { console.log('Error:', err); return }
-      this.setState({photos: res})
+      this.setState({profilePhotos: res})
     }.bind(this))
   }
 
@@ -36,14 +37,13 @@ class App extends Component {
   }
 
   render () {
-    return (
-    <div>
-      <Navbar sortFeed={this.sortFeed.bind(this, 'recent')} />
+    return <div>
+      <Navbar sortFeed={this.sortFeed.bind(this, 'recent')} sortProfile={this.sortProfile.bind(this, 'recent')} />
       <Grid className='fluid-container'>{
         this.props.children.type.name === 'Feed'
           ? <Feed photos={this.state.photos} sorter={this.sortFeed.bind(this)} />
           : this.props.children.type.name === 'Profile'
-          ? <Profile photos={this.state.photos} sorter={this.sortProfile.bind(this)} />
+          ? <Profile photos={this.state.profilePhotos} sorter={this.sortProfile.bind(this)} />
         : this.props.children
       }</Grid>
     </div>

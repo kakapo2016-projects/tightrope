@@ -37,7 +37,7 @@ export default React.createClass({
       if (res === null) { window.alert('No response from server') }
       if (res.nomatch === true) { browserHistory.push('/404') }
       if (res.login === true) {
-        slack(res.userId, function () {
+        slack(res.userId, function (res) {
           this.setLoginCookie(res.userId)
           browserHistory.push('/')
         }.bind(this))

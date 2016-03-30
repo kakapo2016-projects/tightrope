@@ -40,6 +40,7 @@ export default React.createClass({
           }
           post('http://localhost:3000/api/v1/photos', userUpload, (resp) => {
             this.props.sortFeed()
+            this.props.sortProfile()
           })
         }
       }
