@@ -6,7 +6,7 @@ import get from '../get-request'
 import React from 'react'
 
 export default React.createClass({
-  setInitialState: function () {
+  getInitialState: function () {
     return {
       friends: []
     }
@@ -36,10 +36,8 @@ export default React.createClass({
   },
 
   render: function () {
-    let friends = []
-    if (this.state !== null) {
-      friends = this.state.friends
-    }
+    let {friends} = this.props
+
     return (
     <div>
       <FriendsList friends={friends} />

@@ -5,7 +5,7 @@ import React from 'react'
 
 describe('FriendsList', () => {
 
-  const testFriends = [
+  const props = { friends: [
     {
       username: 'a',
       profile_pic: 'a.jpg',
@@ -19,17 +19,14 @@ describe('FriendsList', () => {
       streak: 6,
     }
   ]
+}
 
   it('should have a div with class of friends', () => {
     const wrapper = shallow(<FriendsList />)
     expect(wrapper.find('.friends').length).to.equal(1)
   })
-  xit('should render a list of 2 friends', () => {
-    const wrapper = render(<FriendsList
-      username={testFriends.username}
-      profile_pic={testFriends.profile_pic}
-      likes={testFriends.likes}
-      streak={testFriends.streak}/>)
+  it('should render a list of 2 friends', () => {
+    const wrapper = render(<FriendsList {...props}/>)
     expect(wrapper.find('.friendPanel').length).to.equal(2)
   })
 })

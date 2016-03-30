@@ -57,7 +57,7 @@ export default React.createClass({
   handleFollow: function (e) {
     let _this = this
     get('http://localhost:3000/api/v1/fans/' + cookie.load('userId'), '',function (err, res) {
-      if (err) { console.log('ERROR retriving fans'); return }
+      if (err) { console.log('ERROR retrieving fans'); return }
       let foundUser = false
       res.forEach((user) => {
         if (this.state.user.user_id === user.liked_id) {
