@@ -36,7 +36,7 @@ module.exports =  {
     connection: {
       url: process.env.DATABASE_URL,
       host: process.env.DBHOST,
-      database: process.env.DBNAME,
+      database: process.env.DATABASE,
       user:     process.env.USER,
       password: process.env.PASSWORD
     },
