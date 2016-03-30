@@ -6,6 +6,7 @@ import React from 'react'
 describe('SinglePhoto', () => {
 
   const props = { params: { photo_id: 21 } }
+
   it('should have a div with class single-photo-page', () => {
     const wrapper = shallow(<SinglePhoto {...props} />)
     expect(wrapper.find('.single-photo-page').length).to.equal(1)
