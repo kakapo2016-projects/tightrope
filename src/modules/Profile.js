@@ -80,8 +80,8 @@ class Profile extends Component {
         </Col>
         <Col sm={8} className='feed centered' className='container-fluid'>
           <div className='sort-buttons'>
-            <Button bsStyle='link' onClick={ () => sorter('recent') }>Recent</Button>
-            <Button bsStyle='link' onClick={ () => sorter('popular') }>Popular</Button>
+            <Button bsStyle='link' onClick={ () => sorter('recent') }>Recent ▼</Button>
+            <Button bsStyle='link' onClick={ () => sorter('popular') }>Popular ▼</Button>
           </div>
           <Photoset photoset={ photos || [] }/>
         </Col>

@@ -6,7 +6,7 @@ import React from 'react'
 describe('ForeignProfile', () => {
   it('should render a profile picture', () => {
     const wrapper = shallow(<ForeignProfile />)
-    expect(wrapper.find('ProfilePic').length).to.equal(1)
+    expect(wrapper.find('ForeignProfilePic').length).to.equal(1)
   })
   it('should render accolades', () => {
     const wrapper = shallow(<ForeignProfile />)
