@@ -115,4 +115,38 @@ module.exports = function (app, cors, corsOptions) {
       res.send('Posted data to comments table. The response from the DB was: ' + resp)
     })
   })
+  app.post('/api/v1/delete/:id', function (req, res) { // receives a photo url as a string
+    console.log('POST received on /api/v1/delete/:id')
+    console.log('req.body is: ', req.params.id)
+    let userId = req.params.id
+    // use knex to do 'INSERT INTO photos (fields) VALUES (values)
+    db.delete('fans', {
+      liker_id: userId
+    }, function (err, resp) {
+      if (err) { console.log('Error: ', err); return }
+      res.send('Account deleted')
+      console.log('fans deleted: ', resp)
+    })
+    db.delete('users', {
+      user_id: userId
+      }, function (err, resp) {
+      if (err) { console.log('Error: ', err); return }
+      res.send('Account deleted')
+      console.log('User deleted: ', resp)
+    })
+    db.delete('photos', {
+      user_id: userId
+      }, function (err, resp) {
+      if (err) { console.log('Error: ', err); return }
+      res.send('Account deleted')
+      console.log('photos deleted: ', resp)
+    })
+    db.delete('comments', {
+      user_id: userId
+      }, function (err, resp) {
+      if (err) { console.log('Error: ', err); return }
+      res.send('Account deleted')
+      console.log('comments deleted: ', resp)
+    })
+  })
 }
