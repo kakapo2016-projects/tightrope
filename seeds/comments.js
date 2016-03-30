@@ -8,7 +8,7 @@ exports.seed = function (knex, Promise) {
   return Promise.all(commentPromises)
 }
 
-function createComment (knex, comment) {
+function createComment (knex, donor) {
   return knex.table('comments')
     .insert(comment)
 }
