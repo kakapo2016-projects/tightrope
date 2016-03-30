@@ -55,6 +55,7 @@ module.exports = function (app, cors, corsOptions) {
       profile_pic: req.body.profile_pic // essential
     }, function (err, resp) {
       if (err) { console.log('Error: ', err); return }
+      res.send('Profile pic added')
       console.log('The newly added row has id: ', resp)
     }
     )
