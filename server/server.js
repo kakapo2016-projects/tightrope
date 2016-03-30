@@ -49,7 +49,11 @@ app.post('/photos', cors(corsOptions), function (req, res) {
 })
 
 // listener
-var PORT = process.env.PORT || 3000
-app.listen(PORT, function () {
-  console.log('Production Express server running at localhost:' + PORT)
-})
+if (require.main === module) {
+  var PORT = process.env.PORT || 3000
+  app.listen(PORT, function () {
+    console.log('Production Express server running at localhost:' + PORT)
+  })
+}
+
+module.exports = app

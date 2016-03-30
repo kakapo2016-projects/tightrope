@@ -17,6 +17,9 @@ module.exports = function (app, cors, corsOptions) {
   var db = require('./db.js')(knex)
 
   // ----- get requests ----- //
+  app.get('/', function (req, res) {
+    res.send('elon musk was here on /')
+  })
 
   app.get('/api/v1/users/:id/profile', function (req, res) { // a request for one users info
     // use knex to do 'SELECT * FROM users WHERE user_id=2' to sqlite DB
