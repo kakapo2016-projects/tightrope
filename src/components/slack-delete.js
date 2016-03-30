@@ -10,10 +10,8 @@ export default function (userId, callback) {
       post(`http://localhost:3000/api/v1/delete/${userId}`, '', function (err, res) {
         if (err) { console.log('Error: ', err); return }
         callback()
-        browserHistory.push('/404')
       })
     } else {
-      console.log('Don\'t delete')
       callback()
     }
   })
