@@ -7,7 +7,6 @@ import post from '../post-request'
 import cookie from 'react-cookie'
 import get from '../get-request'
 import React, { Component, PropTypes} from 'react'
-import $ from 'jquery'
 
 class Profile extends Component {
 
@@ -45,19 +44,24 @@ class Profile extends Component {
             profile_pic: result[0].url
           }
           post(`http://localhost:3000/api/v1/profile/${cookie.load('userId')}`, profilePic, function (resp) {
-          })
+            this.getProfile()
+          }.bind(this))
         }
-      }
+      }.bind(this)
     )
   }
 
-  componentDidMount () {
+  getProfile () {
     get('http://localhost:3000/api/v1/users/' + cookie.load('userId') + '/profile', '', function (err, resp) {
       if (err) { console.log('Error:', err); return }
       this.setState({profile: resp})
     }.bind(this))
   }
 
+  componentDidMount () {
+    this.addUploadButt()
+    this.getProfile()
+  }
 
   render () {
 
