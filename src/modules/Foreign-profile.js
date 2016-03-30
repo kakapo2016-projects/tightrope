@@ -1,4 +1,4 @@
-import ProfilePic from '../components/ProfilePic'
+import ForeignProfilePic from '../components/ForeignProfilePic'
 import Accolades from '../components/Accolades'
 require('../stylesheets/modules/profile.sass')
 import Photoset from '../components/Photoset'
@@ -41,7 +41,7 @@ export default React.createClass({
     return (
       <Row>
         <Col sm={4} className='profile panel'>
-          <ProfilePic profilePic={profile_pic}/>
+          <ForeignProfilePic profilePic={profile_pic}/>
           <h2 className='username'>{username}</h2>
           <Accolades accolades={accolades}/>
         </Col>
