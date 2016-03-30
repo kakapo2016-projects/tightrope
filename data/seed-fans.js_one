@@ -1,3 +1,0 @@
-module.exports = [
-  { liker_id: 1, liked_id: 2, created_at: new Date(), updated_at: new Date() }
-]
