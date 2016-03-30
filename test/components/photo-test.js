@@ -13,12 +13,8 @@ describe('Photo', () => {
     }
   }
 
-  xit('should render an image', () => {
-    const wrapper = shallow(<Photo
-      photo_url={this.props.photo_url}
-      photo_id={this.props.photo_id}
-      comments={this.props.comments}
-      likes={this.props.likes}/>)
+  it('should render an image', () => {
+    const wrapper = shallow(<Photo {...props} />)
     expect(wrapper.find('img')).to.have.length(1)
   })
 })
