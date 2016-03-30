@@ -36,8 +36,7 @@ export default React.createClass({
   },
 
   render: function () {
-    let {friends} = this.props
-
+    let {friends} = this.state
     return (
     <div>
       <FriendsList friends={friends} />
