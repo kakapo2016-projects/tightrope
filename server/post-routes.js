@@ -7,15 +7,15 @@ module.exports = function (app, cors, corsOptions) {
 
   // ----- db setup ----- //
 
-  var knex = require('knex')({
-    client: 'pg',
-    connection: {
-      host: '127.0.0.1',
-      database: 'tightrope_dev'
-    }
-  })
+  // var knex = require('knex')({
+  //   client: 'pg',
+  //   connection: {
+  //     host: '127.0.0.1',
+  //     database: 'tightrope_dev'
+  //   }
+  // })
 
-  var db = require('./db.js')(knex)
+  // var db = require('./db.js')(knex)
 
   // ----- post requests ----- //
 
@@ -129,21 +129,21 @@ module.exports = function (app, cors, corsOptions) {
     })
     db.delete('users', {
       user_id: userId
-      }, function (err, resp) {
+    }, function (err, resp) {
       if (err) { console.log('Error: ', err); return }
       res.send('Account deleted')
       console.log('User deleted: ', resp)
     })
     db.delete('photos', {
       user_id: userId
-      }, function (err, resp) {
+    }, function (err, resp) {
       if (err) { console.log('Error: ', err); return }
       res.send('Account deleted')
       console.log('photos deleted: ', resp)
     })
     db.delete('comments', {
       user_id: userId
-      }, function (err, resp) {
+    }, function (err, resp) {
       if (err) { console.log('Error: ', err); return }
       res.send('Account deleted')
       console.log('comments deleted: ', resp)

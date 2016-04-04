@@ -13,21 +13,26 @@ var corsOptions = {
   origin: '*'
 }
 
-  // ----- routes ----- //
+// ----- routes ----- //
 
 require('./get-routes')(app, cors, corsOptions)
 require('./post-routes')(app, cors, corsOptions)
 require('./authentication-routes')(app, cors, corsOptions)
 
-  // ----- set up DB ----- //
-
+// ----- set up DB ----- //
 
 var knex = require('knex')({
   client: 'pg',
+  debug: true,
+  ssl: true,
   connection: {
-    filename: __dirname + '/../data/tightrope.sqlite'
-  },
-  useNullAsDefault: true
+    host: '127.0.0.1',
+    port: '5432',
+    database: 'tightrope_dev',
+    user: 'howard',
+    password: 'password'
+  }
+
 })
 
 var db = require('./db.js')(knex)
@@ -44,8 +49,7 @@ cloudinary.config({
 })
 
 app.post('/photos', cors(corsOptions), function (req, res) {
-  cloudinary.uploader.upload(Object.keys(req.body)[0], function (result) {
-  })
+  cloudinary.uploader.upload(Object.keys(req.body)[0], function (result) {})
 })
 
 // listener

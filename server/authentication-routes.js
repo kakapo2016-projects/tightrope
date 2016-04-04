@@ -8,15 +8,15 @@ module.exports = function (app, cors, corsOptions) {
 
   // ----- db setup ----- //
 
-  var knex = require('knex')({
-    client: 'pg',
-    connection: {
-      host: '127.0.0.1',
-      database: 'tightrope_dev'
-    }
-  })
+  // var knex = require('knex')({
+  //   client: 'pg',
+  //   connection: {
+  //     host: '127.0.0.1',
+  //     database: 'tightrope_dev'
+  //   }
+  // })
 
-  var db = require('./db.js')(knex)
+  // var db = require('./db.js')(knex)
 
   // ----- authentication requests ----- //
 
@@ -77,13 +77,13 @@ module.exports = function (app, cors, corsOptions) {
                   updated_at: moment(),
                   profile_pic: 'http://sunfieldfarm.org/wp-content/uploads/2014/02/profile-placeholder.png'
                 }).then(function (respo) {
-                  knex('users')
-                    .where({ 'email': req.body.username.email })
-                    .select('hashed_password', 'user_id')
-                    .then(function (respon) {
-                      res.send({ login: true, userId: respon[0].user_id })
-                    })
-                })
+                knex('users')
+                  .where({ 'email': req.body.username.email })
+                  .select('hashed_password', 'user_id')
+                  .then(function (respon) {
+                    res.send({ login: true, userId: respon[0].user_id })
+                  })
+              })
             }
           })
       })

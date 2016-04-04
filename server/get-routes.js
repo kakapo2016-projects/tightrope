@@ -6,15 +6,15 @@ module.exports = function (app, cors, corsOptions) {
 
   // ----- db setup ----- //
 
-  var knex = require('knex')({
-    client: 'pg',
-    connection: {
-      host: '127.0.0.1',
-      database: 'tightrope_dev'
-    }
-  })
+  // var knex = require('knex')({
+  //   client: 'pg',
+  //   connection: {
+  //     host: '127.0.0.1',
+  //     database: 'tightrope_dev'
+  //   }
+  // })
 
-  var db = require('./db.js')(knex)
+  // var db = require('./db.js')(knex)
 
   // ----- get requests ----- //
   app.get('/', function (req, res) {
@@ -48,26 +48,26 @@ module.exports = function (app, cors, corsOptions) {
   app.get('/api/v2/users/:id/photos/recent', function (req, res) { // a request for all photos of one user
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     knex.select()
-        .table('photos')
-        .where({ user_id: req.params.id })
-        .orderBy('created_at', 'desc')
-        .catch(function(error) {
-          console.error('Error: ', error);
-        })
-        .then(function (photo) {
-          res.json(photo) // returns the record for many photos - sorted
-        })
+      .table('photos')
+      .where({ user_id: req.params.id })
+      .orderBy('created_at', 'desc')
+      .catch(function (error) {
+        console.error('Error: ', error)
+      })
+      .then(function (photo) {
+        res.json(photo) // returns the record for many photos - sorted
+      })
   })
 
   app.get('/api/v2/users/:id/photos/popular', function (req, res) { // a request for all photos of one user
     // use knex to do 'SELECT * FROM photos WHERE photo_id=2' to sqlite DB
     knex.select()
-        .table('photos')
-        .where({ user_id: req.params.id })
-        .orderBy('likes', 'desc')
-        .then(function (photo) {
-          res.json(photo) // returns the record for many photos - sorted
-        })
+      .table('photos')
+      .where({ user_id: req.params.id })
+      .orderBy('likes', 'desc')
+      .then(function (photo) {
+        res.json(photo) // returns the record for many photos - sorted
+      })
   })
 
   app.get('/api/v1/photo/:id/comment', function (req, res) { // a request for all comments of one photo
@@ -88,27 +88,27 @@ module.exports = function (app, cors, corsOptions) {
 
   app.get('/api/v2/photos/recent', function (req, res) { // a request for all photos from all users
     knex.raw('SELECT users.username,photos.* FROM photos JOIN users ON users.user_id=photos.user_id ORDER BY photos.created_at DESC;')
-    // use knex to do 'SELECT * FROM photos ORDER BY created_at DESC' to postgreSQL DB
-    // knex.from('photos')
-    //     .innerJoin('users', 'users.user_id', 'photos.user_id')
-        // .orderBy('created_at', 'desc')
-        .then(function (photoSet) {
-          res.json(photoSet.rows) // returns the record for many photos
-        })
+      // use knex to do 'SELECT * FROM photos ORDER BY created_at DESC' to postgreSQL DB
+      // knex.from('photos')
+      //     .innerJoin('users', 'users.user_id', 'photos.user_id')
+      // .orderBy('created_at', 'desc')
+      .then(function (photoSet) {
+        res.json(photoSet.rows) // returns the record for many photos
+      })
   })
 
   app.get('/api/v2/photos/popular', function (req, res) { // a request for all photos from all users
     knex.raw('SELECT users.username,photos.* FROM photos JOIN users ON users.user_id=photos.user_id ORDER BY photos.likes DESC;')
-        .then(function (photoSet) {
-          res.json(photoSet.rows) // returns the record for many photos
-        })
+      .then(function (photoSet) {
+        res.json(photoSet.rows) // returns the record for many photos
+      })
   })
 
   app.get('/api/v2/photos/highwire', function (req, res) { // a request for all photos from all users
     knex.raw('SELECT users.username,users.active_streak,photos.* FROM photos JOIN users ON users.user_id=photos.user_id ORDER BY users.active_streak DESC;')
-        .then(function (photoSet) {
-          res.json(photoSet.rows) // returns the record for many photos
-        })
+      .then(function (photoSet) {
+        res.json(photoSet.rows) // returns the record for many photos
+      })
   })
 
   app.get('/api/v2/photos', function (req, res) { // a request for all photos from all users
@@ -138,11 +138,11 @@ module.exports = function (app, cors, corsOptions) {
     // - if user_1 is a fan of user_2 then in the fans table then this is represented as:
     // 'user_id_a=1, user_id_b=2'
     knex.raw('SELECT likers.username AS liker, likeds.* AS liked FROM users AS likers LEFT JOIN fans ON likers.user_id = fans.liker_id LEFT JOIN users AS likeds ON fans.liked_id = likeds.user_id WHERE likers.user_id =' + req.params.id + ';')
-      .catch(function(error) {
-          console.error('Error: ', error);
+      .catch(function (error) {
+        console.error('Error: ', error)
       })
       .then(function (resp) {
-      // if (err) { console.log('Error', err)}
+        // if (err) { console.log('Error', err)}
         res.json(resp.rows) // returns the record for many friends
       })
   })
