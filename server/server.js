@@ -1,9 +1,10 @@
-var express = require('express')
 var cors = require('cors')
-var app = express()
 var cloudinary = require('cloudinary')
 var dotenv = require('dotenv')
-require('dotenv').config()
+var express = require('express')
+require('dotenv').config() // is this duplicating line 3?
+
+var app = express()
 
 dotenv.load()
 cloudinary.cloudinary_js_config()
@@ -26,12 +27,11 @@ var knex = require('knex')({
     // user: 'howard',
     password: 'password'
   }
-
 })
 
 var db = require('./db.js')(knex)
 
-// ----- import routes ----- //
+// ----- routes ----- //
 
 require('./get-routes')(app, cors, corsOptions, db, knex)
 require('./post-routes')(app, cors, corsOptions, db, knex)
@@ -54,7 +54,8 @@ app.post('/photos', cors(corsOptions), function (req, res) {
   cloudinary.uploader.upload(Object.keys(req.body)[0], function (result) {})
 })
 
-// listener
+// ----- listener ----- //
+
 if (require.main === module) {
   var PORT = process.env.PORT || 3000
   app.listen(PORT, function () {

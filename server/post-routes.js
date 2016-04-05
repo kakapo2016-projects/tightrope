@@ -2,20 +2,10 @@ module.exports = function (app, cors, corsOptions, db, knex) {
   var body_parser = require('body-parser')
   var moment = require('moment')
 
+  // ----- middleware ----- //
+
   app.use(body_parser.urlencoded({ extended: false }))
   app.use(body_parser.json())
-
-  // ----- db setup ----- //
-
-  // var knex = require('knex')({
-  //   client: 'pg',
-  //   connection: {
-  //     host: '127.0.0.1',
-  //     database: 'tightrope_dev'
-  //   }
-  // })
-
-  // var db = require('./db.js')(knex)
 
   // ----- post requests ----- //
 

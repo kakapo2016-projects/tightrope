@@ -1,23 +1,14 @@
 module.exports = function (app, cors, corsOptions, db, knex) {
   var body_parser = require('body-parser')
 
+  // ----- middleware ----- //
+
   app.use(body_parser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
   app.use(body_parser.json()) // parse application/json
 
-  // ----- db setup ----- //
-
-  // var knex = require('knex')({
-  //   client: 'pg',
-  //   connection: {
-  //     host: '127.0.0.1',
-  //     database: 'tightrope_dev'
-  //   }
-  // })
-
-  // var db = require('./db.js')(knex)
-
   // ----- get requests ----- //
-  app.get('/', function (req, res) {
+
+  app.get('/', function (req, res) { // just for testing
     res.send('elon musk was here on /')
   })
 
