@@ -13,29 +13,31 @@ var corsOptions = {
   origin: '*'
 }
 
-// ----- routes ----- //
-
-require('./get-routes')(app, cors, corsOptions)
-require('./post-routes')(app, cors, corsOptions)
-require('./authentication-routes')(app, cors, corsOptions)
-
 // ----- set up DB ----- //
 
 var knex = require('knex')({
   client: 'pg',
   debug: true,
-  ssl: true,
+  // ssl: true,
   connection: {
     host: '127.0.0.1',
     port: '5432',
     database: 'tightrope_dev',
-    user: 'howard',
+    // user: 'howard',
     password: 'password'
   }
 
 })
 
 var db = require('./db.js')(knex)
+
+// ----- import routes ----- //
+
+require('./get-routes')(app, cors, corsOptions, db, knex)
+require('./post-routes')(app, cors, corsOptions)
+require('./authentication-routes')(app, cors, corsOptions)
+
+// ----- middleware ----- //
 
 app.use(require('serve-static')(__dirname + '../public'))
 app.use(require('cookie-parser')())

@@ -1,4 +1,4 @@
-module.exports = function (app, cors, corsOptions) {
+module.exports = function (app, cors, corsOptions, db, knex) {
   var body_parser = require('body-parser')
 
   app.use(body_parser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
