@@ -34,8 +34,8 @@ var db = require('./db.js')(knex)
 // ----- import routes ----- //
 
 require('./get-routes')(app, cors, corsOptions, db, knex)
-require('./post-routes')(app, cors, corsOptions)
-require('./authentication-routes')(app, cors, corsOptions)
+require('./post-routes')(app, cors, corsOptions, db, knex)
+require('./authentication-routes')(app, cors, corsOptions, db, knex)
 
 // ----- middleware ----- //
 

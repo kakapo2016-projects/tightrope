@@ -1,4 +1,4 @@
-module.exports = function (app, cors, corsOptions) {
+module.exports = function (app, cors, corsOptions, db, knex) {
   var body_parser = require('body-parser')
   var bcrypt = require('bcrypt')
   var moment = require('moment')
