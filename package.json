@@ -12,11 +12,8 @@
   },
   "scripts": {
     "test": "mocha -w --compilers js:babel-core/register --require ./test/test-helper.js  \"test/**/*.@(js|jsx)\" --require ignore-styles && npm run lint",
-    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:dev": "webpack-dev-server --inline --content-base public --history-api-fallback & nodemon ./server/server.js --exec babel-node --presets es2015,stage-2",
-    "start:prod": "webpack && node ./server/server.js",
+    "start": "node ./server/server.js",
     "lint": "standard src/**/*.js",
-    "test:integration": "nightwatch -g test/integration",
     "migrate": "knex migrate:rollback && knex migrate:latest && knex seed:run"
   },
   "repository": {
@@ -74,17 +71,11 @@
     "serve-static": "^1.10.2",
     "style-loader": "^0.13.0",
     "superagent": "^1.8.3",
+    "url": "^0.11.0",
     "webpack": "^1.12.13"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.4",
-    "babel-cli": "^6.6.5",
-    "babel-core": "^6.5.1",
-    "babel-loader": "^6.2.2",
-    "babel-preset-es2015": "^6.5.0",
-    "babel-preset-react": "^6.5.0",
-    "babel-preset-stage-0": "^6.5.0",
-    "babel-preset-stage-2": "^6.5.0",
     "chai": "^3.5.0",
     "chai-enzyme": "^0.4.1",
     "enzyme": "^1.6.0",
