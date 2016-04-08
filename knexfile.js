@@ -11,6 +11,10 @@ module.exports = {
       password: 'password'
     }
   },
+  pool: {
+    min: 0,
+    max: 7
+  },
   directory: __dirname + '/migrations',
   tableName: 'migrations'
 }

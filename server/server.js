@@ -26,6 +26,10 @@ var knex = require('knex')({
     database: 'tightrope_dev',
     // user: 'howard',
     password: 'password'
+  },
+  pool: {
+    min: 0,
+    max: 7
   }
 })
 
