@@ -1,9 +1,5 @@
 #Tightrope
 
-
-##Stack
-
-
 ##Creators
 
 Nick Maskell [Github](https://github.com/nickmask)
