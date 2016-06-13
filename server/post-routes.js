@@ -108,7 +108,8 @@ module.exports = function (app, cors, corsOptions, db, knex) {
   app.post('/api/v1/delete/:id', function (req, res) { // receives a photo url as a string
     console.log('POST received on /api/v1/delete/:id')
     console.log('req.body is: ', req.params.id)
-    let userId = req.params.id
+    // let userId = req.params.id
+    var userId = req.params.id
     // use knex to do 'INSERT INTO photos (fields) VALUES (values)
     db.delete('fans', {
       liker_id: userId
